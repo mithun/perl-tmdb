@@ -1,33 +1,82 @@
 package TMDB;
 
-use warnings;
+use 5.006001;
 use strict;
-use Carp;
+use warnings FATAL => 'all';
+use Carp qw(croak);
 
-use version; $VERSION = qv('0.0.3');
+our $VERSION = '0.01';
 
-# Other recommended modules (uncomment to use):
-#  use IO::Prompt;
-#  use Perl6::Export;
-#  use Perl6::Slurp;
-#  use Perl6::Say;
+use TMDB::Session;
+use TMDB::Search;
+use TMDB::Movie;
+use TMDB::Person;
 
+## == Public methods == ##
 
-# Module implementation here
+## Constructor
+sub new {
+    my ( $class, $args ) = @_;
+    my $self = {};
 
+    # Initialize
+    bless $self, $class;
+    return $self->_init($args);
+}
 
-1; # Magic true value required at end of module
+## Search Object
+sub search {
+    my $self = shift;
+    return TMDB::Search->new( { session => $self->_session } );
+}
+
+## Movie Object
+sub movie {
+    my $self = shift;
+    my $id = shift || croak "Movie ID is required";
+    return TMDB::Movie->new( { session => $self->_session, id => $id } );
+}
+
+## Person Object
+sub person {
+    my $self = shift;
+    my $id = shift || croak "Person ID is required";
+    return TMDB::Person->new( { session => $self->_session, id => $id } );
+}
+
+## == Private Methods == ##
+
+## Initialize
+sub _init {
+    my $self = shift;
+    my $args = shift || {};
+
+    croak "Hash reference expected" unless ( ref $args eq 'HASH' );
+
+    $args->{_VERSION} = $VERSION;
+    $self->{_session} = TMDB::Session->new($args);
+    return $self;
+}
+
+## Session
+sub _session {
+    my $self = shift;
+    if (@_) { return $self->{_session} = @_; }
+    return $self->{_session};
+}
+
+################
+1;
+
 __END__
 
 =head1 NAME
 
-TMDB - [One line description of module's purpose here]
-
+TMDB - Perl Library for The MovieDB
 
 =head1 VERSION
 
 This document describes TMDB version 0.0.1
-
 
 =head1 SYNOPSIS
 

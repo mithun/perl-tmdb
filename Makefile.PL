@@ -14,4 +14,10 @@ WriteMakefile(
     },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean               => { FILES => 'TMDB-*' },
+    META_ADD => {
+        resources => {
+            bugtracker =>
+              'http://rt.cpan.org/NoAuth/Bugs.html?Dist=TMDB',
+            repository => 'http://github.com/mithun/perl-tmdb',
+        },
 );
