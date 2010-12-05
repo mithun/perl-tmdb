@@ -1,0 +1,35 @@
+---
+abstract: 'Perl wrapper for The MovieDB API'
+author:
+  - 'Mithun Ayachit <mithun@cpan.org>'
+build_requires:
+  Test::More: 0
+configure_requires:
+  Module::Build: 0.36
+generated_by: 'Module::Build version 0.3607'
+license: perl
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: TMDB
+provides:
+  TMDB:
+    file: lib/TMDB.pm
+    version: 0.01
+  TMDB::Movie:
+    file: lib/TMDB/Movie.pm
+  TMDB::Person:
+    file: lib/TMDB/Person.pm
+  TMDB::Search:
+    file: lib/TMDB/Search.pm
+  TMDB::Session:
+    file: lib/TMDB/Session.pm
+requires:
+  Encode: 0
+  LWP::UserAgent: 0
+  YAML::Any: 0
+  perl: v5.8.1
+resources:
+  bugtracker: http://rt.cpan.org/NoAuth/Bugs.html?Dist=TMDB
+  repository: http://github.com/mithun/perl-tmdb
+version: 0.01

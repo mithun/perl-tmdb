@@ -29,6 +29,7 @@ sub url        { return shift->info->{url}; }
 sub id         { return shift->info->{id}; }
 sub birthday   { return shift->info->{birthday}; }
 sub biography  { return shift->info->{biography}; }
+sub bio        { return shift->biography(); }
 
 # Filmography
 sub movies {

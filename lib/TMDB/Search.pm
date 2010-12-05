@@ -27,7 +27,7 @@ sub movie {
 
     my ( $title, $year );
     if ( ref $args[0] eq 'HASH' ) {
-        $title = $args[0]->{title} if $args[0]->{title};
+        $title = $args[0]->{name} if $args[0]->{name};
         $year  = $args[0]->{year}  if $args[0]->{year};
     }
     else { $title = $args[0] }
@@ -141,7 +141,7 @@ sub _parse_movie_result {
     my @movies;
     foreach my $result ( @{$results} ) {
         my %movie;
-        $movie{title} = $result->{name};
+        $movie{name} = $result->{name};
         $movie{year}  = $result->{released};
         $movie{year} =~ s{\-\d{2}\-\d{2}$}{}x;
         $movie{id}  = $result->{id};

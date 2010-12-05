@@ -58,26 +58,11 @@ sub _init {
     # Default User Agent
     my $ua = LWP::UserAgent->new( agent => "perl-tmdb/" . $args->{_VERSION} );
 
-    # application mode API
-    my $tmdb_api_key = '987afa49659c55beb0e06e15af7352ba';
-
-    # Check if API key is provided
-    #   If not, then assume application mode
-    #   Application mode does not provide write permissions
-    if ( exists $args->{api_key} and $args->{api_key} ) {
-        $self->{_api_key}          = $args->{api_key};
-        $self->{_application_mode} = 0;
-
-        # Custom UserAgents not allowed
-        $self->{_ua} = $ua;
-    }
-    else {
-        $self->{_api_key}          = $tmdb_api_key;
-        $self->{_application_mode} = 1;
-        $self->{_ua}               = $args->{ua} || $ua;
-    }
+    # Required Args
+    $self->{_api_key} = $args->{api_key} || croak "API key is not provided";
 
     # Optional Args
+    $self->{_ua}   = $args->{ua}   || $ua;        # UserAgent
     $self->{_lang} = $args->{lang} || 'en-US';    # Language
 
     # Check user agent
