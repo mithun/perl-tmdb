@@ -15,7 +15,7 @@ name: TMDB
 provides:
   TMDB:
     file: lib/TMDB.pm
-    version: 0.01
+    version: 0.02
   TMDB::Movie:
     file: lib/TMDB/Movie.pm
   TMDB::Person:
@@ -32,4 +32,4 @@ requires:
 resources:
   bugtracker: http://rt.cpan.org/NoAuth/Bugs.html?Dist=TMDB
   repository: http://github.com/mithun/perl-tmdb
-version: 0.01
+version: 0.02

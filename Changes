@@ -1,3 +1,5 @@
 Revision history for TMDB
 
+0.02    * Fixed Makefile.PL
+
 0.01    * Initial release

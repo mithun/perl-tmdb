@@ -5,7 +5,7 @@ use strict;
 use warnings FATAL => 'all';
 use Carp qw(croak);
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use TMDB::Session;
 use TMDB::Search;
@@ -76,7 +76,7 @@ TMDB - Perl wrapper for The MovieDB API
 
 =head1 VERSION
 
-This document describes TMDB version 0.01
+This document describes TMDB version 0.02
 
 =head1 SYNOPSIS
 

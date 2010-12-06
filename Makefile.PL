@@ -22,5 +22,6 @@ WriteMakefile(
         resources => {
             bugtracker => 'http://rt.cpan.org/NoAuth/Bugs.html?Dist=TMDB',
             repository => 'http://github.com/mithun/perl-tmdb',
-        },
-    );
+        }
+    },
+);
