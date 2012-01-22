@@ -1,12 +1,20 @@
 package TMDB::Movie;
 
+#######################
+# LOAD CORE MODULES
+#######################
 use strict;
-use warnings;
-use Carp;
+use warnings FATAL => 'all';
+use Carp qw(croak carp);
 
+#######################
+# LOAD DIST MODULES
+#######################
 use TMDB::Session;
 
-## == Public methods == ##
+#######################
+# PUBLIC METHODS
+#######################
 
 ## Constructor
 sub new {
@@ -16,7 +24,7 @@ sub new {
     my $self = {};
     bless $self, $class;
     return $self->_init($args);
-}
+} ## end sub new
 
 # Short Accessors
 sub info          { return shift->{_info}; }
@@ -40,7 +48,7 @@ sub year {
     my $released = $self->released();
     $released =~ s{\-\d{2}\-\d{2}$}{}x;
     return $released;
-}
+} ## end sub year
 
 ## Posters
 sub posters {
@@ -53,7 +61,7 @@ sub posters {
         push @posters, $poster->{image}->{url};
     }
     return @posters;
-}
+} ## end sub posters
 
 ## Backdrops
 sub backdrops {
@@ -66,7 +74,7 @@ sub backdrops {
         push @backdrops, $backdrop->{image}->{url};
     }
     return @backdrops;
-}
+} ## end sub backdrops
 
 ## Cast & crew
 sub actors   { return shift->_cast('Actor'); }
@@ -82,7 +90,7 @@ sub genres {
     my @genres;
     foreach ( @{ $self->info->{genres} } ) { push @genres, $_->{name}; }
     return @genres;
-}
+} ## end sub genres
 
 ## Studios
 sub studios {
@@ -90,9 +98,11 @@ sub studios {
     my @studios;
     foreach ( @{ $self->info->{studios} } ) { push @studios, $_->{name}; }
     return @studios;
-}
+} ## end sub studios
 
-## == Private methods == ##
+#######################
+# PRIVATE METHODS
+#######################
 
 ## Initialize
 sub _init {
@@ -108,12 +118,12 @@ sub _init {
 
     # Get info
     my $results = $self->_session->talk($talk_args)
-      or croak "No Movie found. Please try searching instead";
+        or croak "No Movie found. Please try searching instead";
 
     # Store info
     $self->{_info} = $results->[0];
     return $self;
-}
+} ## end sub _init
 
 ## Session
 sub _session { return shift->{_session}; }
@@ -128,7 +138,7 @@ sub _cast {
         push @members, $cast->{name};
     }
     return @members;
-}
+} ## end sub _cast
 
-#####################
+#######################
 1;

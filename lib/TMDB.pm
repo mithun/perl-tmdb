@@ -1,18 +1,28 @@
 package TMDB;
 
-use 5.008001;
+#######################
+# LOAD MODULES
+#######################
 use strict;
 use warnings FATAL => 'all';
-use Carp qw(croak);
+use Carp qw(croak carp);
 
-our $VERSION = '0.02';
+#######################
+# VERSION
+#######################
+our $VERSION = '0.03';
 
+#######################
+# LOAD DIST MODULES
+#######################
 use TMDB::Session;
 use TMDB::Search;
 use TMDB::Movie;
 use TMDB::Person;
 
-## == Public methods == ##
+#######################
+# PUBLIC METHODS
+#######################
 
 ## Constructor
 sub new {
@@ -22,7 +32,7 @@ sub new {
     # Initialize
     bless $self, $class;
     return $self->_init($args);
-}
+} ## end sub new
 
 ## Search Object
 sub search {
@@ -34,17 +44,29 @@ sub search {
 sub movie {
     my $self = shift;
     my $id = shift || croak "Movie ID is required";
-    return TMDB::Movie->new( { session => $self->_session, id => $id } );
-}
+    return TMDB::Movie->new(
+        {
+            session => $self->_session,
+            id      => $id
+        }
+    );
+} ## end sub movie
 
 ## Person Object
 sub person {
     my $self = shift;
     my $id = shift || croak "Person ID is required";
-    return TMDB::Person->new( { session => $self->_session, id => $id } );
-}
+    return TMDB::Person->new(
+        {
+            session => $self->_session,
+            id      => $id
+        }
+    );
+} ## end sub person
 
-## == Private Methods == ##
+#######################
+# PRIVATE METHODS
+#######################
 
 ## Initialize
 sub _init {
@@ -56,7 +78,7 @@ sub _init {
     $args->{_VERSION} = $VERSION;
     $self->{_session} = TMDB::Session->new($args);
     return $self;
-}
+} ## end sub _init
 
 ## Session
 sub _session {
@@ -65,22 +87,23 @@ sub _session {
     return $self->{_session};
 }
 
-################
+#######################
 1;
 
 __END__
+
+#######################
+# POD SECTION
+#######################
+=pod
 
 =head1 NAME
 
 TMDB - Perl wrapper for The MovieDB API
 
-=head1 VERSION
-
-This document describes TMDB version 0.02
-
 =head1 SYNOPSIS
 
-use TMDB;
+    use TMDB;
 
     # Initialize
     my $tmdb = TMDB->new( { api_key => 'xxxxxx' } );
@@ -98,7 +121,7 @@ use TMDB;
     printf( "Overview: %s\n", $movie->overview );
     printf( "Director: %s\n", join( ',', $movie->director ) );
     printf( "Cast: %s\n",     join( ',', $movie->cast ) );
-  
+    
 =head1 DESCRIPTION
 
 L<The MovieDB|http://www.themoviedb.org/> is a free and open movie database.
@@ -256,18 +279,7 @@ L</movie($name)>
     my $info = $person->info();
     use Data::Dumper;
     print Dumper $info;
-
-=head1 BUGS AND LIMITATIONS
-
-This module does not (yet) provide capabilities to I<write> to TMDb.
-
-All data returned is encoded to UTF-8
-
-No bugs have been reported.
-
-Please report any bugs or feature requests to C<bug-tmdb@rt.cpan.org>, or
-through the web interface at L<http://rt.cpan.org>.
-
+    
 =head1 DEPENDENCIES
 
 L<Encode>
@@ -276,44 +288,21 @@ L<LWP::UserAgent>
 
 L<YAML::Any>
 
-=head1 SEE ALSO
+=head1 BUGS AND LIMITATIONS
 
-L<WWW::TheMovieDB::API|http://code.google.com/p/perl-themoviedb-api>
+Please report any bugs or feature requests to
+C<bug-tmdb@rt.cpan.org>, or through the web interface at
+L<http://rt.cpan.org/Public/Dist/Display.html?Name=TMDB>
 
 =head1 AUTHOR
 
-Mithun Ayachit  C<< <mithun@cpan.org> >>
+Mithun Ayachit C<mithun@cpan.org>
 
-=head1 LICENCE AND COPYRIGHT
+=head1 LICENSE AND COPYRIGHT
 
-Copyright (c) 2010, Mithun Ayachit C<< <mithun@cpan.org> >>. All rights
-reserved.
+Copyright (c) 2012, Mithun Ayachit. All rights reserved.
 
 This module is free software; you can redistribute it and/or modify it under
 the same terms as Perl itself. See L<perlartistic>.
 
-License for embedded L<Hashing Source
-Code|http://trac.opensubtitles.org/projects/opensubtitles/wiki/HashSourceCodes>
-is GPL
-
-=head1 DISCLAIMER OF WARRANTY
-
-BECAUSE THIS SOFTWARE IS LICENSED FREE OF CHARGE, THERE IS NO WARRANTY FOR THE
-SOFTWARE, TO THE EXTENT PERMITTED BY APPLICABLE LAW. EXCEPT WHEN OTHERWISE
-STATED IN WRITING THE COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE
-SOFTWARE "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR IMPLIED,
-INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND
-FITNESS FOR A PARTICULAR PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND
-PERFORMANCE OF THE SOFTWARE IS WITH YOU. SHOULD THE SOFTWARE PROVE DEFECTIVE,
-YOU ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR, OR CORRECTION.
-
-IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING WILL ANY
-COPYRIGHT HOLDER, OR ANY OTHER PARTY WHO MAY MODIFY AND/OR REDISTRIBUTE THE
-SOFTWARE AS PERMITTED BY THE ABOVE LICENCE, BE LIABLE TO YOU FOR DAMAGES,
-INCLUDING ANY GENERAL, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING
-OUT OF THE USE OR INABILITY TO USE THE SOFTWARE (INCLUDING BUT NOT LIMITED TO
-LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR LOSSES SUSTAINED BY YOU OR
-THIRD PARTIES OR A FAILURE OF THE SOFTWARE TO OPERATE WITH ANY OTHER SOFTWARE),
-EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH
-DAMAGES.
-
+=cut

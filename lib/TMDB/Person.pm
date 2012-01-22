@@ -1,15 +1,20 @@
 package TMDB::Person;
 
-#####################
+#######################
 # LOAD CORE MODULES
-#####################
+#######################
 use strict;
-use warnings;
-use Carp;
+use warnings FATAL => 'all';
+use Carp qw(croak carp);
 
+#######################
+# LOAD DIST MODULES
+#######################
 use TMDB::Session;
 
-## == Public methods == ##
+#######################
+# PUBLIC METHODS
+#######################
 
 ## Constructor
 sub new {
@@ -19,7 +24,7 @@ sub new {
     my $self = {};
     bless $self, $class;
     return $self->_init($args);
-}
+} ## end sub new
 
 # Short Accessors
 sub info       { return shift->{_info}; }
@@ -37,7 +42,7 @@ sub movies {
     my @movies;
     foreach ( @{ $self->info->{filmography} } ) { push @movies, $_->{name}; }
     return @movies;
-}
+} ## end sub movies
 
 # Posters
 sub posters {
@@ -50,9 +55,11 @@ sub posters {
         push @posters, $poster->{image}->{url};
     }
     return @posters;
-}
+} ## end sub posters
 
-## == Private methods == ##
+#######################
+# PRIVATE METHODS
+#######################
 
 ## Initialize
 sub _init {
@@ -68,15 +75,15 @@ sub _init {
 
     # Get info
     my $results = $self->_session->talk($talk_args)
-      or croak "No Person found. Please try searching instead";
+        or croak "No Person found. Please try searching instead";
 
     # Store info
     $self->{_info} = $results->[0];
     return $self;
-}
+} ## end sub _init
 
 ## Session
 sub _session { return shift->{_session}; }
 
-#####################
+#######################
 1;

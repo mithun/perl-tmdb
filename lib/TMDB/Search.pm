@@ -1,12 +1,20 @@
 package TMDB::Search;
 
+#######################
+# LOAD CORE MODULES
+#######################
 use strict;
-use warnings;
-use Carp;
+use warnings FATAL => 'all';
+use Carp qw(croak carp);
 
+#######################
+# LOAD DIST MODULES
+#######################
 use TMDB::Session;
 
-## == Public methods == ##
+#######################
+# PUBLIC METHODS
+#######################
 
 ## Constructor
 sub new {
@@ -17,7 +25,7 @@ sub new {
     bless $self, $class;
     $self->{_session} = $args->{session} || croak "Session not provided";
     return $self;
-}
+} ## end sub new
 
 ## Search Movies
 #   Provides searching by title+year
@@ -28,7 +36,7 @@ sub movie {
     my ( $title, $year );
     if ( ref $args[0] eq 'HASH' ) {
         $title = $args[0]->{name} if $args[0]->{name};
-        $year  = $args[0]->{year}  if $args[0]->{year};
+        $year  = $args[0]->{year} if $args[0]->{year};
     }
     else { $title = $args[0] }
 
@@ -52,7 +60,7 @@ sub movie {
 
     # Process results
     return _parse_movie_result($results);
-}
+} ## end sub movie
 
 ## Search Person
 sub person {
@@ -60,7 +68,10 @@ sub person {
     my $name = shift || croak "Person's name is not provided";
 
     # Build parameters to pass to session
-    my $talk_args = { method => 'Person.search', params => $name };
+    my $talk_args = {
+        method => 'Person.search',
+        params => $name
+    };
 
     # Fetch results
     my $results = $self->_session->talk($talk_args) or return;
@@ -77,10 +88,10 @@ sub person {
             $person{thumb} = $image->{image}->{url};
         }
         push @persons, \%person;
-    }
+    } ## end foreach my $result ( @{$results...})
 
     return @persons;
-}
+} ## end sub person
 
 ## Search IMDB
 sub imdb {
@@ -88,14 +99,17 @@ sub imdb {
     my $imdb_id = shift || croak "IMDB ID is required";
 
     # Build parameters to pass to session
-    my $talk_args = { method => 'Movie.imdbLookup', params => $imdb_id };
+    my $talk_args = {
+        method => 'Movie.imdbLookup',
+        params => $imdb_id
+    };
 
     # Fetch results
     my $results = $self->_session->talk($talk_args) or return;
 
     # Process results
     return _parse_movie_result($results);
-}
+} ## end sub imdb
 
 ## Search DVDID
 sub dvdid {
@@ -103,14 +117,17 @@ sub dvdid {
     my $dvdid = shift || croak "DVDID not provided";
 
     # Build parameters to pass to session
-    my $talk_args = { method => 'Media.getInfo', params => $dvdid };
+    my $talk_args = {
+        method => 'Media.getInfo',
+        params => $dvdid
+    };
 
     # Fetch results
     my $results = $self->_session->talk($talk_args) or return;
 
     # Process results
     return _parse_movie_result($results);
-}
+} ## end sub dvdid
 
 ## Search by file
 sub file {
@@ -128,9 +145,11 @@ sub file {
 
     # Process results
     return _parse_movie_result($results);
-}
+} ## end sub file
 
-## == Private methods == ##
+#######################
+# PRIVATE METHODS
+#######################
 
 ## Session
 sub _session { return shift->{_session}; }
@@ -142,7 +161,7 @@ sub _parse_movie_result {
     foreach my $result ( @{$results} ) {
         my %movie;
         $movie{name} = $result->{name};
-        $movie{year}  = $result->{released};
+        $movie{year} = $result->{released};
         $movie{year} =~ s{\-\d{2}\-\d{2}$}{}x;
         $movie{id}  = $result->{id};
         $movie{url} = $result->{url};
@@ -152,9 +171,9 @@ sub _parse_movie_result {
             last;
         }
         push @movies, \%movie;
-    }
+    } ## end foreach my $result ( @{$results...})
     return @movies;
-}
+} ## end sub _parse_movie_result
 
 ## File hash
 #   Hashing source code from 'OpenSubtitles'
@@ -178,7 +197,7 @@ sub OpenSubtitlesHash {
 
     close $handle or croak $!;
     return UINT64FormatHex($hash);
-}
+} ## end sub OpenSubtitlesHash
 
 sub ReadUINT64 {
     read( $_[0], my $u, 8 );
@@ -197,14 +216,14 @@ sub AddUINT64 {
             $o->[$i] += ( $_[0]->[$i] + $_[1]->[$i] + $carry );
             $carry = 0;
         }
-    }
+    } ## end for my $i ( 0 .. 3 )
     return $o;
-}
+} ## end sub AddUINT64
 
 sub UINT64FormatHex {
     return sprintf( "%04x%04x%04x%04x",
         $_[0]->[3], $_[0]->[2], $_[0]->[1], $_[0]->[0] );
 }
 
-#####################
+#######################
 1;
