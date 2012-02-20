@@ -24,16 +24,13 @@ my $builder = Module::Build->new(
         'version'    => 0,
     },
     requires => {
-        'perl'           => '5.8.1',
-        'Encode'         => 0,
-        'LWP::UserAgent' => 0,
-        'JSON::Any'      => 0,
+
     },
     add_to_cleanup     => ['TMDB-*'],
     create_license     => 1,
     create_makefile_pl => 'traditional',
     meta_merge         => {
-        keywords  => [qw(tmdb movie imdb api themoviedb moviedb)],
+        keywords  => [],
         resources => {
             bugtracker =>
                 'http://rt.cpan.org/Public/Dist/Display.html?Name=TMDB',

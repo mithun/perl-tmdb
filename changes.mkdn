@@ -3,16 +3,6 @@
 
 ---------------------
 
-# 0.03
-
-- Updated to use JSON instead of YAML
-
-# 0.02
-
-- Fixed Makefile.PL
-
 # 0.01
 
-- Initial Release
-	
 ---------------------
