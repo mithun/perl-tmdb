@@ -36,7 +36,7 @@ use TMDB::Collection;
 ## ====================
 sub new {
     my ( $class, @args ) = @_;
-    my $self;
+    my $self = {};
     bless $self, $class;
 
     # Init Session

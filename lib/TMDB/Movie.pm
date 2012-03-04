@@ -212,28 +212,38 @@ sub actors {
 sub director           { return shift->_crew_names('Director'); }
 sub producer           { return shift->_crew_names('Producer'); }
 sub executive_producer { return shift->_crew_names('Executive Producer'); }
-sub writer             { return shift->_crew_names('Author'); }
+sub writer { return shift->_crew_names('Screenplay|Writer|Author|Novel'); }
 
 ## ====================
 ## IMAGE HELPERS
 ## ====================
+
+# Poster
+sub poster {
+    my $self = shift;
+    return $self->info()->{poster_path} || q();
+}
 
 # Posters
 sub posters {
     my $self     = shift;
     my $response = $self->images();
     my $posters  = $response->{posters} || [];
-    return @$posters if wantarray;
-    return $posters;
+    return $self->_image_urls($posters);
 } ## end sub posters
+
+# Backdrop
+sub backdrop {
+    my $self = shift;
+    return $self->info()->{backdrop_path} || q();
+}
 
 # Backdrops
 sub backdrops {
     my $self      = shift;
     my $response  = $self->images();
     my $backdrops = $response->{backdrops} || [];
-    return @$backdrops if wantarray;
-    return $backdrops;
+    return $self->_image_urls($backdrops);
 } ## end sub backdrops
 
 ## ====================
@@ -274,12 +284,26 @@ sub _crew_names {
     my @names;
     my @crew = $self->crew();
     foreach (@crew) {
-        push @names, $_->{name} if ( $_->{job} eq $job );
+        push @names, $_->{name} if ( $_->{job} =~ m{$job} );
     }
 
     return @names if wantarray;
     return \@names;
 } ## end sub _crew_names
+
+## ====================
+## IMAGE URLS
+## ====================
+sub _image_urls {
+    my $self   = shift;
+    my $images = shift;
+    my @urls;
+    foreach (@$images) {
+        push @urls, $_->{file_path};
+    }
+    return @urls if wantarray;
+    return \@urls;
+} ## end sub _image_urls
 
 #######################
 1;

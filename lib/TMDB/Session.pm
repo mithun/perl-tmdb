@@ -15,7 +15,7 @@ use Encode qw();
 use HTTP::Tiny qw();
 use URI::Encode qw();
 use Locale::Codes::Language qw(all_language_codes);
-use Object::Tiny qw(apikey lang client encoder json);
+use Object::Tiny qw(apikey apiurl lang debug client encoder json);
 use Params::Validate qw(validate_with SCALAR OBJECT BOOLEAN);
 
 #######################
@@ -101,8 +101,10 @@ sub talk {
     my $url =
         $self->apiurl . '/' . $args->{method} . '?api_key=' . $self->apikey;
     if ( $args->{params} ) {
-        $url .= "&${_}=" . $args->{params}->{$_}
-            for ( sort { lc $a cmp lc $b } %{ $args->{params} } );
+        foreach my $param(sort { lc $a cmp lc $b } %{ $args->{params} }){
+            next unless defined $args->{params}->{$param};
+            $url .= "&${param}=".$args->{params}->{$param};
+        }
     }
 
     # Encode

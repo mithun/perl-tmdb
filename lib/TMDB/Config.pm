@@ -53,11 +53,11 @@ sub new {
     my $self = $class->SUPER::new(%opts);
 
     my $config = $self->session->talk( { method => 'configuration' } ) || {};
-    $opts{config}             = $config;
-    $opts{img_backdrop_sizes} = $config->{images}->{backdrop_sizes} || [];
-    $opts{img_poster_sizes}   = $config->{images}->{poster_sizes} || [];
-    $opts{img_profile_sizes}  = $config->{images}->{profile_sizes} || [];
-    $opts{img_base_url}       = $config->{images}->{base_url} || q();
+    $self->{config}             = $config;
+    $self->{img_backdrop_sizes} = $config->{images}->{backdrop_sizes} || [];
+    $self->{img_poster_sizes}   = $config->{images}->{poster_sizes} || [];
+    $self->{img_profile_sizes}  = $config->{images}->{profile_sizes} || [];
+    $self->{img_base_url}       = $config->{images}->{base_url} || q();
 
     return $self;
 } ## end sub new
