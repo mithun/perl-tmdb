@@ -32,7 +32,7 @@ my $default_headers = { Accept => 'application/json', };
 my $default_ua = 'perl-tmdb-client';
 
 #######################
-# MODULE METHODS
+# PUBLIC METHODS
 #######################
 
 ## ============
@@ -54,7 +54,7 @@ sub new {
                 optional  => 1,
                 callbacks => {
                     'valid language code' =>
-                        sub { $valid_lang_codes{ $_[0] } },
+                        sub { $valid_lang_codes{ lc $_[0] } },
                 },
             },
             client => {
@@ -86,6 +86,7 @@ sub new {
         },
     );
 
+    $opts{lang} = lc $opts{lang} if $opts{lang};
     my $self = $class->SUPER::new(%opts);
     return $self;
 } ## end sub new

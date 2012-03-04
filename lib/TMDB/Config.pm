@@ -27,7 +27,7 @@ use Object::Tiny qw(
 use TMDB::Session;
 
 #######################
-# MODULE METHODS
+# PUBLIC METHODS
 #######################
 
 ## ============

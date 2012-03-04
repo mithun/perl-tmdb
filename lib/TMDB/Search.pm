@@ -10,8 +10,8 @@ use Carp qw(croak carp);
 #######################
 # LOAD CPAN MODULES
 #######################
-use Params::Validate qw(validate_with OBJECT);
-use Object::Tiny qw();
+use Object::Tiny qw(session include_adult);
+use Params::Validate qw(validate_with OBJECT SCALAR);
 
 #######################
 # LOAD DIST MODULES
@@ -19,7 +19,7 @@ use Object::Tiny qw();
 use TMDB::Session;
 
 #######################
-# MODULE METHODS
+# PUBLIC METHODS
 #######################
 
 ## ============
@@ -34,8 +34,16 @@ sub new {
                 type => OBJECT,
                 isa  => 'TMDB::Session',
             },
+            include_adult => {
+                type     => SCALAR,
+                optional => 1,
+                default  => 'false',
+            }
         },
     );
+
+    my $self = $class->SUPER::new(%opts);
+    return $self;
 } ## end sub new
 
 ## ============
@@ -56,8 +64,11 @@ sub movie {
     $string .= " $year" if $year;
 
     # Search
-    my $params = { query => $string, };
-    $params->{lang} = $self->lang if $self->lang;
+    my $params = {
+        query         => $string,
+        include_adult => $self->include_adult,
+    };
+    $params->{lang} = $self->session->lang if $self->session->lang;
     return $self->_search(
         {
             method => 'search/movie',
@@ -79,7 +90,12 @@ sub person {
     );
 } ## end sub person
 
-## Search (Internal)
+#######################
+# PRIVATE METHODS
+#######################
+
+## ============
+## Search
 ## ============
 sub _search {
     my $self = shift;
