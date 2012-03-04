@@ -22,9 +22,9 @@ use TMDB::Session;
 # PUBLIC METHODS
 #######################
 
-## ============
+## ====================
 ## Constructor
-## ============
+## ====================
 sub new {
     my $class = shift;
     my %opts  = validate_with(
@@ -46,9 +46,9 @@ sub new {
     return $self;
 } ## end sub new
 
-## ============
+## ====================
 ## Search Movies
-## ============
+## ====================
 sub movie {
     my ( $self, $string ) = @_;
 
@@ -77,9 +77,9 @@ sub movie {
     );
 } ## end sub movie
 
-## ============
+## ====================
 ## Person
-## ============
+## ====================
 sub person {
     my ( $self, $string ) = @_;
     return $self->_search(
@@ -94,9 +94,9 @@ sub person {
 # PRIVATE METHODS
 #######################
 
-## ============
+## ====================
 ## Search
-## ============
+## ====================
 sub _search {
     my $self = shift;
     my $args = shift;

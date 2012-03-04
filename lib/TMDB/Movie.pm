@@ -23,9 +23,9 @@ use TMDB::Session;
 # PUBLIC METHODS
 #######################
 
-## ============
+## ====================
 ## Constructor
-## ============
+## ====================
 sub new {
     my $class = shift;
     my %opts  = validate_with(
@@ -43,9 +43,9 @@ sub new {
     return $self;
 } ## end sub new
 
-## ============
+## ====================
 ## INFO
-## ============
+## ====================
 sub info {
     my $self   = shift;
     my $params = {};
@@ -58,9 +58,9 @@ sub info {
     );
 } ## end sub info
 
-## ============
+## ====================
 ## ALTERNATIVE TITLES
-## ============
+## ====================
 sub alternative_titles {
     my $self    = shift;
     my $country = shift;
@@ -86,9 +86,9 @@ sub alternative_titles {
     return $titles;
 } ## end sub alternative_titles
 
-## ============
+## ====================
 ## CAST
-## ============
+## ====================
 sub cast {
     my $self     = shift;
     my $response = $self->_cast();
@@ -97,9 +97,9 @@ sub cast {
     return $cast;
 } ## end sub cast
 
-## ============
+## ====================
 ## CREW
-## ============
+## ====================
 sub crew {
     my $self     = shift;
     my $response = $self->_cast();
@@ -108,9 +108,9 @@ sub crew {
     return $crew;
 } ## end sub crew
 
-## ============
+## ====================
 ## IMAGES
-## ============
+## ====================
 sub images {
     my $self   = shift;
     my $params = {};
@@ -123,9 +123,9 @@ sub images {
     );
 } ## end sub images
 
-## ============
+## ====================
 ## KEYWORDS
-## ============
+## ====================
 sub keywords {
     my $self     = shift;
     my $response = $self->session->talk(
@@ -137,9 +137,9 @@ sub keywords {
     return \@keywords;
 } ## end sub keywords
 
-## ============
+## ====================
 ## RELEASES
-## ============
+## ====================
 sub releases {
     my $self     = shift;
     my $response = $self->session->talk(
@@ -149,18 +149,18 @@ sub releases {
     return $countries;
 } ## end sub releases
 
-## ============
+## ====================
 ## TRAILERS
-## ============
+## ====================
 sub trailers {
     my $self = shift;
     return $self->session->talk(
         { method => 'movie/' . $self->id() . '/trailers' } );
 }
 
-## ============
+## ====================
 ## TRANSLATIONS
-## ============
+## ====================
 sub translations {
     my $self     = shift;
     my $response = $self->session->talk(
@@ -170,14 +170,14 @@ sub translations {
     return $translations;
 } ## end sub translations
 
-## ============
+## ====================
 ## LATEST
-## ============
+## ====================
 sub latest { return shift->session->talk( { method => 'latest/movie', } ); }
 
-## ============
+## ====================
 ## INFO HELPERS
-## ============
+## ====================
 
 # Title
 sub title { return shift->info()->{title} || q(); }
@@ -194,9 +194,9 @@ sub imdb_id { return shift->info()->{imdb_id} || q(); }
 # Description
 sub description { return shift->overview(); }
 
-## ============
+## ====================
 ## CAST/CREW HELPERS
-## ============
+## ====================
 
 # Actor names
 sub actors {
@@ -214,9 +214,9 @@ sub producer           { return shift->_crew_names('Producer'); }
 sub executive_producer { return shift->_crew_names('Executive Producer'); }
 sub writer             { return shift->_crew_names('Author'); }
 
-## ============
+## ====================
 ## IMAGE HELPERS
-## ============
+## ====================
 
 # Posters
 sub posters {
@@ -236,9 +236,9 @@ sub backdrops {
     return $backdrops;
 } ## end sub backdrops
 
-## ============
+## ====================
 ## TRAILER HELPERS
-## ============
+## ====================
 sub trailers_youtube {
     my $self     = shift;
     my $trailers = $self->trailers();
@@ -255,18 +255,18 @@ sub trailers_youtube {
 # PRIVATE METHODS
 #######################
 
-## ============
+## ====================
 ## CAST
-## ============
+## ====================
 sub _cast {
     my $self = shift;
     return $self->session->talk(
         { method => 'movie/' . $self->id() . '/casts', } );
 }
 
-## ============
+## ====================
 ## CREW NAMES
-## ============
+## ====================
 sub _crew_names {
     my $self = shift;
     my $job  = shift;

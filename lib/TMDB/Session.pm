@@ -35,9 +35,9 @@ my $default_ua = 'perl-tmdb-client';
 # PUBLIC METHODS
 #######################
 
-## ============
+## ====================
 ## Constructor
-## ============
+## ====================
 sub new {
     my $class = shift;
     my %opts  = validate_with(
@@ -91,9 +91,9 @@ sub new {
     return $self;
 } ## end sub new
 
-## ============
+## ====================
 ## Talk
-## ============
+## ====================
 sub talk {
     my ( $self, $args ) = @_;
 

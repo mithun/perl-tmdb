@@ -22,9 +22,9 @@ use TMDB::Session;
 # PUBLIC METHODS
 #######################
 
-## ============
+## ====================
 ## Constructor
-## ============
+## ====================
 sub new {
     my $class = shift;
     my %opts  = validate_with(
@@ -42,26 +42,26 @@ sub new {
     return $self;
 } ## end sub new
 
-## ============
+## ====================
 ## INFO
-## ============
+## ====================
 sub info {
     my $self = shift;
     return $self->session->talk( { method => 'person/' . $self->id(), } );
 }
 
-## ============
+## ====================
 ## CREDITS
-## ============
+## ====================
 sub credits {
     my $self = shift;
     return $self->session->talk(
         { method => 'person/' . $self->id() . '/credits', } );
 }
 
-## ============
+## ====================
 ## IMAGES
-## ============
+## ====================
 sub images {
     my $self     = shift;
     my $response = $self->session->talk(
@@ -69,9 +69,9 @@ sub images {
     return $response->{profiles} || [];
 } ## end sub images
 
-## ============
+## ====================
 ## INFO HELPERS
-## ============
+## ====================
 
 # Name
 sub name {
@@ -98,9 +98,9 @@ sub image {
     return $img;
 }
 
-## ============
+## ====================
 ## CREDIT HELPERS
-## ============
+## ====================
 
 # Acted in
 sub starred_in {
@@ -122,9 +122,9 @@ sub writer             { return shift->_crew_names('Author'); }
 # PRIVATE METHODS
 #######################
 
-## ============
+## ====================
 ## CREW NAMES
-## ============
+## ====================
 sub _crew_names {
     my $self = shift;
     my $job  = shift;

@@ -22,9 +22,9 @@ use TMDB::Session;
 # PUBLIC METHODS
 #######################
 
-## ============
+## ====================
 ## Constructor
-## ============
+## ====================
 sub new {
     my $class = shift;
     my %opts  = validate_with(
@@ -42,9 +42,9 @@ sub new {
     return $self;
 } ## end sub new
 
-## ============
+## ====================
 ## INFO
-## ============
+## ====================
 sub info {
     my $self = shift;
     return $self->session->talk( { method => 'collection/' . $self->id(), } );

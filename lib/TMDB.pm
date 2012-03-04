@@ -10,19 +10,54 @@ use Carp qw(croak carp);
 #######################
 # VERSION
 #######################
-our $VERSION = '0.01';
+our $VERSION = '0.04_01';
 
 #######################
-# EXPORT
+# LOAD CPAN MODULES
 #######################
-use base qw(Exporter);
-our ( @EXPORT, @EXPORT_OK, %EXPORT_TAGS );
+use Object::Tiny qw(session);
 
-@EXPORT      = qw();
-@EXPORT_OK   = qw();
-%EXPORT_TAGS = ( all => [qw()] );
-Exporter::export_tags('all');
-Exporter::export_ok_tags('all');
+#######################
+# LOAD DIST MODULES
+#######################
+use TMDB::Config;
+use TMDB::Movie;
+use TMDB::Person;
+use TMDB::Search;
+use TMDB::Session;
+use TMDB::Collection;
+
+#######################
+# PUBLIC METHODS
+#######################
+
+## ====================
+## CONSTRUCTOR
+## ====================
+sub new {
+    my ( $class, @args ) = @_;
+    my $self;
+    bless $self, $class;
+
+    # Init Session
+    $self->{session} = TMDB::Session->new(@args);
+    return $self;
+} ## end sub new
+
+## ====================
+## TMDB OBJECTS
+## ====================
+sub collection {
+    return TMDB::Collection->new(
+        session => shift->session,
+        @_
+    );
+} ## end sub collection
+
+sub config { return TMDB::Config->new( session => shift->session, @_ ); }
+sub movie { return TMDB::Movie->new( session => shift->session, @_ ); }
+sub person { return TMDB::Person->new( session => shift->session, @_ ); }
+sub search { return TMDB::Search->new( session => shift->session, @_ ); }
 
 #######################
 1;
@@ -32,6 +67,7 @@ __END__
 #######################
 # POD SECTION
 #######################
+
 =pod
 
 =head1 NAME
