@@ -35,7 +35,9 @@ my $default_ua = 'perl-tmdb-client';
 # MODULE METHODS
 #######################
 
+## ============
 ## Constructor
+## ============
 sub new {
     my $class = shift;
     my %opts  = validate_with(
@@ -88,7 +90,9 @@ sub new {
     return $self;
 } ## end sub new
 
+## ============
 ## Talk
+## ============
 sub talk {
     my ( $self, $args ) = @_;
 
@@ -129,18 +133,3 @@ sub talk {
 
 #######################
 1;
-
-__END__
-
-#######################
-# POD SECTION
-#######################
-=pod
-
-=head1 NAME
-
-=head1 DESCRIPTION
-
-=head1 SYNOPSIS
-
-=cut
