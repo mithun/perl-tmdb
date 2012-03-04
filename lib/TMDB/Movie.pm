@@ -171,7 +171,26 @@ sub translations {
 } ## end sub translations
 
 ## ============
-## CAST/CREW ALIASES
+## INFO HELPERS
+## ============
+
+# Title
+sub title { return shift->info()->{title} || q(); }
+
+# Tagline
+sub tagline { return shift->info()->{tagline} || q(); }
+
+# Overview
+sub overview { return shift->info()->{overview} || q(); }
+
+# IMDB ID
+sub imdb_id { return shift->info()->{imdb_id} || q(); }
+
+# Description
+sub description { return shift->overview(); }
+
+## ============
+## CAST/CREW HELPERS
 ## ============
 
 # Actor names
@@ -191,7 +210,7 @@ sub executive_producer { return shift->_crew_names('Executive Producer'); }
 sub writer             { return shift->_crew_names('Author'); }
 
 ## ============
-## IMAGE ALIASES
+## IMAGE HELPERS
 ## ============
 
 # Posters
@@ -213,7 +232,7 @@ sub backdrops {
 } ## end sub backdrops
 
 ## ============
-## TRAILER ALIASES
+## TRAILER HELPERS
 ## ============
 sub trailers_youtube {
     my $self     = shift;
