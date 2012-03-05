@@ -116,7 +116,7 @@ sub starred_in {
 sub directed           { return shift->_crew_names('Director'); }
 sub produced           { return shift->_crew_names('Producer'); }
 sub executive_produced { return shift->_crew_names('Executive Producer'); }
-sub writer             { return shift->_crew_names('Author'); }
+sub wrote             { return shift->_crew_names('Author|Novel|Screenplay|Writer'); }
 
 #######################
 # PRIVATE METHODS
@@ -132,7 +132,7 @@ sub _crew_names {
     my @names;
     my $crew = $self->credits()->{crew} || [];
     foreach (@$crew) {
-        push @names, $_->{title} if ( $_->{job} eq $job );
+        push @names, $_->{title} if ( $_->{job} =~ m{$job}xi );
     }
 
     return @names if wantarray;

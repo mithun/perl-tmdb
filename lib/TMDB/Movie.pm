@@ -284,7 +284,7 @@ sub _crew_names {
     my @names;
     my @crew = $self->crew();
     foreach (@crew) {
-        push @names, $_->{name} if ( $_->{job} =~ m{$job} );
+        push @names, $_->{name} if ( $_->{job} =~ m{$job}xi );
     }
 
     return @names if wantarray;

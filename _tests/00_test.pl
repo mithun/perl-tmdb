@@ -182,6 +182,81 @@ if ( $opts{m} ) {
 } ## end if ( $opts{m} )
 
 ####################
+# PERSON
+####################
+if ( $opts{p} ) {
+    my $person_id = '1331';
+    _dump(
+        o => $tmdb->person( id => $person_id ),
+        m => "Person Object"
+    );
+    _dump(
+        o => [ $tmdb->person( id => $person_id )->info ],
+        m => "Person info"
+    );
+    _dump(
+        o => [ $tmdb->person( id => $person_id )->credits ],
+        m => "Person credits"
+    );
+    _dump(
+        o => [ $tmdb->person( id => $person_id )->images ],
+        m => "Person images"
+    );
+    _dump(
+        o => [ $tmdb->person( id => $person_id )->name ],
+        m => "Person name"
+    );
+    _dump(
+        o => [ $tmdb->person( id => $person_id )->aka ],
+        m => "Person aka"
+    );
+    _dump(
+        o => [ $tmdb->person( id => $person_id )->bio ],
+        m => "Person bio"
+    );
+    _dump(
+        o => [ $tmdb->person( id => $person_id )->image ],
+        m => "Person image"
+    );
+    _dump(
+        o => [ $tmdb->person( id => $person_id )->starred_in ],
+        m => "Person starred_in"
+    );
+    _dump(
+        o => [ $tmdb->person( id => $person_id )->directed ],
+        m => "Person directed"
+    );
+    _dump(
+        o => [ $tmdb->person( id => $person_id )->produced ],
+        m => "Person produced"
+    );
+    _dump(
+        o => [ $tmdb->person( id => $person_id )->executive_produced ],
+        m => "Person executive_produced"
+    );
+    _dump(
+        o => [ $tmdb->person( id => $person_id )->wrote ],
+        m => "Person wrote"
+    );
+
+} ## end if ( $opts{p} )
+
+####################
+# COLLECTION
+####################
+if ( $opts{c} ) {
+    my $coll_id = '2344';
+    _dump(
+        o => $tmdb->collection( id => $coll_id ),
+        m => "Collection Object"
+    );
+    _dump(
+        o => [ $tmdb->collection( id => $coll_id )->info ],
+        m => "Collection info"
+    );
+} ## end if ( $opts{c} )
+
+####################
 # DONE
 ####################
 exit 0;
