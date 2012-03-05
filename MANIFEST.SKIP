@@ -9,4 +9,4 @@
 ^MYMETA.yml$
 ^MYMETA\.json$
 \.mkdn$
-^_tests
+^\.author
