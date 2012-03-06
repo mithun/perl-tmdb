@@ -182,6 +182,9 @@ sub latest { return shift->session->talk( { method => 'latest/movie', } ); }
 # Title
 sub title { return shift->info()->{title} || q(); }
 
+# Release Year
+sub year { return split( /-/, shift->info()->{release_date}, 1 ); }
+
 # Tagline
 sub tagline { return shift->info()->{tagline} || q(); }
 
@@ -193,6 +196,19 @@ sub imdb_id { return shift->info()->{imdb_id} || q(); }
 
 # Description
 sub description { return shift->overview(); }
+
+# Genres
+sub genres {
+    my $self = shift;
+    my $info = $self->info();
+    my @genres;
+    if ( exists $info->{genres} ) {
+        foreach ( @{ $info->{genres} } ) { push @genres, $_->{name}; }
+    }
+
+    return @genres if wantarray;
+    return \@genres;
+} ## end sub genres
 
 ## ====================
 ## CAST/CREW HELPERS

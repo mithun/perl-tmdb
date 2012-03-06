@@ -116,7 +116,7 @@ sub starred_in {
 sub directed           { return shift->_crew_names('Director'); }
 sub produced           { return shift->_crew_names('Producer'); }
 sub executive_produced { return shift->_crew_names('Executive Producer'); }
-sub wrote             { return shift->_crew_names('Author|Novel|Screenplay|Writer'); }
+sub wrote { return shift->_crew_names('Author|Novel|Screenplay|Writer'); }
 
 #######################
 # PRIVATE METHODS

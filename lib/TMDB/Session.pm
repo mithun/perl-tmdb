@@ -101,11 +101,11 @@ sub talk {
     my $url =
         $self->apiurl . '/' . $args->{method} . '?api_key=' . $self->apikey;
     if ( $args->{params} ) {
-        foreach my $param(sort { lc $a cmp lc $b } %{ $args->{params} }){
+        foreach my $param ( sort { lc $a cmp lc $b } %{ $args->{params} } ) {
             next unless defined $args->{params}->{$param};
-            $url .= "&${param}=".$args->{params}->{$param};
+            $url .= "&${param}=" . $args->{params}->{$param};
         }
-    }
+    } ## end if ( $args->{params} )
 
     # Encode
     $url = $self->encoder->encode($url);
@@ -129,7 +129,7 @@ sub talk {
     # Return
     return unless $response->{success};  # Error
     return unless $response->{content};  # Blank Content
-    return $self->json->Load(
+    return $self->json->decode(
         Encode::encode( 'utf-8-strict', $response->{content} ) )
         ;                                # Real Response
 } ## end sub talk

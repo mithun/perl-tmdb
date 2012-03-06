@@ -69,7 +69,7 @@ sub movie {
         include_adult => $self->include_adult,
     };
     $params->{lang} = $self->session->lang if $self->session->lang;
-    
+
     warn "DEBUG: Searching for $string\n" if $self->session->debug;
     return $self->_search(
         {
