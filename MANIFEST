@@ -1,0 +1,17 @@
+Build.PL
+Changes
+INSTALL
+lib/TMDB.pm
+lib/TMDB/Collection.pm
+lib/TMDB/Config.pm
+lib/TMDB/Movie.pm
+lib/TMDB/Person.pm
+lib/TMDB/Search.pm
+lib/TMDB/Session.pm
+LICENSE
+Makefile.PL
+MANIFEST			This list of files
+META.json
+META.yml
+README
+t/00-load.t

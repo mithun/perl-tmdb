@@ -1,0 +1,93 @@
+{
+   "abstract" : "Perl wrapper for The MovieDB API",
+   "author" : [
+      "Mithun Ayachit <mithun@cpan.org>"
+   ],
+   "dynamic_config" : 1,
+   "generated_by" : "Module::Build version 0.38, CPAN::Meta::Converter version 2.120351",
+   "keywords" : [
+      "movies",
+      "movie",
+      "themoviedb",
+      "tmdb",
+      "api",
+      "metadata",
+      "imdb"
+   ],
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "TMDB",
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "Test::More" : "0",
+            "version" : "0"
+         }
+      },
+      "configure" : {
+         "requires" : {
+            "Module::Build" : "0.38"
+         }
+      },
+      "runtime" : {
+         "requires" : {
+            "Encode" : "0",
+            "HTTP::Tiny" : "0",
+            "JSON::Any" : "0",
+            "Locale::Codes" : "0",
+            "Object::Tiny" : "0",
+            "Params::Validate" : "0",
+            "URI::Encode" : "0"
+         }
+      }
+   },
+   "provides" : {
+      "TMDB" : {
+         "file" : "lib/TMDB.pm",
+         "version" : "0.04_01"
+      },
+      "TMDB::Collection" : {
+         "file" : "lib/TMDB/Collection.pm",
+         "version" : 0
+      },
+      "TMDB::Config" : {
+         "file" : "lib/TMDB/Config.pm",
+         "version" : 0
+      },
+      "TMDB::Movie" : {
+         "file" : "lib/TMDB/Movie.pm",
+         "version" : 0
+      },
+      "TMDB::Person" : {
+         "file" : "lib/TMDB/Person.pm",
+         "version" : 0
+      },
+      "TMDB::Search" : {
+         "file" : "lib/TMDB/Search.pm",
+         "version" : 0
+      },
+      "TMDB::Session" : {
+         "file" : "lib/TMDB/Session.pm",
+         "version" : 0
+      }
+   },
+   "release_status" : "testing",
+   "resources" : {
+      "bugtracker" : {
+         "web" : "http://rt.cpan.org/Public/Dist/Display.html?Name=TMDB"
+      },
+      "homepage" : "https://github.com/mithun/perl-tmdb",
+      "license" : [
+         "http://dev.perl.org/licenses/"
+      ],
+      "repository" : {
+         "url" : "git://github.com/mithun/perl-tmdb.git"
+      }
+   },
+   "version" : "0.04_01"
+}

@@ -1,0 +1,26 @@
+Version History for TMDB
+Mithun Ayachit
+
+
+0.04_01
+=======
+
+-   Code Re-write
+-   uses TMDb APIv3
+
+0.03
+====
+
+-   Updated to use JSON instead of YAML
+
+0.02
+====
+
+-   Fixed Makefile.PL
+
+0.01
+====
+
+-   Initial Release
+
+* * * * *

@@ -1,80 +1,10 @@
-package TMDB;
-
-#######################
-# LOAD MODULES
-#######################
-use strict;
-use warnings FATAL => 'all';
-use Carp qw(croak carp);
-
-#######################
-# VERSION
-#######################
-our $VERSION = '0.04_01';
-
-#######################
-# LOAD CPAN MODULES
-#######################
-use Object::Tiny qw(session);
-
-#######################
-# LOAD DIST MODULES
-#######################
-use TMDB::Movie;
-use TMDB::Config;
-use TMDB::Person;
-use TMDB::Search;
-use TMDB::Session;
-use TMDB::Collection;
-
-#######################
-# PUBLIC METHODS
-#######################
-
-## ====================
-## CONSTRUCTOR
-## ====================
-sub new {
-    my ( $class, @args ) = @_;
-    my $self = {};
-    bless $self, $class;
-
-    # Init Session
-    $self->{session} = TMDB::Session->new(@args);
-    return $self;
-} ## end sub new
-
-## ====================
-## TMDB OBJECTS
-## ====================
-sub collection {
-    return TMDB::Collection->new(
-        session => shift->session,
-        @_
-    );
-} ## end sub collection
-
-sub config { return TMDB::Config->new( session => shift->session, @_ ); }
-sub movie { return TMDB::Movie->new( session => shift->session, @_ ); }
-sub person { return TMDB::Person->new( session => shift->session, @_ ); }
-sub search { return TMDB::Search->new( session => shift->session, @_ ); }
-
-#######################
-1;
-
-__END__
-
-#######################
-# POD SECTION
-#######################
-
-=pod
-
-=head1 NAME
+NAME
+====
 
 TMDB - Perl wrapper for The MovieDB API
 
-=head1 SYNOPSIS
+SYNOPSIS
+========
 
     use TMDB;
 
@@ -136,65 +66,57 @@ TMDB - Perl wrapper for The MovieDB API
     print("\nActed in:\n");
     printf( "\t-%s\n", $_ ) for @person_movies;
 
-=head1 DESCRIPTION
+DESCRIPTION
+===========
 
-L<The MovieDB|http://www.themoviedb.org/> is a free and open movie database.
-This module provides a Perl wrapper to L<The MovieDB
-API|http://help.themoviedb.org/kb/api/about-3>. In order to use this module,
-you must first get an API key by L<signing
-up|http://www.themoviedb.org/account/signup>.
+The MovieDB is a free and open movie database. This module provides a
+Perl wrapper to The MovieDB API. In order to use this module, you must
+first get an API key by signing up.
 
-B<NOTE:> TMDB-v0.04 and higher uses TheMoviDB API version C</3>. This brings
-some significant differences both to the API and the interface this module
-provides, along with updated dependencies for this distribution. If you like to
-continue to use v2.1 API, you can continue to use
-L<TMDB-0.03x|https://metacpan.org/release/MITHUN/TMDB-0.03/>.
+NOTE: TMDB-v0.04 and higher uses TheMoviDB API version /3. This brings
+some significant differences both to the API and the interface this
+module provides, along with updated dependencies for this distribution.
+If you like to continue to use v2.1 API, you can continue to use
+TMDB-0.03x.
 
-=head1 INITIALIZATION
+INITIALIZATION
+==============
 
-=over
+-   new()
 
-=item new()
+    Initialize
+    ==========
 
-    # Initialize
-    my $tmdb = TMDB->new(
-        apikey => 'xxxxxxxxxx...',  # API Key
-        lang   => 'en',             # A valid ISO 639-1 (Aplha-2) language code
-        client => $http_tiny,       # A valid HTTP::Tiny object
-        json   => $json_object,     # A Valid JSON object
-    );
+    my $tmdb = TMDB->new( apikey => 'xxxxxxxxxx...', # API Key lang =>
+    'en', # A valid ISO 639-1 (Aplha-2) language code client =>
+    $http_tiny, # A valid HTTP::Tiny object json => $json_object, # A
+    Valid JSON object );
 
 The constructor accepts the following options:
 
-=over
+    - apikey
 
-=item apikey
+    This is your API key
 
-This is your API key
+    - lang
 
-=item lang
+    This must be a valid ISO 639-1 (Alpha-2) language code. Note that with `/3`,
+    the API no longer falls back to an English default.
 
-This must be a valid ISO 639-1 (Alpha-2) language code. Note that with C</3>,
-the API no longer falls back to an English default.
+    [List of ISO 639-1 codes](http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
 
-L<List of ISO 639-1
-codes|http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes>.
+    - client
 
-=item client
+    You can provide your own [HTTP::Client](http://search.cpan.org/perldoc?HTTP::Client) object, otherwise a default one is
+    used.
 
-You can provide your own L<HTTP::Client> object, otherwise a default one is
-used.
+    - json
 
-=item json
+    You can provide your own [JSON](http://search.cpan.org/perldoc?JSON) implementation that can `decode` JSON. This
+    will fall back to using [JSON::Any](http://search.cpan.org/perldoc?JSON::Any). However, [JSON::XS](http://search.cpan.org/perldoc?JSON::XS) is recommended.
 
-You can provide your own L<JSON> implementation that can C<decode> JSON. This
-will fall back to using L<JSON::Any>. However, L<JSON::XS> is recommended.
-
-=back
-
-=back
-
-=head1 CONFIGURATION
+CONFIGURATION
+=============
 
     # Get Config
     my $config = $tmdb->config;
@@ -208,34 +130,30 @@ will fall back to using L<JSON::Any>. However, L<JSON::XS> is recommended.
     my $backdrop_sizes = $config->img_backdrop_sizes();
     my $profile_sizes  = $config->img_profile_sizes();
 
-This provides the configuration for the C</3> API. See
-L<http://help.themoviedb.org/kb/api/configuration> for more details.
+This provides the configuration for the /3 API. See
+http://help.themoviedb.org/kb/api/configuration for more details.
 
-=head1 SEARCH
+SEARCH
+======
 
 The following search methods are available.
 
-=over
+-   movie()
 
-=item movie()
+    my $search = $tmdb->search(); my @results =
+    $search->movie('Avatar'); # Search by Name my @results =
+    $search->movie('Snatch (2000)'); # Include a Year for better results
+-   person()
 
-    my $search  = $tmdb->search();
-    my @results = $search->movie('Avatar');         # Search by Name
-    my @results = $search->movie('Snatch (2000)');  # Include a Year for better results
+    my $search = $tmdb->search(); my @results = $search->person('Brad
+    Pitt'); # Search by Name
 
-=item person()
+Both search methods returns an array (or array-ref in a scalar context)
+of hash-refs. See Movie Search or People Search for the list of
+fields/keys returned.
 
-    my $search  = $tmdb->search();
-    my @results = $search->person('Brad Pitt');         # Search by Name
-
-=back
-
-Both search methods returns an array (or array-ref in a scalar context) of
-hash-refs. See L<Movie Search|http://help.themoviedb.org/kb/api/search-movies>
-or L<People Search|http://help.themoviedb.org/kb/api/search-people> for the
-list of fields/keys returned.
-
-=head1 MOVIE
+MOVIE
+=====
 
     # Get the movie object
     my $movie = $tmdb->movie( id => '107' );
@@ -277,7 +195,8 @@ list of fields/keys returned.
     # Latest Movie on TMDB
     print Dumper $movie->latest;
 
-=head1 PEOPLE
+PEOPLE
+======
 
     # Get the person object
     my $person = $tmdb->person( id => '1331' );
@@ -299,7 +218,8 @@ list of fields/keys returned.
     print $person->executive_produced;  # List of titles as an Executive Producer
     print $person->wrote;               # List of titles as a writer/screenplay
 
-=head1 COLLECTION
+COLLECTION
+==========
 
     # Get the collection object
     my $collection = $tmdb->collection(id => '2344');
@@ -308,47 +228,40 @@ list of fields/keys returned.
     use Data::Dumper;
     print Dumper $collection->info;
 
+
     # Filtered Collection Data
     print $collection->titles;  # List of titles in the collection
     print $collection->ids;     # List of movie IDs in the collection
 
-=head1 DEPENDENCIES
+DEPENDENCIES
+============
 
-=over
+-   Encode
+-   HTTP::Tiny
+-   JSON::Any
+-   Locale::Codes
+-   Object::Tiny
+-   Params::Validate
+-   URI::Encode
 
-=item L<Encode>
-
-=item L<HTTP::Tiny>
-
-=item L<JSON::Any>
-
-=item L<Locale::Codes>
-
-=item L<Object::Tiny>
-
-=item L<Params::Validate>
-
-=item L<URI::Encode>
-
-=back
-
-=head1 BUGS AND LIMITATIONS
+BUGS AND LIMITATIONS
+====================
 
 All data returned is UTF-8 encoded
 
-Please report any bugs or feature requests to C<bug-tmdb@rt.cpan.org>, or
+Please report any bugs or feature requests to bug-tmdb@rt.cpan.org, or
 through the web interface at
-L<http://rt.cpan.org/Public/Dist/Display.html?Name=TMDB>
+http://rt.cpan.org/Public/Dist/Display.html?Name=TMDB
 
-=head1 AUTHOR
+AUTHOR
+======
 
-Mithun Ayachit C<mithun@cpan.org>
+Mithun Ayachit mithun@cpan.org
 
-=head1 LICENSE AND COPYRIGHT
+LICENSE AND COPYRIGHT
+=====================
 
 Copyright (c) 2012, Mithun Ayachit. All rights reserved.
 
-This module is free software; you can redistribute it and/or modify it under
-the same terms as Perl itself. See L<perlartistic>.
-
-=cut
+This module is free software; you can redistribute it and/or modify it
+under the same terms as Perl itself. See perlartistic.
