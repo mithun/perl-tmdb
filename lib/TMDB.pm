@@ -140,10 +140,15 @@ TMDB - Perl wrapper for The MovieDB API
 
 L<The MovieDB|http://www.themoviedb.org/> is a free and open movie database.
 This module provides a Perl wrapper to L<The MovieDB
-API|http://help.themoviedb.org/kb/api/about-3>. In order to use this module, you must first get
-an API key by L<signing up|http://www.themoviedb.org/account/signup>.
+API|http://help.themoviedb.org/kb/api/about-3>. In order to use this module,
+you must first get an API key by L<signing
+up|http://www.themoviedb.org/account/signup>.
 
-B<NOTE:> TMDB-v0.04 and higher uses TheMoviDB API version C</3>. This bring some significant differences both to the API and the interface this module provides, along with updated dependencies for this distribution. If you like to continue to use v2.1 API, you can continue to use L<TMDB-0.03x|https://metacpan.org/release/MITHUN/TMDB-0.03/>.
+B<NOTE:> TMDB-v0.04 and higher uses TheMoviDB API version C</3>. This bring
+some significant differences both to the API and the interface this module
+provides, along with updated dependencies for this distribution. If you like to
+continue to use v2.1 API, you can continue to use
+L<TMDB-0.03x|https://metacpan.org/release/MITHUN/TMDB-0.03/>.
 
 =head1 INITIALIZATION
 
@@ -169,17 +174,21 @@ This is your API key
 
 =item lang
 
-This must be a valid ISO 639-1 (Alpha-2) language code. Note that with C</3>, the API no longer falls back to an English default.
+This must be a valid ISO 639-1 (Alpha-2) language code. Note that with C</3>,
+the API no longer falls back to an English default.
 
-L<List of ISO 639-1 codes|http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes>.
+L<List of ISO 639-1
+codes|http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes>.
 
 =item client
 
-You can provide your own L<HTTP::Client> object, otherwise a default one is used.
+You can provide your own L<HTTP::Client> object, otherwise a default one is
+used.
 
 =item json
 
-You can provide your own L<JSON> implementation that can C<decode> JSON. This will fall back to using L<JSON::Any>. However, L<JSON::XS> is recommended.
+You can provide your own L<JSON> implementation that can C<decode> JSON. This
+will fall back to using L<JSON::Any>. However, L<JSON::XS> is recommended.
 
 =back
 
@@ -199,7 +208,8 @@ You can provide your own L<JSON> implementation that can C<decode> JSON. This wi
     my $backdrop_sizes = $config->img_backdrop_sizes();
     my $profile_sizes  = $config->img_profile_sizes();
 
-This provides the configuration for the C</3> API. See L<http://help.themoviedb.org/kb/api/configuration> for more details.
+This provides the configuration for the C</3> API. See
+L<http://help.themoviedb.org/kb/api/configuration> for more details.
 
 =head1 SEARCH
 
@@ -220,7 +230,10 @@ The following search methods are available.
 
 =back
 
-Both search methods returns an array (or array-ref in a scalar context) of hash-refs. See L<"Movie Search"|http://help.themoviedb.org/kb/api/search-movies> or L<"People Search"|http://help.themoviedb.org/kb/api/search-people> for the list of fields/keys returned.
+Both search methods returns an array (or array-ref in a scalar context) of
+hash-refs. See L<Movie Search|http://help.themoviedb.org/kb/api/search-movies>
+or L<People Search|http://help.themoviedb.org/kb/api/search-people> for the
+list of fields/keys returned.
 
 =head1 MOVIE
 
@@ -318,8 +331,8 @@ Both search methods returns an array (or array-ref in a scalar context) of hash-
 
 All data returned is UTF-8 encoded
 
-Please report any bugs or feature requests to
-C<bug-tmdb@rt.cpan.org>, or through the web interface at
+Please report any bugs or feature requests to C<bug-tmdb@rt.cpan.org>, or
+through the web interface at
 L<http://rt.cpan.org/Public/Dist/Display.html?Name=TMDB>
 
 =head1 AUTHOR
