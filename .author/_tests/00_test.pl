@@ -24,6 +24,8 @@ use Getopt::Long qw(GetOptions);
 ####################
 # LOAD DIST MODULES
 ####################
+use FindBin qw($Bin);
+use lib "$Bin/../../lib";
 use TMDB;
 
 ####################
@@ -49,7 +51,7 @@ my $apikey = $ENV{PERL_TMDB_API}
     || die "API key is not defined in PERL_TMDB_API";
 my $tmdb = TMDB->new(
     apikey => $apikey,
-    debug  => 1,
+    debug  => 0,
 );
 _dump(
     o => $tmdb,
@@ -138,6 +140,14 @@ if ( $opts{m} ) {
     _dump(
         o => [ $tmdb->movie( id => $movie_id )->overview ],
         m => "Movie overview"
+    );
+    _dump(
+        o => [ $tmdb->movie( id => $movie_id )->collection ],
+        m => "Movie collection"
+    );
+    _dump(
+        o => [ $tmdb->movie( id => $movie_id )->genres ],
+        m => "Movie genres"
     );
     _dump(
         o => [ $tmdb->movie( id => $movie_id )->imdb_id ],
@@ -257,6 +267,14 @@ if ( $opts{c} ) {
     _dump(
         o => [ $tmdb->collection( id => $coll_id )->info ],
         m => "Collection info"
+    );
+    _dump(
+        o => [ $tmdb->collection( id => $coll_id )->titles ],
+        m => "Collection titles"
+    );
+    _dump(
+        o => [ $tmdb->collection( id => $coll_id )->ids ],
+        m => "Collection ids"
     );
 } ## end if ( $opts{c} )
 

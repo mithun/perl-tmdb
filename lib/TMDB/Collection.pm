@@ -50,5 +50,32 @@ sub info {
     return $self->session->talk( { method => 'collection/' . $self->id(), } );
 }
 
+## ====================
+## INFO HELPERS
+## ====================
+
+# All titles
+sub titles { return shift->_parse_parts('title'); }
+
+# Title IDs
+sub ids { return shift->_parse_parts('id'); }
+
+#######################
+# PRIVATE METHODS
+#######################
+
+sub _parse_parts {
+    my $self  = shift;
+    my $key   = shift;
+    my $parts = $self->info()->{parts} || [];
+    my @stuff;
+    foreach my $part (@$parts) {
+        next unless $part->{$key};
+        push @stuff, $part->{$key};
+    }
+    return @stuff if wantarray;
+    return \@stuff;
+} ## end sub _parse_parts
+
 #######################
 1;

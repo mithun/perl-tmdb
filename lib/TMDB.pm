@@ -260,6 +260,7 @@ list of fields/keys returned.
     print $movie->description;         # Same as `overview`
     print $movie->genres;
     print $movie->imdb_id;
+    print $movie->collection;          # Collection ID
     print $movie->actors;              # Names of Actors
     print $movie->director;            # Names of Directors
     print $movie->producer;            # Names of Producers
@@ -306,6 +307,10 @@ list of fields/keys returned.
     # Collection data (as returned by the API)
     use Data::Dumper;
     print Dumper $collection->info;
+    
+    # Filtered Collection Data
+    print $collection->titles;  # List of titles in the collection
+    print $collection->ids;     # List of movie IDs in the collection
 
 =head1 DEPENDENCIES
 

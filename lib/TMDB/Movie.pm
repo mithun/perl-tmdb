@@ -183,7 +183,7 @@ sub latest { return shift->session->talk( { method => 'latest/movie', } ); }
 sub title { return shift->info()->{title} || q(); }
 
 # Release Year
-sub year { return split( /-/, shift->info()->{release_date}, 1 ); }
+sub year { return ( split( /\-/, shift->info()->{release_date} ) )[0]; }
 
 # Tagline
 sub tagline { return shift->info()->{tagline} || q(); }
@@ -196,6 +196,9 @@ sub imdb_id { return shift->info()->{imdb_id} || q(); }
 
 # Description
 sub description { return shift->overview(); }
+
+# Collection
+sub collection { return shift->info()->{belongs_to_collection}->{id} || q(); }
 
 # Genres
 sub genres {
