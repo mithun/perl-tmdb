@@ -20,8 +20,8 @@ use Object::Tiny qw(session);
 #######################
 # LOAD DIST MODULES
 #######################
-use TMDB::Config;
 use TMDB::Movie;
+use TMDB::Config;
 use TMDB::Person;
 use TMDB::Search;
 use TMDB::Session;
@@ -289,16 +289,34 @@ Both search methods returns an array (or array-ref in a scalar context) of hash-
 
     # Get the collection object
     my $collection = $tmdb->collection(id => '2344');
-    
+
     # Collection data (as returned by the API)
     use Data::Dumper;
     print Dumper $collection->info;
 
 =head1 DEPENDENCIES
 
+=over
 
+=item L<Encode>
+
+=item L<HTTP::Tiny>
+
+=item L<JSON::Any>
+
+=item L<Locale::Codes>
+
+=item L<Object::Tiny>
+
+=item L<Params::Validate>
+
+=item L<URI::Encode>
+
+=back
 
 =head1 BUGS AND LIMITATIONS
+
+All data returned is UTF-8 encoded
 
 Please report any bugs or feature requests to
 C<bug-tmdb@rt.cpan.org>, or through the web interface at
