@@ -52,13 +52,14 @@ my $builder = Module::Build->new(
 
 # Print a warning message for backwards compatibility
 warn <<"COMPAT_MSG";
-!! NOTE !!
 
-TMDB-v0.04 and higher uses TheMoviDB API version '/3'. This brings
-some significant differences both to the API and the interface this module
-provides, along with updated dependencies for this distribution. If you like to
-continue to use v2.1 API, you can continue to use
-TMDB-0.03x [ https://metacpan.org/release/MITHUN/TMDB-0.03/ ].
+        !! NOTE !!
+
+        TMDB-v0.04 and higher uses TheMoviDB API version '/3'. This brings
+        some significant differences both to the API and the interface this module
+        provides, along with updated dependencies for this distribution. If you like to
+        continue to use v2.1 API, you can continue to use
+        TMDB-0.03x [ https://metacpan.org/release/MITHUN/TMDB-0.03/ ].
 
 COMPAT_MSG
 
