@@ -128,6 +128,10 @@ if ( $opts{m} ) {
         m => "Movie title"
     );
     _dump(
+        o => [ $tmdb->movie( id => $movie_id )->year ],
+        m => "Movie year"
+    );
+    _dump(
         o => [ $tmdb->movie( id => $movie_id )->tagline ],
         m => "Movie tagline"
     );
