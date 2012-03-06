@@ -144,7 +144,7 @@ API|http://help.themoviedb.org/kb/api/about-3>. In order to use this module,
 you must first get an API key by L<signing
 up|http://www.themoviedb.org/account/signup>.
 
-B<NOTE:> TMDB-v0.04 and higher uses TheMoviDB API version C</3>. This bring
+B<NOTE:> TMDB-v0.04 and higher uses TheMoviDB API version C</3>. This brings
 some significant differences both to the API and the interface this module
 provides, along with updated dependencies for this distribution. If you like to
 continue to use v2.1 API, you can continue to use

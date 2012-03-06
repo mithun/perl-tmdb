@@ -24,13 +24,19 @@ my $builder = Module::Build->new(
         'version'    => 0,
     },
     requires => {
-
+        'Encode'           => 0,
+        'HTTP::Tiny'       => 0,
+        'JSON::Any'        => 0,
+        'Locale::Codes'    => 0,
+        'Object::Tiny'     => 0,
+        'Params::Validate' => 0,
+        'URI::Encode'      => 0,
     },
     add_to_cleanup     => ['TMDB-*'],
     create_license     => 1,
     create_makefile_pl => 'traditional',
     meta_merge         => {
-        keywords  => [],
+        keywords  => [qw(movies movie themoviedb tmdb api metadata imdb)],
         resources => {
             bugtracker =>
                 'http://rt.cpan.org/Public/Dist/Display.html?Name=TMDB',
@@ -39,6 +45,22 @@ my $builder = Module::Build->new(
         },
     },
 );
+
+####################
+# PRINT WARNING
+####################
+
+# Print a warning message for backwards compatibility
+warn <<"COMPAT_MSG";
+!! NOTE !!
+
+TMDB-v0.04 and higher uses TheMoviDB API version '/3'. This brings
+some significant differences both to the API and the interface this module
+provides, along with updated dependencies for this distribution. If you like to
+continue to use v2.1 API, you can continue to use
+TMDB-0.03x [ https://metacpan.org/release/MITHUN/TMDB-0.03/ ].
+
+COMPAT_MSG
 
 ####################
 # CREATE BUILD SCRIPT
