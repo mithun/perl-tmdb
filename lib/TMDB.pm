@@ -10,7 +10,7 @@ use Carp qw(croak carp);
 #######################
 # VERSION
 #######################
-our $VERSION = '0.04_01';
+our $VERSION = '0.04_02';
 
 #######################
 # LOAD CPAN MODULES
@@ -152,10 +152,6 @@ L<TMDB-0.03x|https://metacpan.org/release/MITHUN/TMDB-0.03/>.
 
 =head1 INITIALIZATION
 
-=over
-
-=item new()
-
     # Initialize
     my $tmdb = TMDB->new(
         apikey => 'xxxxxxxxxx...',  # API Key
@@ -189,8 +185,6 @@ used.
 
 You can provide your own L<JSON> implementation that can C<decode> JSON. This
 will fall back to using L<JSON::Any>. However, L<JSON::XS> is recommended.
-
-=back
 
 =back
 
