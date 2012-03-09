@@ -25,7 +25,7 @@ name: TMDB
 provides:
   TMDB:
     file: lib/TMDB.pm
-    version: 0.04_01
+    version: 0.04_02
   TMDB::Collection:
     file: lib/TMDB/Collection.pm
     version: 0
@@ -46,15 +46,15 @@ provides:
     version: 0
 requires:
   Encode: 0
-  HTTP::Tiny: 0
-  JSON::Any: 0
-  Locale::Codes: 0
-  Object::Tiny: 0
-  Params::Validate: 0
-  URI::Encode: 0
+  HTTP::Tiny: 0.16
+  JSON::Any: 1.23
+  Locale::Codes: 3.20
+  Object::Tiny: 1.03
+  Params::Validate: 1.03
+  URI::Encode: 0.05
 resources:
   bugtracker: http://rt.cpan.org/Public/Dist/Display.html?Name=TMDB
   homepage: https://github.com/mithun/perl-tmdb
   license: http://dev.perl.org/licenses/
   repository: git://github.com/mithun/perl-tmdb.git
-version: 0.04_01
+version: 0.04_02

@@ -2,6 +2,12 @@ Version History for TMDB
 Mithun Ayachit
 
 
+0.04_02
+=======
+
+-   Updated minimum dependencies
+-   Indent code blocks in POD by one more level
+
 0.04_01
 =======
 
