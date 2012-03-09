@@ -10,7 +10,7 @@ use Carp qw(croak carp);
 #######################
 # VERSION
 #######################
-our $VERSION = '0.04_02';
+our $VERSION = '0.04_03';
 
 #######################
 # LOAD CPAN MODULES
@@ -70,9 +70,11 @@ __END__
 
 =pod
 
+
 =head1 NAME
 
 TMDB - Perl wrapper for The MovieDB API
+
 
 =head1 SYNOPSIS
 
@@ -136,6 +138,7 @@ TMDB - Perl wrapper for The MovieDB API
     print("\nActed in:\n");
     printf( "\t-%s\n", $_ ) for @person_movies;
 
+
 =head1 DESCRIPTION
 
 L<The MovieDB|http://www.themoviedb.org/> is a free and open movie database.
@@ -149,6 +152,7 @@ some significant differences both to the API and the interface this module
 provides, along with updated dependencies for this distribution. If you like to
 continue to use v2.1 API, you can continue to use
 L<TMDB-0.03x|https://metacpan.org/release/MITHUN/TMDB-0.03/>.
+
 
 =head1 INITIALIZATION
 
@@ -164,9 +168,11 @@ The constructor accepts the following options:
 
 =over
 
+
 =item apikey
 
 This is your API key
+
 
 =item lang
 
@@ -176,10 +182,12 @@ the API no longer falls back to an English default.
 L<List of ISO 639-1
 codes|http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes>.
 
+
 =item client
 
 You can provide your own L<HTTP::Client> object, otherwise a default one is
 used.
+
 
 =item json
 
@@ -187,6 +195,7 @@ You can provide your own L<JSON> implementation that can C<decode> JSON. This
 will fall back to using L<JSON::Any>. However, L<JSON::XS> is recommended.
 
 =back
+
 
 =head1 CONFIGURATION
 
@@ -205,17 +214,20 @@ will fall back to using L<JSON::Any>. However, L<JSON::XS> is recommended.
 This provides the configuration for the C</3> API. See
 L<http://help.themoviedb.org/kb/api/configuration> for more details.
 
+
 =head1 SEARCH
 
 The following search methods are available.
 
 =over
 
+
 =item movie()
 
         my $search  = $tmdb->search();
         my @results = $search->movie('Avatar');         # Search by Name
         my @results = $search->movie('Snatch (2000)');  # Include a Year for better results
+
 
 =item person()
 
@@ -224,10 +236,12 @@ The following search methods are available.
 
 =back
 
+
 Both search methods returns an array (or array-ref in a scalar context) of
 hash-refs. See L<Movie Search|http://help.themoviedb.org/kb/api/search-movies>
 or L<People Search|http://help.themoviedb.org/kb/api/search-people> for the
 list of fields/keys returned.
+
 
 =head1 MOVIE
 
@@ -271,6 +285,7 @@ list of fields/keys returned.
         # Latest Movie on TMDB
         print Dumper $movie->latest;
 
+
 =head1 PEOPLE
 
         # Get the person object
@@ -293,6 +308,7 @@ list of fields/keys returned.
         print $person->executive_produced;  # List of titles as an Executive Producer
         print $person->wrote;               # List of titles as a writer/screenplay
 
+
 =head1 COLLECTION
 
         # Get the collection object
@@ -305,6 +321,7 @@ list of fields/keys returned.
         # Filtered Collection Data
         print $collection->titles;  # List of titles in the collection
         print $collection->ids;     # List of movie IDs in the collection
+
 
 =head1 DEPENDENCIES
 
@@ -326,6 +343,7 @@ list of fields/keys returned.
 
 =back
 
+
 =head1 BUGS AND LIMITATIONS
 
 All data returned is UTF-8 encoded
@@ -334,9 +352,11 @@ Please report any bugs or feature requests to C<bug-tmdb@rt.cpan.org>, or
 through the web interface at
 L<http://rt.cpan.org/Public/Dist/Display.html?Name=TMDB>
 
+
 =head1 AUTHOR
 
 Mithun Ayachit C<mithun@cpan.org>
+
 
 =head1 LICENSE AND COPYRIGHT
 

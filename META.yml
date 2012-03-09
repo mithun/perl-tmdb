@@ -25,7 +25,7 @@ name: TMDB
 provides:
   TMDB:
     file: lib/TMDB.pm
-    version: 0.04_02
+    version: 0.04_03
   TMDB::Collection:
     file: lib/TMDB/Collection.pm
     version: 0
@@ -57,4 +57,4 @@ resources:
   homepage: https://github.com/mithun/perl-tmdb
   license: http://dev.perl.org/licenses/
   repository: git://github.com/mithun/perl-tmdb.git
-version: 0.04_02
+version: 0.04_03
