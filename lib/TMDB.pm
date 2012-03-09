@@ -152,13 +152,13 @@ L<TMDB-0.03x|https://metacpan.org/release/MITHUN/TMDB-0.03/>.
 
 =head1 INITIALIZATION
 
-    # Initialize
-    my $tmdb = TMDB->new(
-        apikey => 'xxxxxxxxxx...',  # API Key
-        lang   => 'en',             # A valid ISO 639-1 (Aplha-2) language code
-        client => $http_tiny,       # A valid HTTP::Tiny object
-        json   => $json_object,     # A Valid JSON object
-    );
+        # Initialize
+        my $tmdb = TMDB->new(
+            apikey => 'xxxxxxxxxx...',  # API Key
+            lang   => 'en',             # A valid ISO 639-1 (Aplha-2) language code
+            client => $http_tiny,       # A valid HTTP::Tiny object
+            json   => $json_object,     # A Valid JSON object
+        );
 
 The constructor accepts the following options:
 
@@ -190,17 +190,17 @@ will fall back to using L<JSON::Any>. However, L<JSON::XS> is recommended.
 
 =head1 CONFIGURATION
 
-    # Get Config
-    my $config = $tmdb->config;
-    print Dumper $config->config;   # Get all of it
+        # Get Config
+        my $config = $tmdb->config;
+        print Dumper $config->config;   # Get all of it
 
-    # Get the base URL
-    my $base_url = $config->img_base_url();
+        # Get the base URL
+        my $base_url = $config->img_base_url();
 
-    # Sizes (All are array-refs)
-    my $poster_sizes   = $config->img_poster_sizes();
-    my $backdrop_sizes = $config->img_backdrop_sizes();
-    my $profile_sizes  = $config->img_profile_sizes();
+        # Sizes (All are array-refs)
+        my $poster_sizes   = $config->img_poster_sizes();
+        my $backdrop_sizes = $config->img_backdrop_sizes();
+        my $profile_sizes  = $config->img_profile_sizes();
 
 This provides the configuration for the C</3> API. See
 L<http://help.themoviedb.org/kb/api/configuration> for more details.
@@ -213,14 +213,14 @@ The following search methods are available.
 
 =item movie()
 
-    my $search  = $tmdb->search();
-    my @results = $search->movie('Avatar');         # Search by Name
-    my @results = $search->movie('Snatch (2000)');  # Include a Year for better results
+        my $search  = $tmdb->search();
+        my @results = $search->movie('Avatar');         # Search by Name
+        my @results = $search->movie('Snatch (2000)');  # Include a Year for better results
 
 =item person()
 
-    my $search  = $tmdb->search();
-    my @results = $search->person('Brad Pitt');         # Search by Name
+        my $search  = $tmdb->search();
+        my @results = $search->person('Brad Pitt');         # Search by Name
 
 =back
 
@@ -231,80 +231,80 @@ list of fields/keys returned.
 
 =head1 MOVIE
 
-    # Get the movie object
-    my $movie = $tmdb->movie( id => '107' );
+        # Get the movie object
+        my $movie = $tmdb->movie( id => '107' );
 
-    # Movie Data (as returned by the API)
-    use Data::Dumper qw(Dumper);
-    print Dumper $movie->info;
-    print Dumper $movie->alternative_titles;
-    print Dumper $movie->cast;
-    print Dumper $movie->crew;
-    print Dumper $movie->images;
-    print Dumper $movie->keywords;
-    print Dumper $movie->releases;
-    print Dumper $movie->trailers;
-    print Dumper $movie->translations;
+        # Movie Data (as returned by the API)
+        use Data::Dumper qw(Dumper);
+        print Dumper $movie->info;
+        print Dumper $movie->alternative_titles;
+        print Dumper $movie->cast;
+        print Dumper $movie->crew;
+        print Dumper $movie->images;
+        print Dumper $movie->keywords;
+        print Dumper $movie->releases;
+        print Dumper $movie->trailers;
+        print Dumper $movie->translations;
 
-    # Filtered Movie data
-    print $movie->title;
-    print $movie->year;
-    print $movie->tagline;
-    print $movie->overview;
-    print $movie->description;         # Same as `overview`
-    print $movie->genres;
-    print $movie->imdb_id;
-    print $movie->collection;          # Collection ID
-    print $movie->actors;              # Names of Actors
-    print $movie->director;            # Names of Directors
-    print $movie->producer;            # Names of Producers
-    print $movie->executive_producer;  # Names of Executive Producers
-    print $movie->writer;              # Names of Writers/Screenplay
+        # Filtered Movie data
+        print $movie->title;
+        print $movie->year;
+        print $movie->tagline;
+        print $movie->overview;
+        print $movie->description;         # Same as `overview`
+        print $movie->genres;
+        print $movie->imdb_id;
+        print $movie->collection;          # Collection ID
+        print $movie->actors;              # Names of Actors
+        print $movie->director;            # Names of Directors
+        print $movie->producer;            # Names of Producers
+        print $movie->executive_producer;  # Names of Executive Producers
+        print $movie->writer;              # Names of Writers/Screenplay
 
-    # Images
-    print $movie->poster;              # Main Poster
-    print $movie->posters;             # list of posters
-    print $movie->backdrop;            # Main backdrop
-    print $movie->backdrops;           # List of backdrops
-    print $movie->trailers_youtube;    # List of Youtube trailers URLs
+        # Images
+        print $movie->poster;              # Main Poster
+        print $movie->posters;             # list of posters
+        print $movie->backdrop;            # Main backdrop
+        print $movie->backdrops;           # List of backdrops
+        print $movie->trailers_youtube;    # List of Youtube trailers URLs
 
-    # Latest Movie on TMDB
-    print Dumper $movie->latest;
+        # Latest Movie on TMDB
+        print Dumper $movie->latest;
 
 =head1 PEOPLE
 
-    # Get the person object
-    my $person = $tmdb->person( id => '1331' );
+        # Get the person object
+        my $person = $tmdb->person( id => '1331' );
 
-    # Movie Data (as returned by the API)
-    use Data::Dumper qw(Dumper);
-    print Dumper $person->info;
-    print Dumper $person->credits;
-    print Dumper $person->images;
+        # Movie Data (as returned by the API)
+        use Data::Dumper qw(Dumper);
+        print Dumper $person->info;
+        print Dumper $person->credits;
+        print Dumper $person->images;
 
-    # Filtered Person data
-    print $person->name;
-    print $person->aka;                 # Also Known As (list of names)
-    print $person->bio;
-    print $person->image;               # Main profile image
-    print $person->starred_in;          # List of titles (as cast)
-    print $person->directed;            # list of titles Directed
-    print $person->produced;            # list of titles produced
-    print $person->executive_produced;  # List of titles as an Executive Producer
-    print $person->wrote;               # List of titles as a writer/screenplay
+        # Filtered Person data
+        print $person->name;
+        print $person->aka;                 # Also Known As (list of names)
+        print $person->bio;
+        print $person->image;               # Main profile image
+        print $person->starred_in;          # List of titles (as cast)
+        print $person->directed;            # list of titles Directed
+        print $person->produced;            # list of titles produced
+        print $person->executive_produced;  # List of titles as an Executive Producer
+        print $person->wrote;               # List of titles as a writer/screenplay
 
 =head1 COLLECTION
 
-    # Get the collection object
-    my $collection = $tmdb->collection(id => '2344');
+        # Get the collection object
+        my $collection = $tmdb->collection(id => '2344');
 
-    # Collection data (as returned by the API)
-    use Data::Dumper;
-    print Dumper $collection->info;
+        # Collection data (as returned by the API)
+        use Data::Dumper;
+        print Dumper $collection->info;
 
-    # Filtered Collection Data
-    print $collection->titles;  # List of titles in the collection
-    print $collection->ids;     # List of movie IDs in the collection
+        # Filtered Collection Data
+        print $collection->titles;  # List of titles in the collection
+        print $collection->ids;     # List of movie IDs in the collection
 
 =head1 DEPENDENCIES
 
