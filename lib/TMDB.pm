@@ -10,7 +10,7 @@ use Carp qw(croak carp);
 #######################
 # VERSION
 #######################
-our $VERSION = '0.04_03';
+our $VERSION = '0.05';
 
 #######################
 # LOAD CPAN MODULES
@@ -70,11 +70,9 @@ __END__
 
 =pod
 
-
 =head1 NAME
 
 TMDB - Perl wrapper for The MovieDB API
-
 
 =head1 SYNOPSIS
 
@@ -153,7 +151,6 @@ provides, along with updated dependencies for this distribution. If you like to
 continue to use v2.1 API, you can continue to use
 L<TMDB-0.03x|https://metacpan.org/release/MITHUN/TMDB-0.03/>.
 
-
 =head1 INITIALIZATION
 
         # Initialize
@@ -168,11 +165,9 @@ The constructor accepts the following options:
 
 =over
 
-
 =item apikey
 
 This is your API key
-
 
 =item lang
 
@@ -182,12 +177,10 @@ the API no longer falls back to an English default.
 L<List of ISO 639-1
 codes|http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes>.
 
-
 =item client
 
 You can provide your own L<HTTP::Client> object, otherwise a default one is
 used.
-
 
 =item json
 
@@ -195,7 +188,6 @@ You can provide your own L<JSON> implementation that can C<decode> JSON. This
 will fall back to using L<JSON::Any>. However, L<JSON::XS> is recommended.
 
 =back
-
 
 =head1 CONFIGURATION
 
@@ -214,13 +206,11 @@ will fall back to using L<JSON::Any>. However, L<JSON::XS> is recommended.
 This provides the configuration for the C</3> API. See
 L<http://help.themoviedb.org/kb/api/configuration> for more details.
 
-
 =head1 SEARCH
 
 The following search methods are available.
 
 =over
-
 
 =item movie()
 
@@ -236,12 +226,10 @@ The following search methods are available.
 
 =back
 
-
 Both search methods returns an array (or array-ref in a scalar context) of
 hash-refs. See L<Movie Search|http://help.themoviedb.org/kb/api/search-movies>
 or L<People Search|http://help.themoviedb.org/kb/api/search-people> for the
 list of fields/keys returned.
-
 
 =head1 MOVIE
 
@@ -343,7 +331,6 @@ list of fields/keys returned.
 
 =back
 
-
 =head1 BUGS AND LIMITATIONS
 
 All data returned is UTF-8 encoded
@@ -352,11 +339,9 @@ Please report any bugs or feature requests to C<bug-tmdb@rt.cpan.org>, or
 through the web interface at
 L<http://rt.cpan.org/Public/Dist/Display.html?Name=TMDB>
 
-
 =head1 AUTHOR
 
 Mithun Ayachit C<mithun@cpan.org>
-
 
 =head1 LICENSE AND COPYRIGHT
 
