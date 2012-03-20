@@ -44,12 +44,10 @@ sub new {
                 },
             },
             max_pages => {
-                type => SCALAR,
-                optional => 1,
-                default => 5,
-                callbacks => {
-                  'integer' => sub { $_[0] =~ m{\d+} },  
-                },
+                type      => SCALAR,
+                optional  => 1,
+                default   => 5,
+                callbacks => { 'integer' => sub { $_[0] =~ m{\d+} }, },
             },
         },
     );

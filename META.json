@@ -49,7 +49,7 @@
    "provides" : {
       "TMDB" : {
          "file" : "lib/TMDB.pm",
-         "version" : "0.05"
+         "version" : "0.051"
       },
       "TMDB::Collection" : {
          "file" : "lib/TMDB/Collection.pm",
@@ -89,5 +89,5 @@
          "url" : "git://github.com/mithun/perl-tmdb.git"
       }
    },
-   "version" : "0.05"
+   "version" : "0.051"
 }

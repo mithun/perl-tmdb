@@ -83,15 +83,15 @@ if ( $opts{s} ) {
         m => 'Latest Movie'
     );
     _dump(
-        o => [ $tmdb->search(max_pages => 2)->now_playing() ],
+        o => [ $tmdb->search( max_pages => 2 )->now_playing() ],
         m => 'Now Playing'
     );
     _dump(
-        o => [ $tmdb->search(max_pages => 2)->popular() ],
+        o => [ $tmdb->search( max_pages => 2 )->popular() ],
         m => 'Popular Movies'
     );
     _dump(
-        o => [ $tmdb->search(max_pages => 2)->top_rated() ],
+        o => [ $tmdb->search( max_pages => 2 )->top_rated() ],
         m => 'Top Rated'
     );
 } ## end if ( $opts{s} )
