@@ -25,7 +25,7 @@ my $builder = Module::Build->new(
     },
     requires => {
         'Encode'           => 0,
-        'HTTP::Tiny'       => '0.16',
+        'HTTP::Tiny'       => '0.016',
         'JSON::Any'        => '1.23',
         'Locale::Codes'    => '3.20',
         'Object::Tiny'     => '1.03',

@@ -10,7 +10,7 @@ use Carp qw(croak carp);
 #######################
 # VERSION
 #######################
-our $VERSION = '0.051';
+our $VERSION = '0.052';
 
 #######################
 # LOAD CPAN MODULES
