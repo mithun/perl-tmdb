@@ -1,6 +1,12 @@
 % Version History for TMDB
 % Mithun Ayachit
 
+# 0.051
+
+- Added lists for popular, now_playing and top_rated
+- Moved _latest_ movie into a search method
+- Document search configuration
+
 # 0.05
 
 - No changes. 0.04_03 is now promoted to a stable release

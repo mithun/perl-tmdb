@@ -78,6 +78,22 @@ if ( $opts{s} ) {
         o => [ $tmdb->search->person('Brad Pitt') ],
         m => 'Person Search'
     );
+    _dump(
+        o => [ $tmdb->search->latest() ],
+        m => 'Latest Movie'
+    );
+    _dump(
+        o => [ $tmdb->search(max_pages => 2)->now_playing() ],
+        m => 'Now Playing'
+    );
+    _dump(
+        o => [ $tmdb->search(max_pages => 2)->popular() ],
+        m => 'Popular Movies'
+    );
+    _dump(
+        o => [ $tmdb->search(max_pages => 2)->top_rated() ],
+        m => 'Top Rated'
+    );
 } ## end if ( $opts{s} )
 
 ####################

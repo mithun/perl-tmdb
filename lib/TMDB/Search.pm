@@ -10,7 +10,7 @@ use Carp qw(croak carp);
 #######################
 # LOAD CPAN MODULES
 #######################
-use Object::Tiny qw(session include_adult);
+use Object::Tiny qw(session include_adult max_pages);
 use Params::Validate qw(validate_with OBJECT SCALAR);
 
 #######################
@@ -35,10 +35,22 @@ sub new {
                 isa  => 'TMDB::Session',
             },
             include_adult => {
-                type     => SCALAR,
+                type      => SCALAR,
+                optional  => 1,
+                default   => 'false',
+                callbacks => {
+                    'valid flag' =>
+                        sub { lc $_[0] eq 'true' or lc $_[0] eq 'false' }
+                },
+            },
+            max_pages => {
+                type => SCALAR,
                 optional => 1,
-                default  => 'false',
-            }
+                default => 5,
+                callbacks => {
+                  'integer' => sub { $_[0] =~ m{\d+} },  
+                },
+            },
         },
     );
 
@@ -80,10 +92,12 @@ sub movie {
 } ## end sub movie
 
 ## ====================
-## Person
+## Search Person
 ## ====================
 sub person {
     my ( $self, $string ) = @_;
+
+    warn "DEBUG: Searching for $string\n" if $self->session->debug;
     return $self->_search(
         {
             method => 'search/person',
@@ -91,6 +105,24 @@ sub person {
         }
     );
 } ## end sub person
+
+## ====================
+## LISTS
+## ====================
+
+# Latest
+sub latest { return shift->session->talk( { method => 'latest/movie', } ); }
+
+# Now Playing
+sub now_playing {
+    return shift->_search( { method => 'movie/now-playing', } );
+}
+
+# Popular
+sub popular { return shift->_search( { method => 'movie/popular', } ); }
+
+# Top rated
+sub top_rated { return shift->_search( { method => 'movie/top-rated', } ); }
 
 #######################
 # PRIVATE METHODS
@@ -111,9 +143,16 @@ sub _search {
         and $response->{total_pages}
         and ( $response->{total_pages} > $response->{page} ) )
     {
-        $args->{params}->{page} = $response->{page} + 1;
-        my $next_page = $self->session->talk($args);
-        push @$results, @{ $next_page->{results} },;
+        my $page_limit   = $self->max_pages();
+        my $current_page = $response->{page};
+        while ($page_limit) {
+            $current_page++;
+            $args->{params}->{page} = $current_page;
+            my $next_page = $self->session->talk($args);
+            push @$results, @{ $next_page->{results} },;
+            last if ( $next_page->{page} == $next_page->{total_pages} );
+            $page_limit--;
+        } ## end while ($page_limit)
     } ## end if ( $response->{page}...)
 
     # Done

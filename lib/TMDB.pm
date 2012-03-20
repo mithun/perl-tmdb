@@ -10,7 +10,7 @@ use Carp qw(croak carp);
 #######################
 # VERSION
 #######################
-our $VERSION = '0.05';
+our $VERSION = '0.051';
 
 #######################
 # LOAD CPAN MODULES
@@ -208,28 +208,29 @@ L<http://help.themoviedb.org/kb/api/configuration> for more details.
 
 =head1 SEARCH
 
-The following search methods are available.
+        # Configuration
+        my $search = $tmdb->search(
+            include_adult => 'false',  # Include adult results. 'true' or 'false'
+            max_pages     => 5,        # Max number of paged results
+        );
 
-=over
-
-=item movie()
-
+        # Search Movies
         my $search  = $tmdb->search();
-        my @results = $search->movie('Avatar');         # Search by Name
-        my @results = $search->movie('Snatch (2000)');  # Include a Year for better results
+        my @results = $search->movie('Avatar');  # Search by Name
+        my @results =
+            $search->movie('Snatch (2000)');     # Include a Year for better results
 
-
-=item person()
-
+        # Search People
         my $search  = $tmdb->search();
-        my @results = $search->person('Brad Pitt');         # Search by Name
+        my @results = $search->person('Brad Pitt');  # Search by Name
 
-=back
+        # Get Lists
+        my $lists       = $tmdb->search();
+        my $latest      = $lists->latest();       # Latest movie added to TheMovieDB
+        my @now_playing = $lists->now_playing();  # What's currently in theaters
+        my @popular     = $lists->popular();      # What's currently popular
+        my @top_rated   = $lists->top_rated();    # Get the top rated list
 
-Both search methods returns an array (or array-ref in a scalar context) of
-hash-refs. See L<Movie Search|http://help.themoviedb.org/kb/api/search-movies>
-or L<People Search|http://help.themoviedb.org/kb/api/search-people> for the
-list of fields/keys returned.
 
 =head1 MOVIE
 
