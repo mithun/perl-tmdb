@@ -37,7 +37,7 @@
       "runtime" : {
          "requires" : {
             "Encode" : "0",
-            "HTTP::Tiny" : "0.16",
+            "HTTP::Tiny" : "0.016",
             "JSON::Any" : "1.23",
             "Locale::Codes" : "3.20",
             "Object::Tiny" : "1.03",
@@ -49,7 +49,7 @@
    "provides" : {
       "TMDB" : {
          "file" : "lib/TMDB.pm",
-         "version" : "0.051"
+         "version" : "0.052"
       },
       "TMDB::Collection" : {
          "file" : "lib/TMDB/Collection.pm",
@@ -89,5 +89,5 @@
          "url" : "git://github.com/mithun/perl-tmdb.git"
       }
    },
-   "version" : "0.051"
+   "version" : "0.052"
 }

@@ -2,6 +2,11 @@ Version History for TMDB
 Mithun Ayachit
 
 
+0.052
+=====
+
+-   Fixed HTTP::Tiny dependency
+
 0.051
 =====
 
