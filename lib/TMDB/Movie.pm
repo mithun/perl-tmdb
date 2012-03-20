@@ -171,11 +171,6 @@ sub translations {
 } ## end sub translations
 
 ## ====================
-## LATEST
-## ====================
-sub latest { return shift->session->talk( { method => 'latest/movie', } ); }
-
-## ====================
 ## INFO HELPERS
 ## ====================
 

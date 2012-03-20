@@ -82,6 +82,31 @@ my $poster_sizes   = $config->img_poster_sizes();
 my $backdrop_sizes = $config->img_backdrop_sizes();
 my $profile_sizes  = $config->img_profile_sizes();
 
+### Search
+
+# Configuration
+my $search = $tmdb->search(
+    include_adult => 'false',  # Include adult results. 'true' or 'false'
+    max_pages     => 5,        # Max number of paged results
+);
+
+# Search Movies
+my $search  = $tmdb->search();
+my @results = $search->movie('Avatar');  # Search by Name
+my @results =
+    $search->movie('Snatch (2000)');     # Include a Year for better results
+
+# Search People
+my $search  = $tmdb->search();
+my @results = $search->person('Brad Pitt');  # Search by Name
+
+# Get Lists
+my $lists       = $tmdb->search();
+my $latest      = $lists->latest();       # Latest movie added to TheMovieDB
+my @now_playing = $lists->now_playing();  # What's currently in theaters
+my @popular     = $lists->popular();      # What's currently popular
+my @top_rated   = $lists->top_rated();    # Get the top rated list
+
 ### Movies
 
 # Get the movie object
