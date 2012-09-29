@@ -10,8 +10,8 @@ use Carp qw(croak carp);
 #######################
 # LOAD CPAN MODULES
 #######################
-use Object::Tiny qw(id session max_pages);
-use Params::Validate qw(validate_with SCALAR OBJECT);
+use Object::Tiny qw(id session);
+use Params::Validate qw(validate_with :types);
 
 #######################
 # LOAD DIST MODULES
@@ -34,13 +34,7 @@ sub new {
                 type => OBJECT,
                 isa  => 'TMDB::Session',
             },
-            id        => { type => SCALAR, },
-            max_pages => {
-                type      => SCALAR,
-                optional  => 1,
-                default   => 5,
-                callbacks => { 'integer' => sub { $_[0] =~ m{\d+} }, },
-            },
+            id => { type => SCALAR, },
         },
     );
 
@@ -76,10 +70,14 @@ sub version {
 ## MOVIES
 ## ====================
 sub movies {
-    my ($self) = @_;
-    return $self->_movies(
-        { method => 'company/' . $self->id() . '/movies', } );
-}
+    my ( $self, $max_pages ) = @_;
+    return $self->session->paginate_results(
+        {
+            method    => 'company/' . $self->id() . '/movies',
+            max_pages => $max_pages,
+        }
+    );
+} ## end sub movies
 
 ## ====================
 ## INFO HELPERS

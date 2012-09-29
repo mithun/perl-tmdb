@@ -10,7 +10,7 @@ use Carp qw(croak carp);
 #######################
 # LOAD CPAN MODULES
 #######################
-use Params::Validate qw(validate_with OBJECT SCALAR);
+use Params::Validate qw(validate_with :types);
 use Object::Tiny qw(
     session
     config

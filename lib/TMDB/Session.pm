@@ -14,9 +14,9 @@ use JSON::Any;
 use Encode qw();
 use HTTP::Tiny qw();
 use URI::Encode qw();
+use Params::Validate qw(validate_with :types);
 use Locale::Codes::Language qw(all_language_codes);
 use Object::Tiny qw(apikey apiurl lang debug client encoder json);
-use Params::Validate qw(validate_with SCALAR OBJECT BOOLEAN);
 
 #######################
 # PACKAGE VARIABLES
@@ -27,7 +27,7 @@ my %valid_lang_codes = map { $_ => 1 } all_language_codes('alpha-2');
 
 # Default Headers
 my $default_headers = {
-    Accept         => 'application/json',
+    'Accept'       => 'application/json',
     'Content-Type' => 'application/json',
 };
 
@@ -141,6 +141,38 @@ sub talk {
         Encode::encode( 'utf-8-strict', $response->{content} ) )
         ;                                # Real Response
 } ## end sub talk
+
+## ====================
+## PAGINATE RESULTS
+## ====================
+sub paginate_results {
+    my ( $self, $args ) = @_;
+
+    my $response = $self->talk($args);
+    my $results = $response->{results} || [];
+
+    # Paginate
+    if (    $response->{page}
+        and $response->{total_pages}
+        and ( $response->{total_pages} > $response->{page} ) )
+    {
+        my $page_limit = $args->{max_pages} || '1';
+        my $current_page = $response->{page};
+        while ($page_limit) {
+            last if ( $current_page == $page_limit );
+            $current_page++;
+            $args->{params}->{page} = $current_page;
+            my $next_page = $self->talk($args);
+            push @$results, @{ $next_page->{results} },;
+            last if ( $next_page->{page} == $next_page->{total_pages} );
+            $page_limit--;
+        } ## end while ($page_limit)
+    } ## end if ( $response->{page}...)
+
+    # Done
+    return @$results if wantarray;
+    return $results;
+} ## end sub paginate_results
 
 #######################
 1;

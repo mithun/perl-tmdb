@@ -10,7 +10,7 @@ use Carp qw(croak carp);
 #######################
 # VERSION
 #######################
-our $VERSION = '0.052';
+our $VERSION = '0.06';
 
 #######################
 # LOAD CPAN MODULES
@@ -24,9 +24,9 @@ use TMDB::Movie;
 use TMDB::Config;
 use TMDB::Person;
 use TMDB::Search;
+use TMDB::Company;
 use TMDB::Session;
 use TMDB::Collection;
-use TMDB::Company;
 
 #######################
 # PUBLIC METHODS
@@ -54,12 +54,11 @@ sub collection {
         @_
     );
 } ## end sub collection
-
+sub company { return TMDB::Company->new( session => shift->session, @_ ); }
 sub config { return TMDB::Config->new( session => shift->session, @_ ); }
 sub movie { return TMDB::Movie->new( session => shift->session, @_ ); }
 sub person { return TMDB::Person->new( session => shift->session, @_ ); }
 sub search { return TMDB::Search->new( session => shift->session, @_ ); }
-sub company { return TMDB::Company->new( session => shift->session, @_ ); }
 
 #######################
 1;

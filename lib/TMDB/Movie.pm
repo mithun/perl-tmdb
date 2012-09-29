@@ -10,9 +10,9 @@ use Carp qw(croak carp);
 #######################
 # LOAD CPAN MODULES
 #######################
-use Object::Tiny qw(id session max_pages);
+use Object::Tiny qw(id session);
+use Params::Validate qw(validate_with :types);
 use Locale::Codes::Country qw(all_country_codes);
-use Params::Validate qw(validate_with SCALAR OBJECT);
 
 #######################
 # LOAD DIST MODULES
@@ -35,13 +35,7 @@ sub new {
                 type => OBJECT,
                 isa  => 'TMDB::Session',
             },
-            id        => { type => SCALAR, },
-            max_pages => {
-                type      => SCALAR,
-                optional  => 1,
-                default   => 5,
-                callbacks => { 'integer' => sub { $_[0] =~ m{\d+} }, },
-            },
+            id => { type => SCALAR, },
         },
     );
 
@@ -183,10 +177,14 @@ sub translations {
 ## SIMILAR MOVIES
 ## ====================
 sub similar {
-    my ($self) = @_;
-    return $self->_similar_movies(
-        { method => 'movie/' . $self->id() . '/similar_movies', } );
-}
+    my ( $self, $max_pages ) = @_;
+    return $self->session->paginate_results(
+        {
+            method    => 'movie/' . $self->id() . '/similar_movies',
+            max_pages => $max_pages,
+        }
+    );
+} ## end sub similar
 sub similar_movies { return shift->similar(@_); }
 
 ## ====================
@@ -386,38 +384,6 @@ sub _image_urls {
     return @urls if wantarray;
     return \@urls;
 } ## end sub _image_urls
-
-## ====================
-## SIMILAR MOVIES
-## ====================
-sub _similar_movies {
-    my $self = shift;
-    my $args = shift;
-
-    my $response = $self->session->talk($args);
-    my $results = $response->{results} || [];
-
-    # Paginate
-    if (    $response->{page}
-        and $response->{total_pages}
-        and ( $response->{total_pages} > $response->{page} ) )
-    {
-        my $page_limit   = $self->max_pages();
-        my $current_page = $response->{page};
-        while ($page_limit) {
-            $current_page++;
-            $args->{params}->{page} = $current_page;
-            my $next_page = $self->session->talk($args);
-            push @$results, @{ $next_page->{results} },;
-            last if ( $next_page->{page} == $next_page->{total_pages} );
-            $page_limit--;
-        } ## end while ($page_limit)
-    } ## end if ( $response->{page}...)
-
-    # Done
-    return @$results if wantarray;
-    return $results;
-} ## end sub _similar_movies
 
 #######################
 1;

@@ -11,7 +11,7 @@ use Carp qw(croak carp);
 # LOAD CPAN MODULES
 #######################
 use Object::Tiny qw(id session);
-use Params::Validate qw(validate_with SCALAR OBJECT);
+use Params::Validate qw(validate_with :types);
 
 #######################
 # LOAD DIST MODULES
