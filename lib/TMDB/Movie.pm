@@ -178,25 +178,58 @@ sub translations {
 ## ====================
 
 # Title
-sub title { return shift->info()->{title} || q(); }
+sub title {
+    my ($self) = @_;
+    my $info = $self->info();
+    return unless $info;
+    return $info->{title} || q();
+} ## end sub title
 
 # Release Year
-sub year { return ( split( /\-/, shift->info()->{release_date} ) )[0]; }
+sub year {
+    my ($self) = @_;
+    my $info = $self->info();
+    return unless $info;
+    my $full_date = $info->{release_date} || q();
+    return unless $full_date;
+    my ($year) = split( /\-/, $full_date );
+    return $year;
+} ## end sub year
 
 # Tagline
-sub tagline { return shift->info()->{tagline} || q(); }
+sub tagline {
+    my ($self) = @_;
+    my $info = $self->info();
+    return unless $info;
+    return $info->{tagline} || q();
+} ## end sub tagline
 
 # Overview
-sub overview { return shift->info()->{overview} || q(); }
+sub overview {
+    my ($self) = @_;
+    my $info = $self->info();
+    return unless $info;
+    return $info->{overview} || q();
+} ## end sub overview
 
 # IMDB ID
-sub imdb_id { return shift->info()->{imdb_id} || q(); }
+sub imdb_id {
+    my ($self) = @_;
+    my $info = $self->info();
+    return unless $info;
+    return $info->{imdb_id} || q();
+} ## end sub imdb_id
 
 # Description
 sub description { return shift->overview(); }
 
 # Collection
-sub collection { return shift->info()->{belongs_to_collection}->{id} || q(); }
+sub collection {
+    my ($self) = @_;
+    my $info = $self->info();
+    return unless $info;
+    return $info->{belongs_to_collection}->{id} || q();
+} ## end sub collection
 
 # Genres
 sub genres {

@@ -67,7 +67,8 @@ sub ids { return shift->_parse_parts('id'); }
 sub _parse_parts {
     my $self  = shift;
     my $key   = shift;
-    my $parts = $self->info()->{parts} || [];
+    my $info  = $self->info();
+    my $parts = $info ? $info->{parts} : [];
     my @stuff;
     foreach my $part (@$parts) {
         next unless $part->{$key};
