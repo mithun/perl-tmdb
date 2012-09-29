@@ -1,44 +1,59 @@
 % Version History for TMDB
 % Mithun Ayachit
+%
+
+# 0.6
+
+-   Added support for the following API calls:
+    -   `/genres`
+    -   `/company`
+    -   `/movies/:id/similar_movies`
+    -   `/movie/upcoming`
+
+-   Better language support. Most API calls will now actually pass along
+    language preferences
+-   Pagination: The default number of pages fetched is now *1*. This
+    used to be *5*
+-   Some internal code cleanup
 
 # 0.052
 
-- Fixed HTTP::Tiny dependency
+-   Fixed HTTP::Tiny dependency
 
 # 0.051
 
-- Added lists for popular, now_playing and top_rated
-- Moved _latest_ movie into a search method
-- Document search configuration
+-   Added lists for popular, now\_playing and top\_rated
+-   Moved *latest* movie into a search method
+-   Document search configuration
 
 # 0.05
 
-- No changes. 0.04_03 is now promoted to a stable release
+-   No changes. 0.04\_03 is now promoted to a stable release
 
-# 0.04_03
+# 0.04\_03
 
-- More POD changes
+-   More POD changes
 
-# 0.04_02
+# 0.04\_02
 
-- Updated minimum dependencies
-- Indent code blocks in POD by one more level
+-   Updated minimum dependencies
+-   Indent code blocks in POD by one more level
 
-# 0.04_01
+# 0.04\_01
 
-- Code Re-write
-- uses TMDb APIv3
+-   Code Re-write
+-   uses TMDb APIv3
 
 # 0.03
 
-- Updated to use JSON instead of YAML
+-   Updated to use JSON instead of YAML
 
 # 0.02
 
-- Fixed Makefile.PL
+-   Fixed Makefile.PL
 
 # 0.01
 
-- Initial Release
-	
----------------------
+-   Initial Release
+
+* * * * *

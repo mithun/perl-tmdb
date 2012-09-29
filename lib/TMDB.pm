@@ -376,11 +376,22 @@ L<http://help.themoviedb.org/kb/api/configuration> for more details.
 
 =head1 BUGS AND LIMITATIONS
 
+This module not (yet!) support POST-ing data to TheMovieDB
+
 All data returned is UTF-8 encoded
 
 Please report any bugs or feature requests to C<bug-tmdb@rt.cpan.org>, or
 through the web interface at
 L<http://rt.cpan.org/Public/Dist/Display.html?Name=TMDB>
+
+=head1 SEE ALSO
+
+=item L<The MovieDB API|http://help.themoviedb.org/kb/api/about-3>
+
+=item L<API Support|http://help.themoviedb.org/discussions/problems>
+
+=item L<WWW::TMDB::API>
+
 
 =head1 AUTHOR
 
