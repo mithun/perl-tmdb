@@ -103,40 +103,4 @@ sub logo {
 sub image { return shift->logo(); }
 
 #######################
-# PRIVATE METHODS
-#######################
-
-## ====================
-## Movie list
-## ====================
-sub _movies {
-    my $self = shift;
-    my $args = shift;
-
-    my $response = $self->session->talk($args);
-    my $results = $response->{results} || [];
-
-    # Paginate
-    if (    $response->{page}
-        and $response->{total_pages}
-        and ( $response->{total_pages} > $response->{page} ) )
-    {
-        my $page_limit   = $self->max_pages();
-        my $current_page = $response->{page};
-        while ($page_limit) {
-            $current_page++;
-            $args->{params}->{page} = $current_page;
-            my $next_page = $self->session->talk($args);
-            push @$results, @{ $next_page->{results} },;
-            last if ( $next_page->{page} == $next_page->{total_pages} );
-            $page_limit--;
-        } ## end while ($page_limit)
-    } ## end if ( $response->{page}...)
-
-    # Done
-    return @$results if wantarray;
-    return $results;
-} ## end sub _movies
-
-#######################
 1;
