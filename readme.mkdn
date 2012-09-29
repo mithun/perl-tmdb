@@ -1,3 +1,11 @@
+
+
+
+
+
+
+
+
 # NAME
 
 TMDB - Perl wrapper for The MovieDB API
@@ -99,7 +107,7 @@ This is your API key
 This must be a valid ISO 639-1 (Alpha-2) language code. Note that with `/3`,
 the API no longer falls back to an English default.
 
-[List of ISO 639-1 codes](http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
+[List of ISO 639-1 codes](http://en.wikipedia.org/wiki/List\_of\_ISO\_639-1\_codes).
 
 - client
 
@@ -144,7 +152,11 @@ This provides the configuration for the `/3` API. See
 
         # Search People
         my $search  = $tmdb->search();
-        my @results = $search->person('Brad Pitt');  # Search by Name
+        my @results = $search->person('Brad Pitt');	      # Search by Name
+
+		# Search Companies
+        my $search  = $tmdb->search();
+        my @results = $search->company('Sony Pictures');  # Search by Name
 
         # Get Lists
         my $lists       = $tmdb->search();
@@ -197,6 +209,9 @@ This provides the configuration for the `/3` API. See
         # Latest Movie on TMDB
         print Dumper $movie->latest;
 
+		# Get TMDB's version to check if anything changed
+		print $movie->version;
+
 
 
 # PEOPLE
@@ -221,6 +236,9 @@ This provides the configuration for the `/3` API. See
         print $person->executive_produced;  # List of titles as an Executive Producer
         print $person->wrote;               # List of titles as a writer/screenplay
 
+		# Get TMDB's version to check if anything changed
+		print $person->version;
+
 
 
 # COLLECTION
@@ -236,6 +254,36 @@ This provides the configuration for the `/3` API. See
         print $collection->titles;  # List of titles in the collection
         print $collection->ids;     # List of movie IDs in the collection
 
+		# Get TMDB's version to check if anything changed
+		print $collection->version;
+
+
+
+# COMPANY
+
+		# Get the company object
+		my $company = $tmdb->company(id => '1');
+
+		# Company info (as returned by the API)
+		use Data::Dumper qw(Dumper);
+		print Dumper $company->info;
+		print Dumper $company->movies;
+
+		# Filtered company data
+		print $company->name; # Name of the Company
+		print $company->logo; # Logo
+
+		# Get TMDB's version to check if anything changed
+		print $company->version;
+
+# GENRE
+
+		# Get a list
+		my @genres = $tmdb->genre->list();
+
+		# Get a list of movies
+		my @movies = $tmdb->genre(id => '35')->movies;
+
 
 
 # DEPENDENCIES
@@ -250,11 +298,21 @@ This provides the configuration for the `/3` API. See
 
 # BUGS AND LIMITATIONS
 
+This module not (yet!) support POST-ing data to TheMovieDB
+
 All data returned is UTF-8 encoded
 
 Please report any bugs or feature requests to `bug-tmdb@rt.cpan.org`, or
 through the web interface at
 [http://rt.cpan.org/Public/Dist/Display.html?Name=TMDB](http://rt.cpan.org/Public/Dist/Display.html?Name=TMDB)
+
+# SEE ALSO
+
+- [The MovieDB API](http://help.themoviedb.org/kb/api/about-3)
+- [API Support](http://help.themoviedb.org/discussions/problems)
+- [WWW::TMDB::API](http://search.cpan.org/perldoc?WWW::TMDB::API)
+
+
 
 # AUTHOR
 

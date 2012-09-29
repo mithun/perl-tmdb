@@ -2,6 +2,21 @@ Version History for TMDB
 Mithun Ayachit
 
 
+0.6
+===
+
+-   Added support for the following API calls:
+    -   /genres
+    -   /company
+    -   /movies/:id/similar_movies
+    -   /movie/upcoming
+
+-   Better language support. Most API calls will now actually pass along
+    language preferences
+-   Pagination: The default number of pages fetched is now 1. This used
+    to be 5
+-   Some internal code cleanup
+
 0.052
 =====
 

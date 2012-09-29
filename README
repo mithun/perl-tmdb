@@ -148,7 +148,11 @@ SEARCH
 
         # Search People
         my $search  = $tmdb->search();
-        my @results = $search->person('Brad Pitt');  # Search by Name
+        my @results = $search->person('Brad Pitt');       # Search by Name
+
+        # Search Companies
+        my $search  = $tmdb->search();
+        my @results = $search->company('Sony Pictures');  # Search by Name
 
         # Get Lists
         my $lists       = $tmdb->search();
@@ -200,6 +204,9 @@ MOVIE
         # Latest Movie on TMDB
         print Dumper $movie->latest;
 
+        # Get TMDB's version to check if anything changed
+        print $movie->version;
+
 PEOPLE
 ======
 
@@ -223,6 +230,9 @@ PEOPLE
         print $person->executive_produced;  # List of titles as an Executive Producer
         print $person->wrote;               # List of titles as a writer/screenplay
 
+        # Get TMDB's version to check if anything changed
+        print $person->version;
+
 COLLECTION
 ==========
 
@@ -236,6 +246,36 @@ COLLECTION
         # Filtered Collection Data
         print $collection->titles;  # List of titles in the collection
         print $collection->ids;     # List of movie IDs in the collection
+
+        # Get TMDB's version to check if anything changed
+        print $collection->version;
+
+COMPANY
+=======
+
+        # Get the company object
+        my $company = $tmdb->company(id => '1');
+
+        # Company info (as returned by the API)
+        use Data::Dumper qw(Dumper);
+        print Dumper $company->info;
+        print Dumper $company->movies;
+
+        # Filtered company data
+        print $company->name; # Name of the Company
+        print $company->logo; # Logo
+
+        # Get TMDB's version to check if anything changed
+        print $company->version;
+
+GENRE
+=====
+
+        # Get a list
+        my @genres = $tmdb->genre->list();
+
+        # Get a list of movies
+        my @movies = $tmdb->genre(id => '35')->movies;
 
 DEPENDENCIES
 ============
@@ -251,11 +291,20 @@ DEPENDENCIES
 BUGS AND LIMITATIONS
 ====================
 
+This module not (yet!) support POST-ing data to TheMovieDB
+
 All data returned is UTF-8 encoded
 
 Please report any bugs or feature requests to bug-tmdb@rt.cpan.org, or
 through the web interface at
 http://rt.cpan.org/Public/Dist/Display.html?Name=TMDB
+
+SEE ALSO
+========
+
+-   The MovieDB API
+-   API Support
+-   WWW::TMDB::API
 
 AUTHOR
 ======

@@ -3,7 +3,9 @@ Changes
 INSTALL
 lib/TMDB.pm
 lib/TMDB/Collection.pm
+lib/TMDB/Company.pm
 lib/TMDB/Config.pm
+lib/TMDB/Genre.pm
 lib/TMDB/Movie.pm
 lib/TMDB/Person.pm
 lib/TMDB/Search.pm

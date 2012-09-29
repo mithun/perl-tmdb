@@ -4,7 +4,7 @@
       "Mithun Ayachit <mithun@cpan.org>"
    ],
    "dynamic_config" : 1,
-   "generated_by" : "Module::Build version 0.4, CPAN::Meta::Converter version 2.120630",
+   "generated_by" : "Module::Build version 0.4003, CPAN::Meta::Converter version 2.120921",
    "keywords" : [
       "movies",
       "movie",
@@ -49,14 +49,22 @@
    "provides" : {
       "TMDB" : {
          "file" : "lib/TMDB.pm",
-         "version" : "0.052"
+         "version" : "0.06"
       },
       "TMDB::Collection" : {
          "file" : "lib/TMDB/Collection.pm",
          "version" : 0
       },
+      "TMDB::Company" : {
+         "file" : "lib/TMDB/Company.pm",
+         "version" : 0
+      },
       "TMDB::Config" : {
          "file" : "lib/TMDB/Config.pm",
+         "version" : 0
+      },
+      "TMDB::Genre" : {
+         "file" : "lib/TMDB/Genre.pm",
          "version" : 0
       },
       "TMDB::Movie" : {
@@ -89,5 +97,5 @@
          "url" : "git://github.com/mithun/perl-tmdb.git"
       }
    },
-   "version" : "0.052"
+   "version" : "0.06"
 }
