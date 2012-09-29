@@ -50,12 +50,15 @@ sub info {
     my $self   = shift;
     my $params = {};
     $params->{lang} = $self->session->lang if $self->session->lang;
-    return $self->session->talk(
+    my $info = $self->session->talk(
         {
             method => 'movie/' . $self->id,
             params => $params
         }
     );
+    return unless $info;
+    $self->{id} = $info->{id};  # Reset TMDB ID
+    return $info;
 } ## end sub info
 
 ## ====================
@@ -67,8 +70,8 @@ sub alternative_titles {
 
     # Valid Country codes
     if ($country) {
-        my %valid_country_codes =
-            map { $_ => 1 } all_country_codes('alpha-2');
+        my %valid_country_codes
+            = map { $_ => 1 } all_country_codes('alpha-2');
         $country = uc $country;
         return unless $valid_country_codes{$country};
     } ## end if ($country)
