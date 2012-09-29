@@ -218,6 +218,10 @@ if ( $opts{m} ) {
         o => [ $tmdb->movie( id => $movie_id )->trailers_youtube ],
         m => "Movie trailers_youtube"
     );
+    _dump(
+        o => [ $tmdb->movie( id => $movie_id )->similar ],
+        m => "Movie similar"
+    );
 } ## end if ( $opts{m} )
 
 ####################
