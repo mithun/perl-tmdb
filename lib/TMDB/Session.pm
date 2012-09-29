@@ -26,7 +26,10 @@ use Params::Validate qw(validate_with SCALAR OBJECT BOOLEAN);
 my %valid_lang_codes = map { $_ => 1 } all_language_codes('alpha-2');
 
 # Default Headers
-my $default_headers = { Accept => 'application/json', };
+my $default_headers = {
+    Accept         => 'application/json',
+    'Content-Type' => 'application/json',
+};
 
 # Default User Agent
 my $default_ua = 'perl-tmdb-client';
@@ -98,8 +101,8 @@ sub talk {
     my ( $self, $args ) = @_;
 
     # Build Call
-    my $url =
-        $self->apiurl . '/' . $args->{method} . '?api_key=' . $self->apikey;
+    my $url
+        = $self->apiurl . '/' . $args->{method} . '?api_key=' . $self->apikey;
     if ( $args->{params} ) {
         foreach my $param ( sort { lc $a cmp lc $b } %{ $args->{params} } ) {
             next unless defined $args->{params}->{$param};
@@ -128,6 +131,11 @@ sub talk {
 
     # Return
     return unless $response->{success};  # Error
+    if ( $args->{want_headers} and exists $response->{headers} ) {
+
+        # Return headers only
+        return $response->{headers};
+    }
     return unless $response->{content};  # Blank Content
     return $self->json->decode(
         Encode::encode( 'utf-8-strict', $response->{content} ) )
