@@ -174,6 +174,22 @@ sub translations {
 } ## end sub translations
 
 ## ====================
+## VERSION
+## ====================
+sub version {
+    my ($self) = @_;
+    my $response = $self->session->talk(
+        {
+            method       => 'movie/' . $self->id(),
+            want_headers => 1,
+        }
+    ) or return;
+    my $version = $response->{etag} || q();
+    $version =~ s{"}{}gx;
+    return $version;
+} ## end sub version
+
+## ====================
 ## INFO HELPERS
 ## ====================
 

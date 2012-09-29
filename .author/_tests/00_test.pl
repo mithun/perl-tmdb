@@ -110,6 +110,10 @@ if ( $opts{m} ) {
         m => "Movie Info"
     );
     _dump(
+        o => [ $tmdb->movie( id => $movie_id )->version ],
+        m => "Movie version"
+    );
+    _dump(
         o => [ $tmdb->movie( id => $movie_id )->alternative_titles ],
         m => "Movie alternative_titles"
     );
@@ -225,6 +229,10 @@ if ( $opts{p} ) {
         m => "Person info"
     );
     _dump(
+        o => [ $tmdb->person( id => $person_id )->version ],
+        m => "Person version"
+    );
+    _dump(
         o => [ $tmdb->person( id => $person_id )->credits ],
         m => "Person credits"
     );
@@ -285,6 +293,10 @@ if ( $opts{c} ) {
         m => "Collection info"
     );
     _dump(
+        o => [ $tmdb->collection( id => $coll_id )->version ],
+        m => "Collection version"
+    );
+    _dump(
         o => [ $tmdb->collection( id => $coll_id )->titles ],
         m => "Collection titles"
     );
@@ -307,4 +319,5 @@ sub _dump {
     print colored( [qw(bold bright_white)],
         sprintf( "%s\n  -> %s\n%s\n", '#' x 25, uc $d{m}, '#' x 25 ) );
     p $d{o};
+    return 1;
 } ## end sub _dump
