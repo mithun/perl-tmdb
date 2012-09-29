@@ -1,4 +1,4 @@
-package TMDB::Search;
+package TMDB::Company;
 
 #######################
 # LOAD CORE MODULES
@@ -10,8 +10,8 @@ use Carp qw(croak carp);
 #######################
 # LOAD CPAN MODULES
 #######################
-use Object::Tiny qw(session include_adult max_pages);
-use Params::Validate qw(validate_with OBJECT SCALAR);
+use Object::Tiny qw(id session max_pages);
+use Params::Validate qw(validate_with SCALAR OBJECT);
 
 #######################
 # LOAD DIST MODULES
@@ -34,15 +34,7 @@ sub new {
                 type => OBJECT,
                 isa  => 'TMDB::Session',
             },
-            include_adult => {
-                type      => SCALAR,
-                optional  => 1,
-                default   => 'false',
-                callbacks => {
-                    'valid flag' =>
-                        sub { lc $_[0] eq 'true' or lc $_[0] eq 'false' }
-                },
-            },
+            id        => { type => SCALAR, },
             max_pages => {
                 type      => SCALAR,
                 optional  => 1,
@@ -57,94 +49,69 @@ sub new {
 } ## end sub new
 
 ## ====================
-## Search Movies
+## INFO
 ## ====================
-sub movie {
-    my ( $self, $string ) = @_;
-
-    # Get Year
-    my $year;
-    if ( $string =~ m{.+\((\d{4})\)$} ) {
-        $year = $1;
-        $string =~ s{\($year\)$}{};
-    }
-
-    # Trim
-    $string =~ s{(?:^\s+)|(?:\s+$)}{};
-    $string .= " $year" if $year;
-
-    # Search
-    my $params = {
-        query         => $string,
-        include_adult => $self->include_adult,
-    };
-    $params->{lang} = $self->session->lang if $self->session->lang;
-
-    warn "DEBUG: Searching for $string\n" if $self->session->debug;
-    return $self->_search(
-        {
-            method => 'search/movie',
-            params => $params,
-        }
-    );
-} ## end sub movie
-
-## ====================
-## Search Person
-## ====================
-sub person {
-    my ( $self, $string ) = @_;
-
-    warn "DEBUG: Searching for $string\n" if $self->session->debug;
-    return $self->_search(
-        {
-            method => 'search/person',
-            params => { query => $string, },
-        }
-    );
-} ## end sub person
-
-## ====================
-## Search Company
-## ====================
-sub company {
-    my ( $self, $string ) = @_;
-
-    warn "DEBUG: Searching for $string\n" if $self->session->debug;
-    return $self->_search(
-        {
-            method => 'search/company',
-            params => { query => $string, },
-        }
-    );
-} ## end sub company
-
-## ====================
-## LISTS
-## ====================
-
-# Latest
-sub latest { return shift->session->talk( { method => 'latest/movie', } ); }
-
-# Now Playing
-sub now_playing {
-    return shift->_search( { method => 'movie/now-playing', } );
+sub info {
+    my $self = shift;
+    return $self->session->talk( { method => 'company/' . $self->id(), } );
 }
 
-# Popular
-sub popular { return shift->_search( { method => 'movie/popular', } ); }
+## ====================
+## VERSION
+## ====================
+sub version {
+    my ($self) = @_;
+    my $response = $self->session->talk(
+        {
+            method       => 'company/' . $self->id(),
+            want_headers => 1,
+        }
+    ) or return;
+    my $version = $response->{etag} || q();
+    $version =~ s{"}{}gx;
+    return $version;
+} ## end sub version
 
-# Top rated
-sub top_rated { return shift->_search( { method => 'movie/top-rated', } ); }
+## ====================
+## MOVIES
+## ====================
+sub movies {
+    my ($self) = @_;
+    return $self->_movies(
+        { method => 'company/' . $self->id() . '/movies', } );
+}
+
+## ====================
+## INFO HELPERS
+## ====================
+
+# Name
+sub name {
+    my ($self) = @_;
+    my $info = $self->info();
+    return unless $info;
+    return $info->{name} || q();
+} ## end sub name
+
+# Logo
+sub logo {
+    my ($self) = @_;
+    my $info = $self->info();
+    return unless $info;
+    return $info->{logo_path} || q();
+} ## end sub logo
+
+# Image
+sub image { return shift->logo(); }
 
 #######################
 # PRIVATE METHODS
 #######################
 
 ## ====================
-## Search
+## Movie list
 ## ====================
-sub _search {
+sub _movies {
     my $self = shift;
     my $args = shift;
 
@@ -171,7 +138,7 @@ sub _search {
     # Done
     return @$results if wantarray;
     return $results;
-} ## end sub _search
+} ## end sub _movies
 
 #######################
 1;

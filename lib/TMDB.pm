@@ -26,6 +26,7 @@ use TMDB::Person;
 use TMDB::Search;
 use TMDB::Session;
 use TMDB::Collection;
+use TMDB::Company;
 
 #######################
 # PUBLIC METHODS
@@ -58,6 +59,7 @@ sub config { return TMDB::Config->new( session => shift->session, @_ ); }
 sub movie { return TMDB::Movie->new( session => shift->session, @_ ); }
 sub person { return TMDB::Person->new( session => shift->session, @_ ); }
 sub search { return TMDB::Search->new( session => shift->session, @_ ); }
+sub company { return TMDB::Company->new( session => shift->session, @_ ); }
 
 #######################
 1;
@@ -222,7 +224,11 @@ L<http://help.themoviedb.org/kb/api/configuration> for more details.
 
         # Search People
         my $search  = $tmdb->search();
-        my @results = $search->person('Brad Pitt');  # Search by Name
+        my @results = $search->person('Brad Pitt');	      # Search by Name
+
+		# Search Companies
+        my $search  = $tmdb->search();
+        my @results = $search->company('Sony Pictures');  # Search by Name
 
         # Get Lists
         my $lists       = $tmdb->search();
@@ -274,6 +280,9 @@ L<http://help.themoviedb.org/kb/api/configuration> for more details.
         # Latest Movie on TMDB
         print Dumper $movie->latest;
 
+		# Get TMDB's version to check if anything changed
+		print $movie->version;
+
 
 =head1 PEOPLE
 
@@ -297,6 +306,9 @@ L<http://help.themoviedb.org/kb/api/configuration> for more details.
         print $person->executive_produced;  # List of titles as an Executive Producer
         print $person->wrote;               # List of titles as a writer/screenplay
 
+		# Get TMDB's version to check if anything changed
+		print $person->version;
+
 
 =head1 COLLECTION
 
@@ -310,6 +322,27 @@ L<http://help.themoviedb.org/kb/api/configuration> for more details.
         # Filtered Collection Data
         print $collection->titles;  # List of titles in the collection
         print $collection->ids;     # List of movie IDs in the collection
+
+		# Get TMDB's version to check if anything changed
+		print $collection->version;
+
+
+=head1 COMPANY
+
+		# Get the company object
+		my $company = $tmdb->company(id => '1');
+
+		# Company info (as returned by the API)
+		use Data::Dumper qw(Dumper);
+		print Dumper $company->info;
+		print Dumper $company->movies;
+
+		# Filtered company data
+		print $company->name; # Name of the Company
+		print $company->logo; # Logo
+
+		# Get TMDB's version to check if anything changed
+		print $company->version;
 
 
 =head1 DEPENDENCIES

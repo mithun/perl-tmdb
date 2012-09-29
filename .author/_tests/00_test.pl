@@ -32,13 +32,14 @@ use TMDB;
 # READ OPTIONS
 ####################
 my %opts = (
-    c => 0,
-    m => 0,
-    s => 0,
-    p => 0,
-    a => 0,
+    c  => 0,  # Collection
+    m  => 0,  # Movies
+    s  => 0,  # Search
+    p  => 0,  # People
+    a  => 0,  # All
+    cm => 0,  # Company
 );
-GetOptions( \%opts, 'c', 'm', 's', 'p', 'a', ) or die "Invalid Options";
+GetOptions( \%opts, 'c', 'm', 's', 'p', 'a', 'cm', ) or die "Invalid Options";
 
 if ( $opts{a} ) {
     %opts = map { $_ => 1 } keys %opts;
@@ -77,6 +78,10 @@ if ( $opts{s} ) {
     _dump(
         o => [ $tmdb->search->person('Brad Pitt') ],
         m => 'Person Search'
+    );
+    _dump(
+        o => [ $tmdb->search->company('Marvel') ],
+        m => 'Company Search'
     );
     _dump(
         o => [ $tmdb->search->latest() ],
@@ -305,6 +310,37 @@ if ( $opts{c} ) {
         m => "Collection ids"
     );
 } ## end if ( $opts{c} )
+
+####################
+# COMPANY
+####################
+if ( $opts{cm} ) {
+    my $comp_id = '923';
+    _dump(
+        o => [ $tmdb->company( id => $comp_id ) ],
+        m => "Company Object",
+    );
+    _dump(
+        o => [ $tmdb->company( id => $comp_id )->info ],
+        m => "Company info",
+    );
+    _dump(
+        o => [ $tmdb->company( id => $comp_id )->version ],
+        m => "Company version",
+    );
+    _dump(
+        o => [ $tmdb->company( id => $comp_id )->name ],
+        m => "Company name",
+    );
+    _dump(
+        o => [ $tmdb->company( id => $comp_id )->logo ],
+        m => "Company logo",
+    );
+    _dump(
+        o => [ $tmdb->company( id => $comp_id )->movies ],
+        m => "Company movies",
+    );
+} ## end if ( $opts{cm} )
 
 ####################
 # DONE
