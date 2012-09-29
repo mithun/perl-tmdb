@@ -49,7 +49,7 @@ sub new {
 sub info {
     my $self   = shift;
     my $params = {};
-    $params->{lang} = $self->session->lang if $self->session->lang;
+    $params->{language} = $self->session->lang if $self->session->lang;
     my $info = $self->session->talk(
         {
             method => 'movie/' . $self->id,
@@ -182,6 +182,11 @@ sub similar {
         {
             method    => 'movie/' . $self->id() . '/similar_movies',
             max_pages => $max_pages,
+            params    => {
+                language => $self->session->lang
+                ? $self->session->lang
+                : undef,
+            },
         }
     );
 } ## end sub similar

@@ -47,8 +47,17 @@ sub new {
 ## ====================
 sub info {
     my $self = shift;
-    return $self->session->talk( { method => 'collection/' . $self->id(), } );
-}
+    return $self->session->talk(
+        {
+            method => 'collection/' . $self->id(),
+            params => {
+                language => $self->session->lang
+                ? $self->session->lang
+                : undef,
+            },
+        }
+    );
+} ## end sub info
 
 ## ====================
 ## VERSION

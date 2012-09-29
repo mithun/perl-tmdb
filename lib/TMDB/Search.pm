@@ -78,7 +78,7 @@ sub movie {
         query         => $string,
         include_adult => $self->include_adult,
     };
-    $params->{lang} = $self->session->lang if $self->session->lang;
+    $params->{language} = $self->session->lang if $self->session->lang;
 
     warn "DEBUG: Searching for $string\n" if $self->session->debug;
     return $self->_search(
@@ -126,16 +126,65 @@ sub company {
 # Latest
 sub latest { return shift->session->talk( { method => 'latest/movie', } ); }
 
+# Upcoming
+sub upcoming {
+    my ($self) = @_;
+    return $self->_search(
+        {
+            method => 'movie/upcoming',
+            params => {
+                language => $self->session->lang
+                ? $self->session->lang
+                : undef,
+            },
+        }
+    );
+} ## end sub upcoming
+
 # Now Playing
 sub now_playing {
-    return shift->_search( { method => 'movie/now-playing', } );
-}
+    my ($self) = @_;
+    return $self->_search(
+        {
+            method => 'movie/now-playing',
+            params => {
+                language => $self->session->lang
+                ? $self->session->lang
+                : undef,
+            },
+        }
+    );
+} ## end sub now_playing
 
 # Popular
-sub popular { return shift->_search( { method => 'movie/popular', } ); }
+sub popular {
+    my ($self) = @_;
+    return $self->_search(
+        {
+            method => 'movie/popular',
+            params => {
+                language => $self->session->lang
+                ? $self->session->lang
+                : undef,
+            },
+        }
+    );
+} ## end sub popular
 
 # Top rated
-sub top_rated { return shift->_search( { method => 'movie/top-rated', } ); }
+sub top_rated {
+    my ($self) = @_;
+    return $self->_search(
+        {
+            method => 'movie/top-rated',
+            params => {
+                language => $self->session->lang
+                ? $self->session->lang
+                : undef,
+            },
+        }
+    );
+} ## end sub top_rated
 
 #######################
 # PRIVATE METHODS
