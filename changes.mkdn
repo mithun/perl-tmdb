@@ -2,6 +2,10 @@
 % Mithun Ayachit
 %
 
+# 0.061
+
+-   Fixed POD errors reported by metacpan
+
 # 0.6
 
 -   Added support for the following API calls:
