@@ -20,6 +20,7 @@ use Object::Tiny qw(session);
 #######################
 # LOAD DIST MODULES
 #######################
+use TMDB::Genre;
 use TMDB::Movie;
 use TMDB::Config;
 use TMDB::Person;
@@ -56,6 +57,7 @@ sub collection {
 } ## end sub collection
 sub company { return TMDB::Company->new( session => shift->session, @_ ); }
 sub config { return TMDB::Config->new( session => shift->session, @_ ); }
+sub genre { return TMDB::Genre->new( session => shift->session, @_ ); }
 sub movie { return TMDB::Movie->new( session => shift->session, @_ ); }
 sub person { return TMDB::Person->new( session => shift->session, @_ ); }
 sub search { return TMDB::Search->new( session => shift->session, @_ ); }
@@ -342,6 +344,14 @@ L<http://help.themoviedb.org/kb/api/configuration> for more details.
 
 		# Get TMDB's version to check if anything changed
 		print $company->version;
+
+=head1 GENRE
+
+		# Get a list
+		my @genres = $tmdb->genre->list();
+
+		# Get a list of movies
+		my @movies = $tmdb->genre(id => '35')->movies;
 
 
 =head1 DEPENDENCIES

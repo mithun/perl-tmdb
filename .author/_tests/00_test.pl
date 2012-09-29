@@ -38,8 +38,10 @@ my %opts = (
     p  => 0,  # People
     a  => 0,  # All
     cm => 0,  # Company
+    g  => 0,  # Genre
 );
-GetOptions( \%opts, 'c', 'm', 's', 'p', 'a', 'cm', ) or die "Invalid Options";
+GetOptions( \%opts, 'c', 'm', 's', 'p', 'a', 'cm', 'g', )
+    or die "Invalid Options";
 
 if ( $opts{a} ) {
     %opts = map { $_ => 1 } keys %opts;
@@ -53,6 +55,7 @@ my $apikey = $ENV{PERL_TMDB_API}
 my $tmdb = TMDB->new(
     apikey => $apikey,
     debug  => 0,
+    lang   => 'en',
 );
 _dump(
     o => $tmdb,
@@ -86,6 +89,10 @@ if ( $opts{s} ) {
     _dump(
         o => [ $tmdb->search->latest() ],
         m => 'Latest Movie'
+    );
+    _dump(
+        o => [ $tmdb->search( max_pages => 2 )->upcoming() ],
+        m => 'Upcoming'
     );
     _dump(
         o => [ $tmdb->search( max_pages => 2 )->now_playing() ],
@@ -345,6 +352,20 @@ if ( $opts{cm} ) {
         m => "Company movies",
     );
 } ## end if ( $opts{cm} )
+
+####################
+# GENRE
+####################
+if ( $opts{g} ) {
+    _dump(
+        o => [ $tmdb->genre()->list ],
+        m => "Genre list",
+    );
+    _dump(
+        o => [ $tmdb->genre( id => '35' )->movies ],
+        m => "Genre movies",
+    );
+} ## end if ( $opts{g} )
 
 ####################
 # DONE
