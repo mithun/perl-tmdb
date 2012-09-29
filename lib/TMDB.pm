@@ -10,7 +10,7 @@ use Carp qw(croak carp);
 #######################
 # VERSION
 #######################
-our $VERSION = '0.06';
+our $VERSION = '0.061';
 
 #######################
 # LOAD CPAN MODULES
@@ -386,12 +386,15 @@ L<http://rt.cpan.org/Public/Dist/Display.html?Name=TMDB>
 
 =head1 SEE ALSO
 
+=over
+
 =item L<The MovieDB API|http://help.themoviedb.org/kb/api/about-3>
 
 =item L<API Support|http://help.themoviedb.org/discussions/problems>
 
 =item L<WWW::TMDB::API>
 
+=back
 
 =head1 AUTHOR
 
