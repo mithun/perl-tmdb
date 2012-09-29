@@ -104,10 +104,12 @@ sub talk {
     my $url
         = $self->apiurl . '/' . $args->{method} . '?api_key=' . $self->apikey;
     if ( $args->{params} ) {
-        foreach my $param ( sort { lc $a cmp lc $b } %{ $args->{params} } ) {
+        foreach
+            my $param ( sort { lc $a cmp lc $b } keys %{ $args->{params} } )
+        {
             next unless defined $args->{params}->{$param};
             $url .= "&${param}=" . $args->{params}->{$param};
-        }
+        } ## end foreach my $param ( sort { ...})
     } ## end if ( $args->{params} )
 
     # Encode
