@@ -125,8 +125,6 @@ sub talk {
         warn "DEBUG: Got Status -> $response->{status}\n";
         warn "DEBUG: Got Reason -> $response->{reason}\n"
             if $response->{reason};
-        warn "DEBUG: Got Headers -> $response->{headers}\n"
-            if $response->{headers};
         warn "DEBUG: Got Content -> $response->{content}\n"
             if $response->{content};
     } ## end if ( $self->debug )
