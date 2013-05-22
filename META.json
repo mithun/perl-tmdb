@@ -4,7 +4,7 @@
       "Mithun Ayachit <mithun@cpan.org>"
    ],
    "dynamic_config" : 1,
-   "generated_by" : "Module::Build version 0.4003, CPAN::Meta::Converter version 2.120921",
+   "generated_by" : "Module::Build version 0.4004, CPAN::Meta::Converter version 2.130880",
    "keywords" : [
       "movies",
       "movie",
@@ -49,39 +49,31 @@
    "provides" : {
       "TMDB" : {
          "file" : "lib/TMDB.pm",
-         "version" : "0.061"
+         "version" : "0.07"
       },
       "TMDB::Collection" : {
-         "file" : "lib/TMDB/Collection.pm",
-         "version" : 0
+         "file" : "lib/TMDB/Collection.pm"
       },
       "TMDB::Company" : {
-         "file" : "lib/TMDB/Company.pm",
-         "version" : 0
+         "file" : "lib/TMDB/Company.pm"
       },
       "TMDB::Config" : {
-         "file" : "lib/TMDB/Config.pm",
-         "version" : 0
+         "file" : "lib/TMDB/Config.pm"
       },
       "TMDB::Genre" : {
-         "file" : "lib/TMDB/Genre.pm",
-         "version" : 0
+         "file" : "lib/TMDB/Genre.pm"
       },
       "TMDB::Movie" : {
-         "file" : "lib/TMDB/Movie.pm",
-         "version" : 0
+         "file" : "lib/TMDB/Movie.pm"
       },
       "TMDB::Person" : {
-         "file" : "lib/TMDB/Person.pm",
-         "version" : 0
+         "file" : "lib/TMDB/Person.pm"
       },
       "TMDB::Search" : {
-         "file" : "lib/TMDB/Search.pm",
-         "version" : 0
+         "file" : "lib/TMDB/Search.pm"
       },
       "TMDB::Session" : {
-         "file" : "lib/TMDB/Session.pm",
-         "version" : 0
+         "file" : "lib/TMDB/Session.pm"
       }
    },
    "release_status" : "stable",
@@ -97,5 +89,5 @@
          "url" : "git://github.com/mithun/perl-tmdb.git"
       }
    },
-   "version" : "0.061"
+   "version" : "0.07"
 }

@@ -100,25 +100,25 @@ The constructor accepts the following options:
 
 - apikey
 
-This is your API key
+    This is your API key
 
 - lang
 
-This must be a valid ISO 639-1 (Alpha-2) language code. Note that with
-`/3`, the API no longer falls back to an English default.
+    This must be a valid ISO 639-1 (Alpha-2) language code. Note that with
+    `/3`, the API no longer falls back to an English default.
 
-[List of ISO 639-1 codes](http://en.wikipedia.org/wiki/List\_of\_ISO\_639-1\_codes).
+    [List of ISO 639-1 codes](http://en.wikipedia.org/wiki/List\_of\_ISO\_639-1\_codes).
 
 - client
 
-You can provide your own [HTTP::Client](http://search.cpan.org/perldoc?HTTP::Client) object, otherwise a default
-one is used.
+    You can provide your own [HTTP::Client](http://search.cpan.org/perldoc?HTTP::Client) object, otherwise a default
+    one is used.
 
 - json
 
-You can provide your own [JSON](http://search.cpan.org/perldoc?JSON) implementation that can `decode`
-JSON. This will fall back to using [JSON::Any](http://search.cpan.org/perldoc?JSON::Any). However, [JSON::XS](http://search.cpan.org/perldoc?JSON::XS)
-is recommended.
+    You can provide your own [JSON](http://search.cpan.org/perldoc?JSON) implementation that can `decode`
+    JSON. This will fall back to using [JSON::Any](http://search.cpan.org/perldoc?JSON::Any). However, [JSON::XS](http://search.cpan.org/perldoc?JSON::XS)
+    is recommended.
 
 # CONFIGURATION
 
@@ -319,7 +319,7 @@ Mithun Ayachit `mithun@cpan.org`
 
 # LICENSE AND COPYRIGHT
 
-Copyright (c) 2012, Mithun Ayachit. All rights reserved.
+Copyright (c) 2013, Mithun Ayachit. All rights reserved.
 
 This module is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself. See [perlartistic](http://search.cpan.org/perldoc?perlartistic).
