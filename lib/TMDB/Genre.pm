@@ -42,7 +42,7 @@ sub new {
     );
 
     my $self = $class->SUPER::new(%opts);
-    return $self;
+  return $self;
 } ## end sub new
 
 ## ====================
@@ -54,18 +54,16 @@ sub list {
         {
             method => 'genre/list',
             params => {
-                language => $self->session->lang
-                ? $self->session->lang
-                : undef,
+                language => $self->session->lang ? $self->session->lang : undef,
             },
         }
     );
-    return unless $response;
+  return unless $response;
 
     my $genres;
     $genres = $response->{genres} || [];
-    return @$genres if wantarray;
-    return $genres;
+  return @$genres if wantarray;
+  return $genres;
 } ## end sub list
 
 ## ====================
@@ -73,15 +71,13 @@ sub list {
 ## ====================
 sub movies {
     my ( $self, $max_pages ) = @_;
-    return unless $self->id();
-    return $self->session->paginate_results(
+  return unless $self->id();
+  return $self->session->paginate_results(
         {
             method    => 'genre/' . $self->id() . '/movies',
             max_pages => $max_pages,
             params    => {
-                language => $self->session->lang
-                ? $self->session->lang
-                : undef,
+                language => $self->session->lang ? $self->session->lang : undef,
             },
         }
     );

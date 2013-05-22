@@ -34,12 +34,14 @@ sub new {
                 type => OBJECT,
                 isa  => 'TMDB::Session',
             },
-            id => { type => SCALAR, },
+            id => {
+                type => SCALAR,
+            },
         },
     );
 
     my $self = $class->SUPER::new(%opts);
-    return $self;
+  return $self;
 } ## end sub new
 
 ## ====================
@@ -47,8 +49,12 @@ sub new {
 ## ====================
 sub info {
     my $self = shift;
-    return $self->session->talk( { method => 'company/' . $self->id(), } );
-}
+  return $self->session->talk(
+        {
+            method => 'company/' . $self->id(),
+        }
+    );
+} ## end sub info
 
 ## ====================
 ## VERSION
@@ -63,7 +69,7 @@ sub version {
     ) or return;
     my $version = $response->{etag} || q();
     $version =~ s{"}{}gx;
-    return $version;
+  return $version;
 } ## end sub version
 
 ## ====================
@@ -71,7 +77,7 @@ sub version {
 ## ====================
 sub movies {
     my ( $self, $max_pages ) = @_;
-    return $self->session->paginate_results(
+  return $self->session->paginate_results(
         {
             method    => 'company/' . $self->id() . '/movies',
             max_pages => $max_pages,
@@ -87,16 +93,16 @@ sub movies {
 sub name {
     my ($self) = @_;
     my $info = $self->info();
-    return unless $info;
-    return $info->{name} || q();
+  return unless $info;
+  return $info->{name} || q();
 } ## end sub name
 
 # Logo
 sub logo {
     my ($self) = @_;
     my $info = $self->info();
-    return unless $info;
-    return $info->{logo_path} || q();
+  return unless $info;
+  return $info->{logo_path} || q();
 } ## end sub logo
 
 # Image

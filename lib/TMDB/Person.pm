@@ -34,12 +34,14 @@ sub new {
                 type => OBJECT,
                 isa  => 'TMDB::Session',
             },
-            id => { type => SCALAR, },
+            id => {
+                type => SCALAR,
+            },
         },
     );
 
     my $self = $class->SUPER::new(%opts);
-    return $self;
+  return $self;
 } ## end sub new
 
 ## ====================
@@ -47,17 +49,24 @@ sub new {
 ## ====================
 sub info {
     my $self = shift;
-    return $self->session->talk( { method => 'person/' . $self->id(), } );
-}
+  return $self->session->talk(
+        {
+            method => 'person/' . $self->id(),
+        }
+    );
+} ## end sub info
 
 ## ====================
 ## CREDITS
 ## ====================
 sub credits {
     my $self = shift;
-    return $self->session->talk(
-        { method => 'person/' . $self->id() . '/credits', } );
-}
+  return $self->session->talk(
+        {
+            method => 'person/' . $self->id() . '/credits',
+        }
+    );
+} ## end sub credits
 
 ## ====================
 ## IMAGES
@@ -65,8 +74,11 @@ sub credits {
 sub images {
     my $self     = shift;
     my $response = $self->session->talk(
-        { method => 'person/' . $self->id() . '/images', } );
-    return $response->{profiles} || [];
+        {
+            method => 'person/' . $self->id() . '/images',
+        }
+    );
+  return $response->{profiles} || [];
 } ## end sub images
 
 ## ====================
@@ -82,7 +94,7 @@ sub version {
     ) or return;
     my $version = $response->{etag} || q();
     $version =~ s{"}{}gx;
-    return $version;
+  return $version;
 } ## end sub version
 
 ## ====================
@@ -93,34 +105,34 @@ sub version {
 sub name {
     my ($self) = @_;
     my $info = $self->info();
-    return unless $info;
-    return $info->{name} || q();
+  return unless $info;
+  return $info->{name} || q();
 } ## end sub name
 
 # Alternative names
 sub aka {
     my ($self) = @_;
     my $info = $self->info();
-    return unless $info;
+  return unless $info;
     my @aka = $info->{also_known_as} || [];
-    return @aka if wantarray;
-    return \@aka;
+  return @aka if wantarray;
+  return \@aka;
 } ## end sub aka
 
 # Bio
 sub bio {
     my ($self) = @_;
     my $info = $self->info();
-    return unless $info;
-    return $info->{biography} || q();
+  return unless $info;
+  return $info->{biography} || q();
 } ## end sub bio
 
 # Image
 sub image {
     my ($self) = @_;
     my $info = $self->info();
-    return unless $info;
-    return $info->{profile_path} || q();
+  return unless $info;
+  return $info->{profile_path} || q();
 } ## end sub image
 
 ## ====================
@@ -133,8 +145,8 @@ sub starred_in {
     my $movies = $self->credits()->{cast} || [];
     my @names;
     foreach (@$movies) { push @names, $_->{title}; }
-    return @names if wantarray;
-    return \@names;
+  return @names if wantarray;
+  return \@names;
 } ## end sub starred_in
 
 # Crew member
@@ -160,8 +172,8 @@ sub _crew_names {
         push @names, $_->{title} if ( $_->{job} =~ m{$job}xi );
     }
 
-    return @names if wantarray;
-    return \@names;
+  return @names if wantarray;
+  return \@names;
 } ## end sub _crew_names
 
 #######################

@@ -43,14 +43,14 @@ sub new {
 
     # Init Session
     $self->{session} = TMDB::Session->new(@args);
-    return $self;
+  return $self;
 } ## end sub new
 
 ## ====================
 ## TMDB OBJECTS
 ## ====================
 sub collection {
-    return TMDB::Collection->new(
+  return TMDB::Collection->new(
         session => shift->session,
         @_
     );

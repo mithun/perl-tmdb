@@ -46,7 +46,9 @@ sub new {
     my %opts  = validate_with(
         params => \@_,
         spec   => {
-            apikey => { type => SCALAR, },
+            apikey => {
+                type => SCALAR,
+            },
             apiurl => {
                 type     => SCALAR,
                 optional => 1,
@@ -56,8 +58,7 @@ sub new {
                 type      => SCALAR,
                 optional  => 1,
                 callbacks => {
-                    'valid language code' =>
-                        sub { $valid_lang_codes{ lc $_[0] } },
+                    'valid language code' => sub { $valid_lang_codes{ lc $_[0] } },
                 },
             },
             client => {
@@ -79,7 +80,9 @@ sub new {
                 type     => OBJECT,
                 can      => 'Load',
                 optional => 1,
-                default  => JSON::Any->new( utf8 => 1, ),
+                default  => JSON::Any->new(
+                    utf8 => 1,
+                ),
             },
             debug => {
                 type     => BOOLEAN,
@@ -91,7 +94,7 @@ sub new {
 
     $opts{lang} = lc $opts{lang} if $opts{lang};
     my $self = $class->SUPER::new(%opts);
-    return $self;
+  return $self;
 } ## end sub new
 
 ## ====================
@@ -101,13 +104,10 @@ sub talk {
     my ( $self, $args ) = @_;
 
     # Build Call
-    my $url
-        = $self->apiurl . '/' . $args->{method} . '?api_key=' . $self->apikey;
+    my $url = $self->apiurl . '/' . $args->{method} . '?api_key=' . $self->apikey;
     if ( $args->{params} ) {
-        foreach
-            my $param ( sort { lc $a cmp lc $b } keys %{ $args->{params} } )
-        {
-            next unless defined $args->{params}->{$param};
+        foreach my $param ( sort { lc $a cmp lc $b } keys %{ $args->{params} } ) {
+          next unless defined $args->{params}->{$param};
             $url .= "&${param}=" . $args->{params}->{$param};
         } ## end foreach my $param ( sort { ...})
     } ## end if ( $args->{params} )
@@ -123,23 +123,20 @@ sub talk {
     if ( $self->debug ) {
         warn "DEBUG: Got a successful response\n" if $response->{success};
         warn "DEBUG: Got Status -> $response->{status}\n";
-        warn "DEBUG: Got Reason -> $response->{reason}\n"
-            if $response->{reason};
-        warn "DEBUG: Got Content -> $response->{content}\n"
-            if $response->{content};
+        warn "DEBUG: Got Reason -> $response->{reason}\n"   if $response->{reason};
+        warn "DEBUG: Got Content -> $response->{content}\n" if $response->{content};
     } ## end if ( $self->debug )
 
     # Return
-    return unless $response->{success};  # Error
+  return unless $response->{success};  # Error
     if ( $args->{want_headers} and exists $response->{headers} ) {
 
         # Return headers only
-        return $response->{headers};
-    }
-    return unless $response->{content};  # Blank Content
-    return $self->json->decode(
-        Encode::decode( 'utf-8-strict', $response->{content} ) )
-        ;                                # Real Response
+      return $response->{headers};
+    } ## end if ( $args->{want_headers...})
+  return unless $response->{content};  # Blank Content
+  return $self->json->decode(
+        Encode::decode( 'utf-8-strict', $response->{content} ) );  # Real Response
 } ## end sub talk
 
 ## ====================
@@ -159,19 +156,19 @@ sub paginate_results {
         my $page_limit = $args->{max_pages} || '1';
         my $current_page = $response->{page};
         while ($page_limit) {
-            last if ( $current_page == $page_limit );
+          last if ( $current_page == $page_limit );
             $current_page++;
             $args->{params}->{page} = $current_page;
             my $next_page = $self->talk($args);
             push @$results, @{ $next_page->{results} },;
-            last if ( $next_page->{page} == $next_page->{total_pages} );
+          last if ( $next_page->{page} == $next_page->{total_pages} );
             $page_limit--;
         } ## end while ($page_limit)
     } ## end if ( $response->{page}...)
 
     # Done
-    return @$results if wantarray;
-    return $results;
+  return @$results if wantarray;
+  return $results;
 } ## end sub paginate_results
 
 #######################

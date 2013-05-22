@@ -16,7 +16,9 @@ use Data::Printer {
     output  => 'stdout',
     colored => 1,
     deparse => 1,
-    class   => { expand => 2, },
+    class   => {
+        expand => 2,
+    },
 };
 use Term::ANSIColor qw(colored);
 use Getopt::Long qw(GetOptions);
@@ -41,7 +43,7 @@ my %opts = (
     g  => 0,  # Genre
 );
 GetOptions( \%opts, 'c', 'm', 's', 'p', 'a', 'cm', 'g', )
-    or die "Invalid Options";
+  or die "Invalid Options";
 
 if ( $opts{a} ) {
     %opts = map { $_ => 1 } keys %opts;
@@ -51,7 +53,7 @@ if ( $opts{a} ) {
 # INIT OBJECT
 ####################
 my $apikey = $ENV{PERL_TMDB_API}
-    || die "API key is not defined in PERL_TMDB_API";
+  || die "API key is not defined in PERL_TMDB_API";
 my $tmdb = TMDB->new(
     apikey => $apikey,
     debug  => 0,
@@ -380,5 +382,5 @@ sub _dump {
     print colored( [qw(bold bright_white)],
         sprintf( "%s\n  -> %s\n%s\n", '#' x 25, uc $d{m}, '#' x 25 ) );
     p $d{o};
-    return 1;
+  return 1;
 } ## end sub _dump

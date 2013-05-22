@@ -39,21 +39,22 @@ sub new {
                 optional  => 1,
                 default   => 'false',
                 callbacks => {
-                    'valid flag' =>
-                        sub { lc $_[0] eq 'true' or lc $_[0] eq 'false' }
+                    'valid flag' => sub { lc $_[0] eq 'true' or lc $_[0] eq 'false' }
                 },
             },
             max_pages => {
                 type      => SCALAR,
                 optional  => 1,
                 default   => 1,
-                callbacks => { 'integer' => sub { $_[0] =~ m{\d+} }, },
+                callbacks => {
+                    'integer' => sub { $_[0] =~ m{\d+} },
+                },
             },
         },
     );
 
     my $self = $class->SUPER::new(%opts);
-    return $self;
+  return $self;
 } ## end sub new
 
 ## ====================
@@ -67,7 +68,7 @@ sub movie {
     if ( $string =~ m{.+\((\d{4})\)$} ) {
         $year = $1;
         $string =~ s{\($year\)$}{};
-    }
+    } ## end if ( $string =~ m{.+\((\d{4})\)$})
 
     # Trim
     $string =~ s{(?:^\s+)|(?:\s+$)}{};
@@ -81,7 +82,7 @@ sub movie {
     $params->{language} = $self->session->lang if $self->session->lang;
 
     warn "DEBUG: Searching for $string\n" if $self->session->debug;
-    return $self->_search(
+  return $self->_search(
         {
             method => 'search/movie',
             params => $params,
@@ -96,10 +97,12 @@ sub person {
     my ( $self, $string ) = @_;
 
     warn "DEBUG: Searching for $string\n" if $self->session->debug;
-    return $self->_search(
+  return $self->_search(
         {
             method => 'search/person',
-            params => { query => $string, },
+            params => {
+                query => $string,
+            },
         }
     );
 } ## end sub person
@@ -111,10 +114,12 @@ sub company {
     my ( $self, $string ) = @_;
 
     warn "DEBUG: Searching for $string\n" if $self->session->debug;
-    return $self->_search(
+  return $self->_search(
         {
             method => 'search/company',
-            params => { query => $string, },
+            params => {
+                query => $string,
+            },
         }
     );
 } ## end sub company
@@ -129,13 +134,11 @@ sub latest { return shift->session->talk( { method => 'latest/movie', } ); }
 # Upcoming
 sub upcoming {
     my ($self) = @_;
-    return $self->_search(
+  return $self->_search(
         {
             method => 'movie/upcoming',
             params => {
-                language => $self->session->lang
-                ? $self->session->lang
-                : undef,
+                language => $self->session->lang ? $self->session->lang : undef,
             },
         }
     );
@@ -144,13 +147,11 @@ sub upcoming {
 # Now Playing
 sub now_playing {
     my ($self) = @_;
-    return $self->_search(
+  return $self->_search(
         {
             method => 'movie/now-playing',
             params => {
-                language => $self->session->lang
-                ? $self->session->lang
-                : undef,
+                language => $self->session->lang ? $self->session->lang : undef,
             },
         }
     );
@@ -159,13 +160,11 @@ sub now_playing {
 # Popular
 sub popular {
     my ($self) = @_;
-    return $self->_search(
+  return $self->_search(
         {
             method => 'movie/popular',
             params => {
-                language => $self->session->lang
-                ? $self->session->lang
-                : undef,
+                language => $self->session->lang ? $self->session->lang : undef,
             },
         }
     );
@@ -174,13 +173,11 @@ sub popular {
 # Top rated
 sub top_rated {
     my ($self) = @_;
-    return $self->_search(
+  return $self->_search(
         {
             method => 'movie/top-rated',
             params => {
-                language => $self->session->lang
-                ? $self->session->lang
-                : undef,
+                language => $self->session->lang ? $self->session->lang : undef,
             },
         }
     );
@@ -197,7 +194,7 @@ sub _search {
     my $self = shift;
     my $args = shift;
     $args->{max_pages} = $self->max_pages();
-    return $self->session->paginate_results($args);
+  return $self->session->paginate_results($args);
 } ## end sub _search
 
 #######################

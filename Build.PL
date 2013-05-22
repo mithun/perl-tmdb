@@ -38,8 +38,7 @@ my $builder = Module::Build->new(
     meta_merge         => {
         keywords  => [qw(movies movie themoviedb tmdb api metadata imdb)],
         resources => {
-            bugtracker =>
-                'http://rt.cpan.org/Public/Dist/Display.html?Name=TMDB',
+            bugtracker => 'http://rt.cpan.org/Public/Dist/Display.html?Name=TMDB',
             repository => 'git://github.com/mithun/perl-tmdb.git',
             homepage   => 'https://github.com/mithun/perl-tmdb',
         },

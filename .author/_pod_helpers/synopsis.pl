@@ -15,9 +15,8 @@ my $tmdb = TMDB->new( apikey => 'xxxxxxxxxx' );
 my @results = $tmdb->search->movie('Snatch');
 foreach my $result (@results) {
     printf( "%s:\t%s (%s)\n",
-        $result->{id}, $result->{title},
-        split( /-/, $result->{release_date}, 1 ) );
-}
+        $result->{id}, $result->{title}, split( /-/, $result->{release_date}, 1 ) );
+} ## end foreach my $result (@results)
 
 # Search for an actor
 my @results = $tmdb->search->person('Sean Connery');
@@ -39,8 +38,8 @@ my $movie_overview  = $movie->overview;
 my @movie_directors = $movie->director;
 my @movie_actors    = $movie->actors;
 
-printf( "%s (%s)\n%s",
-    $movie_title, $movie_year, '=' x length($movie_title) );
+printf( "%s (%s)\n%s", $movie_title, $movie_year,
+    '=' x length($movie_title) );
 printf( "Tagline: %s\n",     $movie_tagline );
 printf( "Overview: %s\n",    $movie_overview );
 printf( "Directed by: %s\n", join( ',', @movie_directors ) );
@@ -104,12 +103,11 @@ my $search = $tmdb->search(
 # Search Movies
 my $search  = $tmdb->search();
 my @results = $search->movie('Avatar');  # Search by Name
-my @results
-    = $search->movie('Snatch (2000)');   # Include a Year for better results
+my @results = $search->movie('Snatch (2000)'); # Include a Year for better results
 
 # Search People
 my $search  = $tmdb->search();
-my @results = $search->person('Brad Pitt');  # Search by Name
+my @results = $search->person('Brad Pitt');    # Search by Name
 
 # Search Companies
 my $search  = $tmdb->search();

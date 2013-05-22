@@ -35,12 +35,14 @@ sub new {
                 type => OBJECT,
                 isa  => 'TMDB::Session',
             },
-            id => { type => SCALAR, },
+            id => {
+                type => SCALAR,
+            },
         },
     );
 
     my $self = $class->SUPER::new(%opts);
-    return $self;
+  return $self;
 } ## end sub new
 
 ## ====================
@@ -56,9 +58,9 @@ sub info {
             params => $params
         }
     );
-    return unless $info;
+  return unless $info;
     $self->{id} = $info->{id};  # Reset TMDB ID
-    return $info;
+  return $info;
 } ## end sub info
 
 ## ====================
@@ -70,10 +72,9 @@ sub alternative_titles {
 
     # Valid Country codes
     if ($country) {
-        my %valid_country_codes
-            = map { $_ => 1 } all_country_codes('alpha-2');
+        my %valid_country_codes = map { $_ => 1 } all_country_codes('alpha-2');
         $country = uc $country;
-        return unless $valid_country_codes{$country};
+      return unless $valid_country_codes{$country};
     } ## end if ($country)
 
     my $args = {
@@ -85,8 +86,8 @@ sub alternative_titles {
     my $response = $self->session->talk($args);
     my $titles = $response->{titles} || [];
 
-    return @$titles if wantarray;
-    return $titles;
+  return @$titles if wantarray;
+  return $titles;
 } ## end sub alternative_titles
 
 ## ====================
@@ -96,8 +97,8 @@ sub cast {
     my $self     = shift;
     my $response = $self->_cast();
     my $cast     = $response->{cast} || [];
-    return @$cast if wantarray;
-    return $cast;
+  return @$cast if wantarray;
+  return $cast;
 } ## end sub cast
 
 ## ====================
@@ -107,8 +108,8 @@ sub crew {
     my $self     = shift;
     my $response = $self->_cast();
     my $crew     = $response->{crew} || [];
-    return @$crew if wantarray;
-    return $crew;
+  return @$crew if wantarray;
+  return $crew;
 } ## end sub crew
 
 ## ====================
@@ -118,7 +119,7 @@ sub images {
     my $self   = shift;
     my $params = {};
     $params->{lang} = $self->session->lang if $self->session->lang;
-    return $self->session->talk(
+  return $self->session->talk(
         {
             method => 'movie/' . $self->id() . '/images',
             params => $params
@@ -136,8 +137,8 @@ sub keywords {
     my $keywords_dump = $response->{keywords} || [];
     my @keywords;
     foreach (@$keywords_dump) { push @keywords, $_->{name}; }
-    return @keywords if wantarray;
-    return \@keywords;
+  return @keywords if wantarray;
+  return \@keywords;
 } ## end sub keywords
 
 ## ====================
@@ -148,8 +149,8 @@ sub releases {
     my $response = $self->session->talk(
         { method => 'movie/' . $self->id() . '/releases' } );
     my $countries = $response->{countries} || [];
-    return @$countries if wantarray;
-    return $countries;
+  return @$countries if wantarray;
+  return $countries;
 } ## end sub releases
 
 ## ====================
@@ -157,9 +158,9 @@ sub releases {
 ## ====================
 sub trailers {
     my $self = shift;
-    return $self->session->talk(
+  return $self->session->talk(
         { method => 'movie/' . $self->id() . '/trailers' } );
-}
+} ## end sub trailers
 
 ## ====================
 ## TRANSLATIONS
@@ -169,8 +170,8 @@ sub translations {
     my $response = $self->session->talk(
         { method => 'movie/' . $self->id() . '/translations' } );
     my $translations = $response->{translations} || [];
-    return @$translations if wantarray;
-    return $translations;
+  return @$translations if wantarray;
+  return $translations;
 } ## end sub translations
 
 ## ====================
@@ -178,14 +179,12 @@ sub translations {
 ## ====================
 sub similar {
     my ( $self, $max_pages ) = @_;
-    return $self->session->paginate_results(
+  return $self->session->paginate_results(
         {
             method    => 'movie/' . $self->id() . '/similar_movies',
             max_pages => $max_pages,
             params    => {
-                language => $self->session->lang
-                ? $self->session->lang
-                : undef,
+                language => $self->session->lang ? $self->session->lang : undef,
             },
         }
     );
@@ -205,7 +204,7 @@ sub version {
     ) or return;
     my $version = $response->{etag} || q();
     $version =~ s{"}{}gx;
-    return $version;
+  return $version;
 } ## end sub version
 
 ## ====================
@@ -216,43 +215,43 @@ sub version {
 sub title {
     my ($self) = @_;
     my $info = $self->info();
-    return unless $info;
-    return $info->{title} || q();
+  return unless $info;
+  return $info->{title} || q();
 } ## end sub title
 
 # Release Year
 sub year {
     my ($self) = @_;
     my $info = $self->info();
-    return unless $info;
+  return unless $info;
     my $full_date = $info->{release_date} || q();
-    return unless $full_date;
+  return unless $full_date;
     my ($year) = split( /\-/, $full_date );
-    return $year;
+  return $year;
 } ## end sub year
 
 # Tagline
 sub tagline {
     my ($self) = @_;
     my $info = $self->info();
-    return unless $info;
-    return $info->{tagline} || q();
+  return unless $info;
+  return $info->{tagline} || q();
 } ## end sub tagline
 
 # Overview
 sub overview {
     my ($self) = @_;
     my $info = $self->info();
-    return unless $info;
-    return $info->{overview} || q();
+  return unless $info;
+  return $info->{overview} || q();
 } ## end sub overview
 
 # IMDB ID
 sub imdb_id {
     my ($self) = @_;
     my $info = $self->info();
-    return unless $info;
-    return $info->{imdb_id} || q();
+  return unless $info;
+  return $info->{imdb_id} || q();
 } ## end sub imdb_id
 
 # Description
@@ -262,8 +261,8 @@ sub description { return shift->overview(); }
 sub collection {
     my ($self) = @_;
     my $info = $self->info();
-    return unless $info;
-    return $info->{belongs_to_collection}->{id} || q();
+  return unless $info;
+  return $info->{belongs_to_collection}->{id} || q();
 } ## end sub collection
 
 # Genres
@@ -275,8 +274,8 @@ sub genres {
         foreach ( @{ $info->{genres} } ) { push @genres, $_->{name}; }
     }
 
-    return @genres if wantarray;
-    return \@genres;
+  return @genres if wantarray;
+  return \@genres;
 } ## end sub genres
 
 ## ====================
@@ -289,8 +288,8 @@ sub actors {
     my @cast = $self->cast();
     my @names;
     foreach (@cast) { push @names, $_->{name}; }
-    return @names if wantarray;
-    return \@names;
+  return @names if wantarray;
+  return \@names;
 } ## end sub actors
 
 # Crew member names
@@ -306,29 +305,29 @@ sub writer { return shift->_crew_names('Screenplay|Writer|Author|Novel'); }
 # Poster
 sub poster {
     my $self = shift;
-    return $self->info()->{poster_path} || q();
-}
+  return $self->info()->{poster_path} || q();
+} ## end sub poster
 
 # Posters
 sub posters {
     my $self     = shift;
     my $response = $self->images();
     my $posters  = $response->{posters} || [];
-    return $self->_image_urls($posters);
+  return $self->_image_urls($posters);
 } ## end sub posters
 
 # Backdrop
 sub backdrop {
     my $self = shift;
-    return $self->info()->{backdrop_path} || q();
-}
+  return $self->info()->{backdrop_path} || q();
+} ## end sub backdrop
 
 # Backdrops
 sub backdrops {
     my $self      = shift;
     my $response  = $self->images();
     my $backdrops = $response->{backdrops} || [];
-    return $self->_image_urls($backdrops);
+  return $self->_image_urls($backdrops);
 } ## end sub backdrops
 
 ## ====================
@@ -342,8 +341,8 @@ sub trailers_youtube {
     foreach (@$yt_tmp) {
         push @urls, 'http://youtu.be/' . $_->{source};
     }
-    return @urls if wantarray;
-    return \@urls;
+  return @urls if wantarray;
+  return \@urls;
 } ## end sub trailers_youtube
 
 #######################
@@ -355,9 +354,12 @@ sub trailers_youtube {
 ## ====================
 sub _cast {
     my $self = shift;
-    return $self->session->talk(
-        { method => 'movie/' . $self->id() . '/casts', } );
-}
+  return $self->session->talk(
+        {
+            method => 'movie/' . $self->id() . '/casts',
+        }
+    );
+} ## end sub _cast
 
 ## ====================
 ## CREW NAMES
@@ -372,8 +374,8 @@ sub _crew_names {
         push @names, $_->{name} if ( $_->{job} =~ m{$job}xi );
     }
 
-    return @names if wantarray;
-    return \@names;
+  return @names if wantarray;
+  return \@names;
 } ## end sub _crew_names
 
 ## ====================
@@ -386,8 +388,8 @@ sub _image_urls {
     foreach (@$images) {
         push @urls, $_->{file_path};
     }
-    return @urls if wantarray;
-    return \@urls;
+  return @urls if wantarray;
+  return \@urls;
 } ## end sub _image_urls
 
 #######################

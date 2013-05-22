@@ -34,12 +34,14 @@ sub new {
                 type => OBJECT,
                 isa  => 'TMDB::Session',
             },
-            id => { type => SCALAR, },
+            id => {
+                type => SCALAR,
+            },
         },
     );
 
     my $self = $class->SUPER::new(%opts);
-    return $self;
+  return $self;
 } ## end sub new
 
 ## ====================
@@ -47,13 +49,11 @@ sub new {
 ## ====================
 sub info {
     my $self = shift;
-    return $self->session->talk(
+  return $self->session->talk(
         {
             method => 'collection/' . $self->id(),
             params => {
-                language => $self->session->lang
-                ? $self->session->lang
-                : undef,
+                language => $self->session->lang ? $self->session->lang : undef,
             },
         }
     );
@@ -72,7 +72,7 @@ sub version {
     ) or return;
     my $version = $response->{etag} || q();
     $version =~ s{"}{}gx;
-    return $version;
+  return $version;
 } ## end sub version
 
 ## ====================
@@ -89,6 +89,7 @@ sub ids { return shift->_parse_parts('id'); }
 # PRIVATE METHODS
 #######################
 
+
 sub _parse_parts {
     my $self  = shift;
     my $key   = shift;
@@ -96,11 +97,11 @@ sub _parse_parts {
     my $parts = $info ? $info->{parts} : [];
     my @stuff;
     foreach my $part (@$parts) {
-        next unless $part->{$key};
+      next unless $part->{$key};
         push @stuff, $part->{$key};
-    }
-    return @stuff if wantarray;
-    return \@stuff;
+    } ## end foreach my $part (@$parts)
+  return @stuff if wantarray;
+  return \@stuff;
 } ## end sub _parse_parts
 
 #######################

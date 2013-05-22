@@ -12,13 +12,13 @@ use Carp qw(croak carp);
 #######################
 use Params::Validate qw(validate_with :types);
 use Object::Tiny qw(
-    session
-    config
-    img_backdrop_sizes
-    img_base_url
-    img_poster_sizes
-    img_profile_sizes
-    img_default_size
+  session
+  config
+  img_backdrop_sizes
+  img_base_url
+  img_poster_sizes
+  img_profile_sizes
+  img_default_size
 );
 
 #######################
@@ -59,7 +59,7 @@ sub new {
     $self->{img_profile_sizes}  = $config->{images}->{profile_sizes} || [];
     $self->{img_base_url}       = $config->{images}->{base_url} || q();
 
-    return $self;
+  return $self;
 } ## end sub new
 
 #######################
