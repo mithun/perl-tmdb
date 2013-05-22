@@ -79,7 +79,7 @@ sub new {
                 type     => OBJECT,
                 can      => 'Load',
                 optional => 1,
-                default  => JSON::Any->new(),
+                default  => JSON::Any->new( utf8 => 1, ),
             },
             debug => {
                 type     => BOOLEAN,
@@ -138,7 +138,7 @@ sub talk {
     }
     return unless $response->{content};  # Blank Content
     return $self->json->decode(
-        Encode::encode( 'utf-8-strict', $response->{content} ) )
+        Encode::decode( 'utf-8-strict', $response->{content} ) )
         ;                                # Real Response
 } ## end sub talk
 
