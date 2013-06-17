@@ -389,9 +389,9 @@ L<http://rt.cpan.org/Public/Dist/Display.html?Name=TMDB>
 
 =over
 
-=item L<The MovieDB API|http://help.themoviedb.org/kb/api/about-3>
+=item L<The MovieDB API|http://docs.themoviedb.apiary.io/>
 
-=item L<API Support|http://help.themoviedb.org/discussions/problems>
+=item L<API Support|https://www.themoviedb.org/talk/category/5047958519c29526b50017d6>
 
 =item L<WWW::TMDB::API>
 
