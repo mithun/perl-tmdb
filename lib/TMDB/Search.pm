@@ -257,6 +257,81 @@ sub latest_person {
 } ## end sub latest_person
 
 #######################
+# DISCOVER
+#######################
+sub discover {
+    my ( $self, @args ) = @_;
+    my %options = validate_with(
+        params => [@args],
+        spec   => {
+            sort_by => {
+                type      => SCALAR,
+                optional  => 1,
+                default   => 'popularity.asc',
+                callbacks => {
+                    'valid flag' => sub {
+                             ( lc $_[0] eq 'vote_average.desc' )
+                          or ( lc $_[0] eq 'vote_average.asc' )
+                          or ( lc $_[0] eq 'release_date.desc' )
+                          or ( lc $_[0] eq 'release_date.asc' )
+                          or ( lc $_[0] eq 'popularity.desc' )
+                          or ( lc $_[0] eq 'popularity.asc' );
+                    },
+                },
+            },
+            year => {
+                type     => SCALAR,
+                optional => 1,
+                regex    => qr/^\d{4}\-\d{2}\-\d{2}$/
+            },
+            'release_date.gte' => {
+                type     => SCALAR,
+                optional => 1,
+                regex    => qr/^\d{4}\-\d{2}\-\d{2}$/
+            },
+            'release_date.lte' => {
+                type     => SCALAR,
+                optional => 1,
+                regex    => qr/^\d{4}\-\d{2}\-\d{2}$/
+            },
+            'vote_count.gte' => {
+                type     => SCALAR,
+                optional => 1,
+                regex    => qr/^\d+$/
+            },
+            'vote_average.gte' => {
+                type      => SCALAR,
+                optional  => 1,
+                regex     => qr/^\d{1,2}\.\d{1,}$/,
+                callbacks => {
+                    average => sub { $_[0] <= 10 },
+                },
+            },
+            with_genres => {
+                type     => SCALAR,
+                optional => 1,
+            },
+            with_companies => {
+                type     => SCALAR,
+                optional => 1,
+            },
+        },
+    );
+
+  return $self->_search(
+        {
+            method => 'discover/movie',
+            params => {
+                language => $self->session->lang ? $self->session->lang : undef,
+                include_adult => $self->include_adult,
+                %options,
+            },
+        }
+    );
+
+} ## end sub discover
+
+#######################
 # PRIVATE METHODS
 #######################
 

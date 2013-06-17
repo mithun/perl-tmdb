@@ -41,8 +41,9 @@ my %opts = (
     a  => 0,  # All
     cm => 0,  # Company
     g  => 0,  # Genre
+    d  => 0,  # Discover
 );
-GetOptions( \%opts, 'c', 'm', 's', 'p', 'a', 'cm', 'g', )
+GetOptions( \%opts, 'c', 'm', 's', 'p', 'a', 'cm', 'g', 'd', )
   or die "Invalid Options";
 
 if ( $opts{a} ) {
@@ -129,6 +130,24 @@ if ( $opts{s} ) {
         m => 'Popular People'
     );
 } ## end if ( $opts{s} )
+
+####################
+# DISCOVER
+####################
+if ( $opts{d} ) {
+    _dump(
+        o => [
+            $tmdb->search->discover(
+                {
+                    sort_by            => 'popularity.asc',
+                    'vote_average.gte' => '7.2',
+                    'vote_count.gte'   => '10',
+                }
+            )
+        ],
+        m => 'Discover Movies',
+    );
+} ## end if ( $opts{d} )
 
 ####################
 # MOVIE

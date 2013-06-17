@@ -109,6 +109,15 @@ my @results = $search->keyword('thriller');       # Search for keywords
 my @results = $search->collection('Star Wars');   # Search for collections
 my @results = $search->list('top 250');           # Search lists
 
+# Discover
+my @results = $search->discover(
+    {
+        sort_by            => 'popularity.asc',
+        'vote_average.gte' => '7.2',
+        'vote_count.gte'   => '10',
+    }
+);
+
 # Get Lists
 my $lists         = $tmdb->search();
 my $latest        = $lists->latest();      # Latest movie added to TheMovieDB
