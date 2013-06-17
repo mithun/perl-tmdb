@@ -93,6 +93,10 @@ if ( $opts{s} ) {
         m => 'Latest Movie'
     );
     _dump(
+        o => [ $tmdb->search->latest_person() ],
+        m => 'Latest Person'
+    );
+    _dump(
         o => [ $tmdb->search( max_pages => 2 )->upcoming() ],
         m => 'Upcoming'
     );
@@ -107,6 +111,10 @@ if ( $opts{s} ) {
     _dump(
         o => [ $tmdb->search( max_pages => 2 )->top_rated() ],
         m => 'Top Rated'
+    );
+    _dump(
+        o => [ $tmdb->search( max_pages => 2 )->popular_people() ],
+        m => 'Popular People'
     );
 } ## end if ( $opts{s} )
 

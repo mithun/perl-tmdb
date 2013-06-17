@@ -183,6 +183,28 @@ sub top_rated {
     );
 } ## end sub top_rated
 
+# Popular People
+sub popular_people {
+    my ($self) = @_;
+  return $self->_search(
+        {
+            method => 'person/popular',
+            params => {
+                language => $self->session->lang ? $self->session->lang : undef,
+            },
+        }
+    );
+} ## end sub popular_people
+
+# Latest Person
+sub latest_person {
+  return shift->session->talk(
+        {
+            method => 'person/latest',
+        }
+    );
+} ## end sub latest_person
+
 #######################
 # PRIVATE METHODS
 #######################

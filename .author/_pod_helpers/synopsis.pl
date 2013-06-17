@@ -114,12 +114,14 @@ my $search  = $tmdb->search();
 my @results = $search->company('Sony Pictures');  # Search by Name
 
 # Get Lists
-my $lists       = $tmdb->search();
-my $latest      = $lists->latest();       # Latest movie added to TheMovieDB
-my @now_playing = $lists->now_playing();  # What's currently in theaters
-my @upcoming    = $lists->upcoming();     # Coming soon ...
-my @popular     = $lists->popular();      # What's currently popular
-my @top_rated   = $lists->top_rated();    # Get the top rated list
+my $lists         = $tmdb->search();
+my $latest        = $lists->latest();      # Latest movie added to TheMovieDB
+my $latest_person = $lists->latest_person; # Latest person added to TheMovieDB
+my @now_playing   = $lists->now_playing(); # What's currently in theaters
+my @upcoming      = $lists->upcoming();    # Coming soon ...
+my @popular       = $lists->popular();     # What's currently popular
+my @popular_people = $lists->popular_people();  # Who's currently popular
+my @top_rated      = $lists->top_rated();       # Get the top rated list
 
 ###############
 # MOVIE
