@@ -108,7 +108,7 @@ sub person {
 } ## end sub person
 
 ## ====================
-## Search Company
+## Search Companies
 ## ====================
 sub company {
     my ( $self, $string ) = @_;
@@ -123,6 +123,57 @@ sub company {
         }
     );
 } ## end sub company
+
+## ====================
+## Search Lists
+## ====================
+sub list {
+    my ( $self, $string ) = @_;
+
+    warn "DEBUG: Searching for $string\n" if $self->session->debug;
+  return $self->_search(
+        {
+            method => 'search/list',
+            params => {
+                query => $string,
+            },
+        }
+    );
+} ## end sub list
+
+## ====================
+## Search Keywords
+## ====================
+sub keyword {
+    my ( $self, $string ) = @_;
+
+    warn "DEBUG: Searching for $string\n" if $self->session->debug;
+  return $self->_search(
+        {
+            method => 'search/keyword',
+            params => {
+                query => $string,
+            },
+        }
+    );
+} ## end sub keyword
+
+## ====================
+## Search Collection
+## ====================
+sub collection {
+    my ( $self, $string ) = @_;
+
+    warn "DEBUG: Searching for $string\n" if $self->session->debug;
+  return $self->_search(
+        {
+            method => 'search/collection',
+            params => {
+                query => $string,
+            },
+        }
+    );
+} ## end sub collection
 
 ## ====================
 ## LISTS

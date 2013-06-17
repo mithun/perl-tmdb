@@ -89,6 +89,18 @@ if ( $opts{s} ) {
         m => 'Company Search'
     );
     _dump(
+        o => [ $tmdb->search->keyword('spy') ],
+        m => 'Keyword Search'
+    );
+    _dump(
+        o => [ $tmdb->search->list('top 250') ],
+        m => 'List Search'
+    );
+    _dump(
+        o => [ $tmdb->search->collection('Star Wars') ],
+        m => 'Collection Search'
+    );
+    _dump(
         o => [ $tmdb->search->latest() ],
         m => 'Latest Movie'
     );

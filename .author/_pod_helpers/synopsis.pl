@@ -100,18 +100,14 @@ my $search = $tmdb->search(
     max_pages     => 5,        # Max number of paged results
 );
 
-# Search Movies
+# Search
 my $search  = $tmdb->search();
-my @results = $search->movie('Avatar');  # Search by Name
-my @results = $search->movie('Snatch (2000)'); # Include a Year for better results
-
-# Search People
-my $search  = $tmdb->search();
-my @results = $search->person('Brad Pitt');    # Search by Name
-
-# Search Companies
-my $search  = $tmdb->search();
-my @results = $search->company('Sony Pictures');  # Search by Name
+my @results = $search->movie('Snatch (2000)');    # Search for movies
+my @results = $search->person('Brad Pitt');       # Search people by Name
+my @results = $search->company('Sony Pictures');  # Search for companies
+my @results = $search->keyword('thriller');       # Search for keywords
+my @results = $search->collection('Star Wars');   # Search for collections
+my @results = $search->list('top 250');           # Search lists
 
 # Get Lists
 my $lists         = $tmdb->search();
