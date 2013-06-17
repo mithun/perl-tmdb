@@ -125,7 +125,7 @@ my @top_rated   = $lists->top_rated();    # Get the top rated list
 ###############
 
 # Get the movie object
-my $movie = $tmdb->movie( id => '107' );
+my $movie = $tmdb->movie( id => '49521' );
 
 # Movie Data (as returned by the API)
 use Data::Dumper qw(Dumper);
@@ -138,6 +138,9 @@ print Dumper $movie->keywords;
 print Dumper $movie->releases;
 print Dumper $movie->trailers;
 print Dumper $movie->translations;
+print Dumper $movie->lists;
+print Dumper $movie->reviews;
+print Dumper $movie->changes;
 
 # Filtered Movie data
 print $movie->title;

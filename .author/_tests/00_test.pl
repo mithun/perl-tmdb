@@ -114,7 +114,7 @@ if ( $opts{s} ) {
 # MOVIE
 ####################
 if ( $opts{m} ) {
-    my $movie_id = '49517';
+    my $movie_id = '49521';
     _dump(
         o => $tmdb->movie( id => $movie_id ),
         m => "Movie Object"
@@ -230,6 +230,18 @@ if ( $opts{m} ) {
     _dump(
         o => [ $tmdb->movie( id => $movie_id )->similar ],
         m => "Movie similar"
+    );
+    _dump(
+        o => [ $tmdb->movie( id => $movie_id )->lists ],
+        m => "Movie lists"
+    );
+    _dump(
+        o => [ $tmdb->movie( id => $movie_id )->reviews ],
+        m => "Movie reviews"
+    );
+    _dump(
+        o => [ $tmdb->movie( id => $movie_id )->changes ],
+        m => "Movie changes"
     );
 } ## end if ( $opts{m} )
 

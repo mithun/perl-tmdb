@@ -192,6 +192,75 @@ sub similar {
 sub similar_movies { return shift->similar(@_); }
 
 ## ====================
+## LISTS
+## ====================
+sub lists {
+    my ( $self, $max_pages ) = @_;
+  return $self->session->paginate_results(
+        {
+            method    => 'movie/' . $self->id() . '/lists',
+            max_pages => $max_pages,
+            params    => {
+                language => $self->session->lang ? $self->session->lang : undef,
+            },
+        }
+    );
+} ## end sub lists
+
+## ====================
+## REVIEWS
+## ====================
+sub reviews {
+    my ( $self, $max_pages ) = @_;
+  return $self->session->paginate_results(
+        {
+            method    => 'movie/' . $self->id() . '/reviews',
+            max_pages => $max_pages,
+            params    => {
+                language => $self->session->lang ? $self->session->lang : undef,
+            },
+        }
+    );
+} ## end sub reviews
+
+## ====================
+## CHANGES
+## ====================
+sub changes {
+    my ( $self, @args ) = @_;
+    my %options = validate_with(
+        params => [@args],
+        spec   => {
+            start_date => {
+                type     => SCALAR,
+                optional => 1,
+                regex    => qr/^\d{4}\-\d{2}\-\d{2}$/
+            },
+            end_date => {
+                type     => SCALAR,
+                optional => 1,
+                regex    => qr/^\d{4}\-\d{2}\-\d{2}$/
+            },
+        },
+    );
+
+    my $changes = $self->session->talk(
+        {
+            method => 'movie/' . $self->id() . '/changes',
+            params => {
+                ( $options{start_date} ? ( start_date => $options{start_date} ) : () ),
+                ( $options{end_date}   ? ( end_date   => $options{end_date} )   : () ),
+            },
+        }
+    );
+
+  return unless defined $changes;
+  return unless exists $changes->{changes};
+  return @{ $changes->{changes} } if wantarray;
+  return $changes->{changes};
+} ## end sub changes
+
+## ====================
 ## VERSION
 ## ====================
 sub version {
