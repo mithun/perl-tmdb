@@ -241,6 +241,7 @@ L<http://docs.themoviedb.apiary.io/#configuration> for more details.
       my $lists       = $tmdb->search();
       my $latest      = $lists->latest();       # Latest movie added to TheMovieDB
       my @now_playing = $lists->now_playing();  # What's currently in theaters
+      my @upcoming    = $lists->upcoming();     # Coming soon ...
       my @popular     = $lists->popular();      # What's currently popular
       my @top_rated   = $lists->top_rated();    # Get the top rated list
 

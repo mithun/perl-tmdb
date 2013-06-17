@@ -129,7 +129,7 @@ sub company {
 ## ====================
 
 # Latest
-sub latest { return shift->session->talk( { method => 'latest/movie', } ); }
+sub latest { return shift->session->talk( { method => 'movie/latest', } ); }
 
 # Upcoming
 sub upcoming {
