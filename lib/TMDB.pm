@@ -200,12 +200,17 @@ is recommended.
         print Dumper $config->config;   # Get all of it
 
         # Get the base URL
-        my $base_url = $config->img_base_url();
+        my $base_url        = $config->img_base_url();
+        my $secure_base_url = $config->img_secure_base_url();
 
         # Sizes (All are array-refs)
         my $poster_sizes   = $config->img_poster_sizes();
         my $backdrop_sizes = $config->img_backdrop_sizes();
         my $profile_sizes  = $config->img_profile_sizes();
+        my $logo_sizes     = $config->img_logo_sizes();
+
+        # List of _change keys_
+        my $change_keys = $config->change_keys();
 
 This provides the configuration for the C</3> API. See
 L<http://help.themoviedb.org/kb/api/configuration> for more details.
