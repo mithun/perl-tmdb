@@ -72,7 +72,6 @@ sub movie {
 
     # Trim
     $string =~ s{(?:^\s+)|(?:\s+$)}{};
-    $string .= " $year" if $year;
 
     # Search
     my $params = {
@@ -80,6 +79,7 @@ sub movie {
         include_adult => $self->include_adult,
     };
     $params->{language} = $self->session->lang if $self->session->lang;
+    $params->{year} = $year if $year;
 
     warn "DEBUG: Searching for $string\n" if $self->session->debug;
   return $self->_search(
