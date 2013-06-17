@@ -2,6 +2,18 @@ Version History for TMDB
 Mithun Ayachit
 
 
+0.08
+====
+
+-   [RT#86184] Fix movie search when a year is used
+-   add support for movie discovery
+-   added support to search for lists, keywords and collections
+-   added support for person/latest and person/popular
+-   fix movie/latest API call. Document upcoming API
+-   added lists, reviews and changes to movies API
+-   Read logo, secure URLs and change keys from Config
+-   updated API documentation and support links
+
 0.07
 ====
 
