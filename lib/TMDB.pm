@@ -10,7 +10,7 @@ use Carp qw(croak carp);
 #######################
 # VERSION
 #######################
-our $VERSION = '0.08';
+our $VERSION = '0.09';
 
 #######################
 # LOAD CPAN MODULES
@@ -112,8 +112,10 @@ TMDB - Perl wrapper for The MovieDB API
       my $movie_year      = $movie->year;
       my $movie_tagline   = $movie->tagline;
       my $movie_overview  = $movie->overview;
+      my $movie_website   = $movie->homepage();
       my @movie_directors = $movie->director;
       my @movie_actors    = $movie->actors;
+	  my @studios         = $movie->studios;
 
       printf( "%s (%s)\n%s", $movie_title, $movie_year,
         '=' x length($movie_title) );
