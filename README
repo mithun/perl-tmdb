@@ -39,8 +39,10 @@ SYNOPSIS
       my $movie_year      = $movie->year;
       my $movie_tagline   = $movie->tagline;
       my $movie_overview  = $movie->overview;
+      my $movie_website   = $movie->homepage();
       my @movie_directors = $movie->director;
       my @movie_actors    = $movie->actors;
+      my @studios         = $movie->studios;
 
       printf( "%s (%s)\n%s", $movie_title, $movie_year,
         '=' x length($movie_title) );

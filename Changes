@@ -2,6 +2,13 @@ Version History for TMDB
 Mithun Ayachit
 
 
+0.09
+====
+
+-   [RT#92190] add helpers for hompeage and movie studios
+-   [RT#91676] fix issue where an exception was thrown for unavailable
+    backdrops and other info fields
+
 0.08
 ====
 

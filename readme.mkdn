@@ -45,8 +45,10 @@ TMDB - Perl wrapper for The MovieDB API
       my $movie_year      = $movie->year;
       my $movie_tagline   = $movie->tagline;
       my $movie_overview  = $movie->overview;
+      my $movie_website   = $movie->homepage();
       my @movie_directors = $movie->director;
       my @movie_actors    = $movie->actors;
+	  my @studios         = $movie->studios;
 
       printf( "%s (%s)\n%s", $movie_title, $movie_year,
         '=' x length($movie_title) );
@@ -107,17 +109,17 @@ The constructor accepts the following options:
     This must be a valid ISO 639-1 (Alpha-2) language code. Note that with
     `/3`, the API no longer falls back to an English default.
 
-    [List of ISO 639-1 codes](http://en.wikipedia.org/wiki/List\_of\_ISO\_639-1\_codes).
+    [List of ISO 639-1 codes](http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
 
 - client
 
-    You can provide your own [HTTP::Client](http://search.cpan.org/perldoc?HTTP::Client) object, otherwise a default
+    You can provide your own [HTTP::Client](https://metacpan.org/pod/HTTP::Client) object, otherwise a default
     one is used.
 
 - json
 
-    You can provide your own [JSON](http://search.cpan.org/perldoc?JSON) implementation that can `decode`
-    JSON. This will fall back to using [JSON::Any](http://search.cpan.org/perldoc?JSON::Any). However, [JSON::XS](http://search.cpan.org/perldoc?JSON::XS)
+    You can provide your own [JSON](https://metacpan.org/pod/JSON) implementation that can `decode`
+    JSON. This will fall back to using [JSON::Any](https://metacpan.org/pod/JSON::Any). However, [JSON::XS](https://metacpan.org/pod/JSON::XS)
     is recommended.
 
 # CONFIGURATION
@@ -140,7 +142,7 @@ The constructor accepts the following options:
       my $change_keys = $config->change_keys();
 
 This provides the configuration for the `/3` API. See
-[http://docs.themoviedb.apiary.io/\#configuration](http://docs.themoviedb.apiary.io/\#configuration) for more details.
+[http://docs.themoviedb.apiary.io/#configuration](http://docs.themoviedb.apiary.io/#configuration) for more details.
 
 # SEARCH
 
@@ -304,13 +306,13 @@ This provides the configuration for the `/3` API. See
 
 # DEPENDENCIES
 
-- [Encode](http://search.cpan.org/perldoc?Encode)
-- [HTTP::Tiny](http://search.cpan.org/perldoc?HTTP::Tiny)
-- [JSON::Any](http://search.cpan.org/perldoc?JSON::Any)
-- [Locale::Codes](http://search.cpan.org/perldoc?Locale::Codes)
-- [Object::Tiny](http://search.cpan.org/perldoc?Object::Tiny)
-- [Params::Validate](http://search.cpan.org/perldoc?Params::Validate)
-- [URI::Encode](http://search.cpan.org/perldoc?URI::Encode)
+- [Encode](https://metacpan.org/pod/Encode)
+- [HTTP::Tiny](https://metacpan.org/pod/HTTP::Tiny)
+- [JSON::Any](https://metacpan.org/pod/JSON::Any)
+- [Locale::Codes](https://metacpan.org/pod/Locale::Codes)
+- [Object::Tiny](https://metacpan.org/pod/Object::Tiny)
+- [Params::Validate](https://metacpan.org/pod/Params::Validate)
+- [URI::Encode](https://metacpan.org/pod/URI::Encode)
 
 # BUGS AND LIMITATIONS
 
@@ -326,7 +328,7 @@ or through the web interface at
 
 - [The MovieDB API](http://docs.themoviedb.apiary.io/)
 - [API Support](https://www.themoviedb.org/talk/category/5047958519c29526b50017d6)
-- [WWW::TMDB::API](http://search.cpan.org/perldoc?WWW::TMDB::API)
+- [WWW::TMDB::API](https://metacpan.org/pod/WWW::TMDB::API)
 
 # AUTHOR
 
@@ -337,4 +339,4 @@ Mithun Ayachit `mithun@cpan.org`
 Copyright (c) 2013, Mithun Ayachit. All rights reserved.
 
 This module is free software; you can redistribute it and/or modify it
-under the same terms as Perl itself. See [perlartistic](http://search.cpan.org/perldoc?perlartistic).
+under the same terms as Perl itself. See [perlartistic](https://metacpan.org/pod/perlartistic).
