@@ -227,6 +227,14 @@ if ( $opts{m} ) {
         m => "Movie imdb_id"
     );
     _dump(
+        o => [ $tmdb->movie( id => $movie_id )->homepage ],
+        m => "Movie Homepage"
+    );
+    _dump(
+        o => [ $tmdb->movie( id => $movie_id )->studios ],
+        m => "Movie Studios"
+    );
+    _dump(
         o => [ $tmdb->movie( id => $movie_id )->actors ],
         m => "Movie actors"
     );

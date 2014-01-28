@@ -347,6 +347,27 @@ sub genres {
   return \@genres;
 } ## end sub genres
 
+# Homepage
+sub homepage {
+    my ($self) = @_;
+    my $info = $self->info();
+  return unless $info;
+  return $info->{homepage} || q();
+} ## end sub homepage
+
+# Studios
+sub studios {
+    my $self = shift;
+    my $info = $self->info();
+    my @studios;
+    if ( exists $info->{production_companies} ) {
+        foreach ( @{ $info->{production_companies} } ) { push @studios, $_->{name}; }
+    }
+
+  return @studios if wantarray;
+  return \@studios;
+} ## end sub studios
+
 ## ====================
 ## CAST/CREW HELPERS
 ## ====================
