@@ -1,6 +1,8 @@
-% Installing TMDB
-% Mithun Ayachit
-%
+---
+author:
+- Mithun Ayachit
+title: Installing TMDB
+...
 
 # Distribution page
 

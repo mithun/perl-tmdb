@@ -1,13 +1,16 @@
-% Version History for TMDB
-% Mithun Ayachit
-%
+---
+author:
+- Mithun Ayachit
+title: Version History for TMDB
+...
 
 # 0.10
 
-- [POD Updates] Fix link to API documentation
-- [RT\#94609] Fix _year_ regex for `discover`. Also added support for prinmary_release_year. Thanks KENTNL.
-- Use the SSL endpoint. This can be overriden in the constructor
-- Attempt to check the API status responses
+-   [POD Updates] Fix link to API documentation
+-   [RT\#94609] Fix *year* regex for `discover`. Also added support for
+    prinmary\_release\_year. Thanks KENTNL.
+-   Use the SSL endpoint. This can be overriden in the constructor
+-   Attempt to check the API status responses
 
 # 0.09
 
@@ -44,7 +47,6 @@
     -   `/company`
     -   `/movies/:id/similar_movies`
     -   `/movie/upcoming`
-
 -   Better language support. Most API calls will now actually pass along
     language preferences
 -   Pagination: The default number of pages fetched is now *1*. This

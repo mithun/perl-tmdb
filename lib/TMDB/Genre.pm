@@ -54,7 +54,9 @@ sub list {
         {
             method => 'genre/list',
             params => {
-                language => $self->session->lang ? $self->session->lang : undef,
+                language => $self->session->lang
+                ? $self->session->lang
+                : undef,
             },
         }
     );
@@ -77,7 +79,9 @@ sub movies {
             method    => 'genre/' . $self->id() . '/movies',
             max_pages => $max_pages,
             params    => {
-                language => $self->session->lang ? $self->session->lang : undef,
+                language => $self->session->lang
+                ? $self->session->lang
+                : undef,
             },
         }
     );

@@ -15,7 +15,8 @@ my $tmdb = TMDB->new( apikey => 'xxxxxxxxxx' );
 my @results = $tmdb->search->movie('Snatch');
 foreach my $result (@results) {
     printf( "%s:\t%s (%s)\n",
-        $result->{id}, $result->{title}, split( /-/, $result->{release_date}, 1 ) );
+        $result->{id}, $result->{title},
+        split( /-/, $result->{release_date}, 1 ) );
 } ## end foreach my $result (@results)
 
 # Search for an actor

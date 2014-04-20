@@ -56,14 +56,15 @@ sub new {
     my $self = $class->SUPER::new(%opts);
 
     my $config = $self->session->talk( { method => 'configuration' } ) || {};
-    $self->{config}              = $config;
-    $self->{img_backdrop_sizes}  = $config->{images}->{backdrop_sizes} || [];
-    $self->{img_poster_sizes}    = $config->{images}->{poster_sizes} || [];
-    $self->{img_profile_sizes}   = $config->{images}->{profile_sizes} || [];
-    $self->{img_logo_sizes}      = $config->{images}->{logo_sizes} || [];
-    $self->{img_base_url}        = $config->{images}->{base_url} || q();
-    $self->{img_secure_base_url} = $config->{images}->{secure_base_url} || q();
-    $self->{change_keys}         = $config->{change_keys} || [];
+    $self->{config}             = $config;
+    $self->{img_backdrop_sizes} = $config->{images}->{backdrop_sizes} || [];
+    $self->{img_poster_sizes}   = $config->{images}->{poster_sizes} || [];
+    $self->{img_profile_sizes}  = $config->{images}->{profile_sizes} || [];
+    $self->{img_logo_sizes}     = $config->{images}->{logo_sizes} || [];
+    $self->{img_base_url}       = $config->{images}->{base_url} || q();
+    $self->{img_secure_base_url}
+      = $config->{images}->{secure_base_url} || q();
+    $self->{change_keys} = $config->{change_keys} || [];
 
   return $self;
 } ## end sub new

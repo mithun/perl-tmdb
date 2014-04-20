@@ -72,7 +72,8 @@ sub alternative_titles {
 
     # Valid Country codes
     if ($country) {
-        my %valid_country_codes = map { $_ => 1 } all_country_codes('alpha-2');
+        my %valid_country_codes
+          = map { $_ => 1 } all_country_codes('alpha-2');
         $country = uc $country;
       return unless $valid_country_codes{$country};
     } ## end if ($country)
@@ -184,7 +185,9 @@ sub similar {
             method    => 'movie/' . $self->id() . '/similar_movies',
             max_pages => $max_pages,
             params    => {
-                language => $self->session->lang ? $self->session->lang : undef,
+                language => $self->session->lang
+                ? $self->session->lang
+                : undef,
             },
         }
     );
@@ -201,7 +204,9 @@ sub lists {
             method    => 'movie/' . $self->id() . '/lists',
             max_pages => $max_pages,
             params    => {
-                language => $self->session->lang ? $self->session->lang : undef,
+                language => $self->session->lang
+                ? $self->session->lang
+                : undef,
             },
         }
     );
@@ -217,7 +222,9 @@ sub reviews {
             method    => 'movie/' . $self->id() . '/reviews',
             max_pages => $max_pages,
             params    => {
-                language => $self->session->lang ? $self->session->lang : undef,
+                language => $self->session->lang
+                ? $self->session->lang
+                : undef,
             },
         }
     );
@@ -248,8 +255,14 @@ sub changes {
         {
             method => 'movie/' . $self->id() . '/changes',
             params => {
-                ( $options{start_date} ? ( start_date => $options{start_date} ) : () ),
-                ( $options{end_date}   ? ( end_date   => $options{end_date} )   : () ),
+                (
+                    $options{start_date}
+                    ? ( start_date => $options{start_date} )
+                    : ()
+                ), (
+                    $options{end_date} ? ( end_date => $options{end_date} )
+                    : ()
+                ),
             },
         }
     );
@@ -363,8 +376,10 @@ sub studios {
   return unless $info;
     my @studios;
     if ( exists $info->{production_companies} ) {
-        foreach ( @{ $info->{production_companies} } ) { push @studios, $_->{name}; }
-    }
+        foreach ( @{ $info->{production_companies} } ) {
+            push @studios, $_->{name};
+        }
+    } ## end if ( exists $info->{production_companies...})
 
   return @studios if wantarray;
   return \@studios;

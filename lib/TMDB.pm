@@ -146,8 +146,8 @@ TMDB - Perl wrapper for The MovieDB API
 
 L<The MovieDB|http://www.themoviedb.org/> is a free and open movie
 database. This module provides a Perl wrapper to L<The MovieDB
-API|http://docs.themoviedb.apiary.io/>. In order to use this
-module, you must first get an API key by L<signing
+API|http://docs.themoviedb.apiary.io/>. In order to use this module,
+you must first get an API key by L<signing
 up|http://www.themoviedb.org/account/signup>.
 
 B<NOTE:> TMDB-v0.04 and higher uses TheMoviDB API version C</3>. This
@@ -184,8 +184,8 @@ codes|http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes>.
 
 =item client
 
-You can provide your own L<HTTP::Tiny> object, otherwise a default
-one is used.
+You can provide your own L<HTTP::Tiny> object, otherwise a default one
+is used.
 
 =item json
 

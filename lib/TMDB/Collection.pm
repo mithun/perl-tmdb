@@ -53,7 +53,9 @@ sub info {
         {
             method => 'collection/' . $self->id(),
             params => {
-                language => $self->session->lang ? $self->session->lang : undef,
+                language => $self->session->lang
+                ? $self->session->lang
+                : undef,
             },
         }
     );

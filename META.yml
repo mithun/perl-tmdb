@@ -3,12 +3,12 @@ abstract: 'Perl wrapper for The MovieDB API'
 author:
   - 'Mithun Ayachit <mithun@cpan.org>'
 build_requires:
-  Test::More: 0
-  version: 0
+  Test::More: '0'
+  version: '0'
 configure_requires:
-  Module::Build: 0.38
+  Module::Build: '0.38'
 dynamic_config: 1
-generated_by: 'Module::Build version 0.4204, CPAN::Meta::Converter version 2.132830'
+generated_by: 'Module::Build version 0.4205, CPAN::Meta::Converter version 2.140640'
 keywords:
   - movies
   - movie
@@ -20,12 +20,12 @@ keywords:
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
-  version: 1.4
+  version: '1.4'
 name: TMDB
 provides:
   TMDB:
     file: lib/TMDB.pm
-    version: 0.09
+    version: '0.10'
   TMDB::Collection:
     file: lib/TMDB/Collection.pm
   TMDB::Company:
@@ -43,16 +43,16 @@ provides:
   TMDB::Session:
     file: lib/TMDB/Session.pm
 requires:
-  Encode: 0
-  HTTP::Tiny: 0.016
-  JSON::Any: 1.23
-  Locale::Codes: 3.20
-  Object::Tiny: 1.03
-  Params::Validate: 1.03
-  URI::Encode: 0.05
+  Encode: '0'
+  HTTP::Tiny: '0.016'
+  JSON::Any: '1.23'
+  Locale::Codes: '3.20'
+  Object::Tiny: '1.03'
+  Params::Validate: '1.03'
+  URI::Encode: '0.05'
 resources:
   bugtracker: http://rt.cpan.org/Public/Dist/Display.html?Name=TMDB
   homepage: https://github.com/mithun/perl-tmdb
   license: http://dev.perl.org/licenses/
   repository: git://github.com/mithun/perl-tmdb.git
-version: 0.10
+version: '0.10'

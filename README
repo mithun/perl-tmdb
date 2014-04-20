@@ -107,14 +107,18 @@ The constructor accepts the following options:
 
 -   client
 
-    You can provide your own HTTP::Client object, otherwise a default
-    one is used.
+    You can provide your own HTTP::Tiny object, otherwise a default one
+    is used.
 
 -   json
 
     You can provide your own JSON implementation that can decode JSON.
     This will fall back to using JSON::Any. However, JSON::XS is
     recommended.
+
+-   apiurl
+
+    The API endpoint to use. Defaults to https://api.themoviedb.org/3
 
 CONFIGURATION
 =============
@@ -332,7 +336,7 @@ Mithun Ayachit mithun@cpan.org
 LICENSE AND COPYRIGHT
 =====================
 
-Copyright (c) 2013, Mithun Ayachit. All rights reserved.
+Copyright (c) 2014, Mithun Ayachit. All rights reserved.
 
 This module is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself. See perlartistic.

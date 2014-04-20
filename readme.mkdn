@@ -48,7 +48,7 @@ TMDB - Perl wrapper for The MovieDB API
       my $movie_website   = $movie->homepage();
       my @movie_directors = $movie->director;
       my @movie_actors    = $movie->actors;
-	  my @studios         = $movie->studios;
+      my @studios         = $movie->studios;
 
       printf( "%s (%s)\n%s", $movie_title, $movie_year,
         '=' x length($movie_title) );
@@ -74,13 +74,13 @@ TMDB - Perl wrapper for The MovieDB API
       print("\nActed in:\n");
       printf( "\t-%s\n", $_ ) for @person_movies;
 
-
-
 # DESCRIPTION
 
 [The MovieDB](http://www.themoviedb.org/) is a free and open movie
-database. This module provides a Perl wrapper to [The MovieDB API](http://help.themoviedb.org/kb/api/about-3). In order to use this
-module, you must first get an API key by [signing up](http://www.themoviedb.org/account/signup).
+database. This module provides a Perl wrapper to [The MovieDB
+API](http://docs.themoviedb.apiary.io/). In order to use this module,
+you must first get an API key by [signing
+up](http://www.themoviedb.org/account/signup).
 
 __NOTE:__ TMDB-v0.04 and higher uses TheMoviDB API version `/3`. This
 brings some significant differences both to the API and the interface
@@ -109,18 +109,23 @@ The constructor accepts the following options:
     This must be a valid ISO 639-1 (Alpha-2) language code. Note that with
     `/3`, the API no longer falls back to an English default.
 
-    [List of ISO 639-1 codes](http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
+    [List of ISO 639-1
+    codes](http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes).
 
 - client
 
-    You can provide your own [HTTP::Client](https://metacpan.org/pod/HTTP::Client) object, otherwise a default
-    one is used.
+    You can provide your own [HTTP::Tiny](https://metacpan.org/pod/HTTP::Tiny) object, otherwise a default one
+    is used.
 
 - json
 
     You can provide your own [JSON](https://metacpan.org/pod/JSON) implementation that can `decode`
     JSON. This will fall back to using [JSON::Any](https://metacpan.org/pod/JSON::Any). However, [JSON::XS](https://metacpan.org/pod/JSON::XS)
     is recommended.
+
+- apiurl
+
+    The API endpoint to use. Defaults to [https://api.themoviedb.org/3](https://api.themoviedb.org/3)
 
 # CONFIGURATION
 
@@ -180,8 +185,6 @@ This provides the configuration for the `/3` API. See
       my @popular_people = $lists->popular_people();  # Who's currently popular
       my @top_rated      = $lists->top_rated();       # Get the top rated list
 
-
-
 # MOVIE
 
       # Get the movie object
@@ -230,8 +233,6 @@ This provides the configuration for the `/3` API. See
       # Get TMDB's version to check if anything changed
       print $movie->version;
 
-
-
 # PEOPLE
 
       # Get the person object
@@ -257,8 +258,6 @@ This provides the configuration for the `/3` API. See
       # Get TMDB's version to check if anything changed
       print $person->version;
 
-
-
 # COLLECTION
 
       # Get the collection object
@@ -275,34 +274,30 @@ This provides the configuration for the `/3` API. See
       # Get TMDB's version to check if anything changed
       print $collection->version;
 
-
-
 # COMPANY
 
-		# Get the company object
-		my $company = $tmdb->company(id => '1');
+        # Get the company object
+        my $company = $tmdb->company(id => '1');
 
-		# Company info (as returned by the API)
-		use Data::Dumper qw(Dumper);
-		print Dumper $company->info;
-		print Dumper $company->movies;
+        # Company info (as returned by the API)
+        use Data::Dumper qw(Dumper);
+        print Dumper $company->info;
+        print Dumper $company->movies;
 
-		# Filtered company data
-		print $company->name; # Name of the Company
-		print $company->logo; # Logo
+        # Filtered company data
+        print $company->name; # Name of the Company
+        print $company->logo; # Logo
 
-		# Get TMDB's version to check if anything changed
-		print $company->version;
+        # Get TMDB's version to check if anything changed
+        print $company->version;
 
 # GENRE
 
-		# Get a list
-		my @genres = $tmdb->genre->list();
+        # Get a list
+        my @genres = $tmdb->genre->list();
 
-		# Get a list of movies
-		my @movies = $tmdb->genre(id => '35')->movies;
-
-
+        # Get a list of movies
+        my @movies = $tmdb->genre(id => '35')->movies;
 
 # DEPENDENCIES
 
@@ -336,7 +331,7 @@ Mithun Ayachit `mithun@cpan.org`
 
 # LICENSE AND COPYRIGHT
 
-Copyright (c) 2013, Mithun Ayachit. All rights reserved.
+Copyright (c) 2014, Mithun Ayachit. All rights reserved.
 
 This module is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself. See [perlartistic](https://metacpan.org/pod/perlartistic).
