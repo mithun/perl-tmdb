@@ -39,7 +39,8 @@ sub new {
                 optional  => 1,
                 default   => 'false',
                 callbacks => {
-                    'valid flag' => sub { lc $_[0] eq 'true' or lc $_[0] eq 'false' }
+                    'valid flag' =>
+                      sub { lc $_[0] eq 'true' or lc $_[0] eq 'false' }
                 },
             },
             max_pages => {
@@ -189,7 +190,9 @@ sub upcoming {
         {
             method => 'movie/upcoming',
             params => {
-                language => $self->session->lang ? $self->session->lang : undef,
+                language => $self->session->lang
+                ? $self->session->lang
+                : undef,
             },
         }
     );
@@ -202,7 +205,9 @@ sub now_playing {
         {
             method => 'movie/now-playing',
             params => {
-                language => $self->session->lang ? $self->session->lang : undef,
+                language => $self->session->lang
+                ? $self->session->lang
+                : undef,
             },
         }
     );
@@ -215,7 +220,9 @@ sub popular {
         {
             method => 'movie/popular',
             params => {
-                language => $self->session->lang ? $self->session->lang : undef,
+                language => $self->session->lang
+                ? $self->session->lang
+                : undef,
             },
         }
     );
@@ -228,7 +235,9 @@ sub top_rated {
         {
             method => 'movie/top-rated',
             params => {
-                language => $self->session->lang ? $self->session->lang : undef,
+                language => $self->session->lang
+                ? $self->session->lang
+                : undef,
             },
         }
     );
@@ -241,7 +250,9 @@ sub popular_people {
         {
             method => 'person/popular',
             params => {
-                language => $self->session->lang ? $self->session->lang : undef,
+                language => $self->session->lang
+                ? $self->session->lang
+                : undef,
             },
         }
     );
@@ -282,7 +293,12 @@ sub discover {
             year => {
                 type     => SCALAR,
                 optional => 1,
-                regex    => qr/^\d{4}\-\d{2}\-\d{2}$/
+                regex    => qr/^\d{4}$/
+            },
+            primary_release_year => {
+                type     => SCALAR,
+                optional => 1,
+                regex    => qr/^\d{4}$/
             },
             'release_date.gte' => {
                 type     => SCALAR,
@@ -322,7 +338,9 @@ sub discover {
         {
             method => 'discover/movie',
             params => {
-                language => $self->session->lang ? $self->session->lang : undef,
+                language => $self->session->lang
+                ? $self->session->lang
+                : undef,
                 include_adult => $self->include_adult,
                 %options,
             },
