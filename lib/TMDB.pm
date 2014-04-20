@@ -10,7 +10,7 @@ use Carp qw(croak carp);
 #######################
 # VERSION
 #######################
-our $VERSION = '0.09';
+our $VERSION = '0.10';
 
 #######################
 # LOAD CPAN MODULES
@@ -424,7 +424,7 @@ Mithun Ayachit C<mithun@cpan.org>
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright (c) 2013, Mithun Ayachit. All rights reserved.
+Copyright (c) 2014, Mithun Ayachit. All rights reserved.
 
 This module is free software; you can redistribute it and/or modify it
 under the same terms as Perl itself. See L<perlartistic>.

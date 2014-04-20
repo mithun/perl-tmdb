@@ -55,4 +55,4 @@ resources:
   homepage: https://github.com/mithun/perl-tmdb
   license: http://dev.perl.org/licenses/
   repository: git://github.com/mithun/perl-tmdb.git
-version: 0.09
+version: 0.10

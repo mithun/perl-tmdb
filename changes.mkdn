@@ -2,6 +2,13 @@
 % Mithun Ayachit
 %
 
+# 0.10
+
+- [POD Updates] Fix link to API documentation
+- [RT\#94609] Fix _year_ regex for `discover`. Also added support for prinmary_release_year. Thanks KENTNL.
+- Use the SSL endpoint. This can be overriden in the constructor
+- Attempt to check the API status responses
+
 # 0.09
 
 -   [RT\#92190] add helpers for hompeage and movie studios
