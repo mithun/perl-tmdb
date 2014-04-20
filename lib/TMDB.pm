@@ -193,6 +193,10 @@ You can provide your own L<JSON> implementation that can C<decode>
 JSON. This will fall back to using L<JSON::Any>. However, L<JSON::XS>
 is recommended.
 
+=item apiurl
+
+The API endpoint to use. Defaults to L<https://api.themoviedb.org/3>
+
 =back
 
 =head1 CONFIGURATION
