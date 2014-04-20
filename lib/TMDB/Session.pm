@@ -134,7 +134,7 @@ sub talk {
     } ## end if ( $self->debug )
 
     # Return
-  return unless $response->{success};  # Error
+  return unless $self->_check_status($response);
     if ( $args->{want_headers} and exists $response->{headers} ) {
 
         # Return headers only
@@ -176,6 +176,39 @@ sub paginate_results {
   return @$results if wantarray;
   return $results;
 } ## end sub paginate_results
+
+#######################
+# INTERNAL
+#######################
+
+# Check Response status
+sub _check_status {
+    my ( $self, $response ) = @_;
+
+    if ( $response->{success} ) {
+      return 1;
+    }
+
+    if ( $response->{content} ) {
+        my ( $code, $message );
+        my $ok = eval {
+
+            my $status = $self->json->decode(
+                Encode::decode( 'utf-8-strict', $response->{content} ) );
+
+            $code    = $status->{status_code};
+            $message = $status->{status_message};
+
+            1;
+        };
+
+        if ( $ok and $code and $message ) {
+            carp sprintf( 'TMDB API Error (%s): %s', $code, $message );
+        }
+    } ## end if ( $response->{content...})
+
+  return;
+} ## end sub _check_status
 
 #######################
 1;
