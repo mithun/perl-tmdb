@@ -184,7 +184,7 @@ codes|http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes>.
 
 =item client
 
-You can provide your own L<HTTP::Client> object, otherwise a default
+You can provide your own L<HTTP::Tiny> object, otherwise a default
 one is used.
 
 =item json
