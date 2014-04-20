@@ -115,7 +115,7 @@ TMDB - Perl wrapper for The MovieDB API
       my $movie_website   = $movie->homepage();
       my @movie_directors = $movie->director;
       my @movie_actors    = $movie->actors;
-	  my @studios         = $movie->studios;
+      my @studios         = $movie->studios;
 
       printf( "%s (%s)\n%s", $movie_title, $movie_year,
         '=' x length($movie_title) );
@@ -146,7 +146,7 @@ TMDB - Perl wrapper for The MovieDB API
 
 L<The MovieDB|http://www.themoviedb.org/> is a free and open movie
 database. This module provides a Perl wrapper to L<The MovieDB
-API|http://help.themoviedb.org/kb/api/about-3>. In order to use this
+API|http://docs.themoviedb.apiary.io/>. In order to use this
 module, you must first get an API key by L<signing
 up|http://www.themoviedb.org/account/signup>.
 
@@ -348,28 +348,28 @@ L<http://docs.themoviedb.apiary.io/#configuration> for more details.
 
 =head1 COMPANY
 
-		# Get the company object
-		my $company = $tmdb->company(id => '1');
+        # Get the company object
+        my $company = $tmdb->company(id => '1');
 
-		# Company info (as returned by the API)
-		use Data::Dumper qw(Dumper);
-		print Dumper $company->info;
-		print Dumper $company->movies;
+        # Company info (as returned by the API)
+        use Data::Dumper qw(Dumper);
+        print Dumper $company->info;
+        print Dumper $company->movies;
 
-		# Filtered company data
-		print $company->name; # Name of the Company
-		print $company->logo; # Logo
+        # Filtered company data
+        print $company->name; # Name of the Company
+        print $company->logo; # Logo
 
-		# Get TMDB's version to check if anything changed
-		print $company->version;
+        # Get TMDB's version to check if anything changed
+        print $company->version;
 
 =head1 GENRE
 
-		# Get a list
-		my @genres = $tmdb->genre->list();
+        # Get a list
+        my @genres = $tmdb->genre->list();
 
-		# Get a list of movies
-		my @movies = $tmdb->genre(id => '35')->movies;
+        # Get a list of movies
+        my @movies = $tmdb->genre(id => '35')->movies;
 
 
 =head1 DEPENDENCIES
