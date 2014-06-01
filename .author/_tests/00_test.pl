@@ -129,6 +129,15 @@ if ( $opts{s} ) {
         o => [ $tmdb->search( max_pages => 2 )->popular_people() ],
         m => 'Popular People'
     );
+    _dump(
+        o => [
+            $tmdb->search->find(
+                id     => 'tt1490017',
+                source => 'imdb_id'
+            )
+        ],
+        m => 'Find by IMDB ID',
+    );
 } ## end if ( $opts{s} )
 
 ####################

@@ -350,6 +350,36 @@ sub discover {
 } ## end sub discover
 
 #######################
+# FIND
+#######################
+sub find {
+    my ( $self, @args ) = @_;
+    my %options = validate_with(
+        params => [@args],
+        spec   => {
+            id => {
+                type => SCALAR,
+            },
+            source => {
+                type => SCALAR,
+            },
+        },
+    );
+
+  return $self->session->talk(
+        {
+            method => 'find/' . $options{id},
+            params => {
+                external_source => $options{source},
+                language        => $self->session->lang
+                ? $self->session->lang
+                : undef,
+            }
+        }
+    );
+} ## end sub find
+
+#######################
 # PRIVATE METHODS
 #######################
 

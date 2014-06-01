@@ -119,6 +119,12 @@ my @results = $search->discover(
     }
 );
 
+# Find using external sources
+my @results = $search->find(
+    id     => 'tt12345',
+    source => 'imdb_id'
+);
+
 # Get Lists
 my $lists         = $tmdb->search();
 my $latest        = $lists->latest();      # Latest movie added to TheMovieDB
