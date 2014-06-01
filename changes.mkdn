@@ -6,7 +6,7 @@ title: Version History for TMDB
 
 # 0.11
 
-- Add support to _find_ from external sources like IMDB
+-   Add support to *find* from external sources like IMDB
 
 # 0.10
 

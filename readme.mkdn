@@ -82,7 +82,7 @@ API](http://docs.themoviedb.apiary.io/). In order to use this module,
 you must first get an API key by [signing
 up](http://www.themoviedb.org/account/signup).
 
-__NOTE:__ TMDB-v0.04 and higher uses TheMoviDB API version `/3`. This
+**NOTE:** TMDB-v0.04 and higher uses TheMoviDB API version `/3`. This
 brings some significant differences both to the API and the interface
 this module provides, along with updated dependencies for this
 distribution. If you like to continue to use v2.1 API, you can continue
@@ -165,6 +165,12 @@ This provides the configuration for the `/3` API. See
       my @results = $search->keyword('thriller');       # Search for keywords
       my @results = $search->collection('Star Wars');   # Search for collections
       my @results = $search->list('top 250');           # Search lists
+
+      # Find using external sources
+      my @results = $search->find(
+          id     => 'tt12345',
+          source => 'imdb_id'
+      );
 
       # Discover
       my @results = $search->discover(
