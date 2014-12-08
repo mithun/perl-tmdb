@@ -1,10 +1,14 @@
+
+
 NAME
-====
+
 
 TMDB - Perl wrapper for The MovieDB API
 
+
+
 SYNOPSIS
-========
+
 
       use TMDB;
 
@@ -68,8 +72,10 @@ SYNOPSIS
       print("\nActed in:\n");
       printf( "\t-%s\n", $_ ) for @person_movies;
 
+
+
 DESCRIPTION
-===========
+
 
 The MovieDB is a free and open movie database. This module provides a
 Perl wrapper to The MovieDB API. In order to use this module, you must
@@ -81,8 +87,10 @@ module provides, along with updated dependencies for this distribution.
 If you like to continue to use v2.1 API, you can continue to use
 TMDB-0.03x.
 
+
+
 INITIALIZATION
-==============
+
 
       # Initialize
       my $tmdb = TMDB->new(
@@ -120,8 +128,10 @@ The constructor accepts the following options:
 
     The API endpoint to use. Defaults to https://api.themoviedb.org/3
 
+
+
 CONFIGURATION
-=============
+
 
       # Get Config
       my $config = $tmdb->config;
@@ -143,8 +153,10 @@ CONFIGURATION
 This provides the configuration for the /3 API. See
 http://docs.themoviedb.apiary.io/#configuration for more details.
 
+
+
 SEARCH
-======
+
 
       # Configuration
       my $search = $tmdb->search(
@@ -186,8 +198,10 @@ SEARCH
       my @popular_people = $lists->popular_people();  # Who's currently popular
       my @top_rated      = $lists->top_rated();       # Get the top rated list
 
+
+
 MOVIE
-=====
+
 
       # Get the movie object
       my $movie = $tmdb->movie( id => '49521' );
@@ -235,8 +249,10 @@ MOVIE
       # Get TMDB's version to check if anything changed
       print $movie->version;
 
+
+
 PEOPLE
-======
+
 
       # Get the person object
       my $person = $tmdb->person( id => '1331' );
@@ -261,8 +277,10 @@ PEOPLE
       # Get TMDB's version to check if anything changed
       print $person->version;
 
+
+
 COLLECTION
-==========
+
 
       # Get the collection object
       my $collection = $tmdb->collection(id => '2344');
@@ -278,8 +296,10 @@ COLLECTION
       # Get TMDB's version to check if anything changed
       print $collection->version;
 
+
+
 COMPANY
-=======
+
 
         # Get the company object
         my $company = $tmdb->company(id => '1');
@@ -296,8 +316,10 @@ COMPANY
         # Get TMDB's version to check if anything changed
         print $company->version;
 
+
+
 GENRE
-=====
+
 
         # Get a list
         my @genres = $tmdb->genre->list();
@@ -305,8 +327,10 @@ GENRE
         # Get a list of movies
         my @movies = $tmdb->genre(id => '35')->movies;
 
+
+
 DEPENDENCIES
-============
+
 
 -   Encode
 -   HTTP::Tiny
@@ -316,31 +340,38 @@ DEPENDENCIES
 -   Params::Validate
 -   URI::Encode
 
+
+
 BUGS AND LIMITATIONS
-====================
+
 
 This module not (yet!) support POST-ing data to TheMovieDB
 
 All data returned is UTF-8 encoded
 
-Please report any bugs or feature requests to bug-tmdb@rt.cpan.org, or
-through the web interface at
-http://rt.cpan.org/Public/Dist/Display.html?Name=TMDB
+Please report any bugs or feature requests at
+https://github.com/mithun/perl-tmdb/issues
+
+
 
 SEE ALSO
-========
+
 
 -   The MovieDB API
 -   API Support
 -   WWW::TMDB::API
 
+
+
 AUTHOR
-======
+
 
 Mithun Ayachit mithun@cpan.org
 
+
+
 LICENSE AND COPYRIGHT
-=====================
+
 
 Copyright (c) 2014, Mithun Ayachit. All rights reserved.
 

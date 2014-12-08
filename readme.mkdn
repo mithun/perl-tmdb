@@ -321,9 +321,8 @@ This module not (yet!) support POST-ing data to TheMovieDB
 
 All data returned is UTF-8 encoded
 
-Please report any bugs or feature requests to `bug-tmdb@rt.cpan.org`,
-or through the web interface at
-[http://rt.cpan.org/Public/Dist/Display.html?Name=TMDB](http://rt.cpan.org/Public/Dist/Display.html?Name=TMDB)
+Please report any bugs or feature requests at
+[https://github.com/mithun/perl-tmdb/issues](https://github.com/mithun/perl-tmdb/issues)
 
 # SEE ALSO
 

@@ -10,7 +10,7 @@ use Carp qw(croak carp);
 #######################
 # VERSION
 #######################
-our $VERSION = '0.11';
+our $VERSION = '0.11.1';
 
 #######################
 # LOAD CPAN MODULES
@@ -408,9 +408,8 @@ This module not (yet!) support POST-ing data to TheMovieDB
 
 All data returned is UTF-8 encoded
 
-Please report any bugs or feature requests to C<bug-tmdb@rt.cpan.org>,
-or through the web interface at
-L<http://rt.cpan.org/Public/Dist/Display.html?Name=TMDB>
+Please report any bugs or feature requests at
+L<https://github.com/mithun/perl-tmdb/issues>
 
 =head1 SEE ALSO
 

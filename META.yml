@@ -8,7 +8,7 @@ build_requires:
 configure_requires:
   Module::Build: '0.38'
 dynamic_config: 1
-generated_by: 'Module::Build version 0.4205, CPAN::Meta::Converter version 2.141170'
+generated_by: 'Module::Build version 0.421, CPAN::Meta::Converter version 2.143240'
 keywords:
   - movies
   - movie
@@ -25,7 +25,7 @@ name: TMDB
 provides:
   TMDB:
     file: lib/TMDB.pm
-    version: '0.11'
+    version: v0.11.1
   TMDB::Collection:
     file: lib/TMDB/Collection.pm
   TMDB::Company:
@@ -51,8 +51,8 @@ requires:
   Params::Validate: '1.03'
   URI::Encode: '0.05'
 resources:
-  bugtracker: http://rt.cpan.org/Public/Dist/Display.html?Name=TMDB
+  bugtracker: https://github.com/mithun/perl-tmdb/issues
   homepage: https://github.com/mithun/perl-tmdb
   license: http://dev.perl.org/licenses/
   repository: git://github.com/mithun/perl-tmdb.git
-version: '0.11'
+version: v0.11.1
