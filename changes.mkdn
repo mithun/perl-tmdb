@@ -4,6 +4,10 @@ author:
 title: Version History for TMDB
 ...
 
+# 1.0.1
+
+-   Bump version to allow change in version number strategy
+
 # 0.11.1
 
 -   No functional changes. Use semver and move bugtracker to

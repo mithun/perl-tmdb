@@ -20,6 +20,11 @@ use Locale::Codes::Country qw(all_country_codes);
 use TMDB::Session;
 
 #######################
+# VERSION
+#######################
+our $VERSION = '1.0.1';
+
+#######################
 # PUBLIC METHODS
 #######################
 

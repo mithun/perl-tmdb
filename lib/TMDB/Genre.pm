@@ -19,6 +19,11 @@ use Params::Validate qw(validate_with :types);
 use TMDB::Session;
 
 #######################
+# VERSION
+#######################
+our $VERSION = '1.0.1';
+
+#######################
 # PUBLIC METHODS
 #######################
 

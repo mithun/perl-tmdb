@@ -49,31 +49,39 @@
    "provides" : {
       "TMDB" : {
          "file" : "lib/TMDB.pm",
-         "version" : "v0.11.1"
+         "version" : "v1.0.1"
       },
       "TMDB::Collection" : {
-         "file" : "lib/TMDB/Collection.pm"
+         "file" : "lib/TMDB/Collection.pm",
+         "version" : "v1.0.1"
       },
       "TMDB::Company" : {
-         "file" : "lib/TMDB/Company.pm"
+         "file" : "lib/TMDB/Company.pm",
+         "version" : "v1.0.1"
       },
       "TMDB::Config" : {
-         "file" : "lib/TMDB/Config.pm"
+         "file" : "lib/TMDB/Config.pm",
+         "version" : "v1.0.1"
       },
       "TMDB::Genre" : {
-         "file" : "lib/TMDB/Genre.pm"
+         "file" : "lib/TMDB/Genre.pm",
+         "version" : "v1.0.1"
       },
       "TMDB::Movie" : {
-         "file" : "lib/TMDB/Movie.pm"
+         "file" : "lib/TMDB/Movie.pm",
+         "version" : "v1.0.1"
       },
       "TMDB::Person" : {
-         "file" : "lib/TMDB/Person.pm"
+         "file" : "lib/TMDB/Person.pm",
+         "version" : "v1.0.1"
       },
       "TMDB::Search" : {
-         "file" : "lib/TMDB/Search.pm"
+         "file" : "lib/TMDB/Search.pm",
+         "version" : "v1.0.1"
       },
       "TMDB::Session" : {
-         "file" : "lib/TMDB/Session.pm"
+         "file" : "lib/TMDB/Session.pm",
+         "version" : "v1.0.1"
       }
    },
    "release_status" : "stable",
@@ -89,5 +97,5 @@
          "url" : "git://github.com/mithun/perl-tmdb.git"
       }
    },
-   "version" : "v0.11.1"
+   "version" : "v1.0.1"
 }

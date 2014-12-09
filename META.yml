@@ -25,23 +25,31 @@ name: TMDB
 provides:
   TMDB:
     file: lib/TMDB.pm
-    version: v0.11.1
+    version: v1.0.1
   TMDB::Collection:
     file: lib/TMDB/Collection.pm
+    version: v1.0.1
   TMDB::Company:
     file: lib/TMDB/Company.pm
+    version: v1.0.1
   TMDB::Config:
     file: lib/TMDB/Config.pm
+    version: v1.0.1
   TMDB::Genre:
     file: lib/TMDB/Genre.pm
+    version: v1.0.1
   TMDB::Movie:
     file: lib/TMDB/Movie.pm
+    version: v1.0.1
   TMDB::Person:
     file: lib/TMDB/Person.pm
+    version: v1.0.1
   TMDB::Search:
     file: lib/TMDB/Search.pm
+    version: v1.0.1
   TMDB::Session:
     file: lib/TMDB/Session.pm
+    version: v1.0.1
 requires:
   Encode: '0'
   HTTP::Tiny: '0.016'
@@ -55,4 +63,4 @@ resources:
   homepage: https://github.com/mithun/perl-tmdb
   license: http://dev.perl.org/licenses/
   repository: git://github.com/mithun/perl-tmdb.git
-version: v0.11.1
+version: v1.0.1

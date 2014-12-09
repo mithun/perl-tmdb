@@ -19,6 +19,11 @@ use Locale::Codes::Language qw(all_language_codes);
 use Object::Tiny qw(apikey apiurl lang debug client encoder json);
 
 #######################
+# VERSION
+#######################
+our $VERSION = '1.0.1';
+
+#######################
 # PACKAGE VARIABLES
 #######################
 
