@@ -204,6 +204,29 @@ sub content_ratings {
 } ## end sub content_rating
 
 ## ====================
+## SEASON
+## ====================
+sub season {
+    my $self   = shift;
+    my $season = shift;
+    return $self->session->talk(
+        { method => 'tv/' . $self->id() . '/season/' . $season } );
+} ## end sub episode
+
+## ====================
+## EPISODE
+## ====================
+sub episode {
+    my $self   = shift;
+    my $season = shift;
+    my $episode = shift;
+    return $self->session->talk(
+        { method => 'tv/' . $self->id() . '/season/' .
+              $season . '/episode/' . $episode
+        } );
+} ## end sub episode
+
+## ====================
 ## CHANGES
 ## ====================
 sub changes {

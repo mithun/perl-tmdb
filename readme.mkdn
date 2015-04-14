@@ -72,6 +72,9 @@ TMDB - Perl wrapper for The MovieDB API
       # TV Show Object
       my $show = $tmdb->tv( id => '1418' );
 
+      my $season = $show->season(5);
+      my $episode = $show->episode(2, 3);
+
       # Person Data
       # ===========
 
@@ -267,10 +270,14 @@ This provides the configuration for the `/3` API. See
       print Dumper $show->crew;
       print Dumper $show->images;
       print Dumper $show->keywords;
-      print Dumper $movie->videos;
-      print Dumper $movie->translations;
-      print Dumper $movie->content_ratings;
-      print Dumper $movie->changes;
+      print Dumper $show->videos;
+      print Dumper $show->translations;
+      print Dumper $show->content_ratings;
+      print Dumper $show->changes;
+
+      # Get Season and Episode info
+      print Dumper $show->season(5);
+      print Dumper $show->episode(1, 1);
 
       # Get TMDB's version to check if anything changed
       print $movie->version;
