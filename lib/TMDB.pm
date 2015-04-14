@@ -22,6 +22,7 @@ use Object::Tiny qw(session);
 #######################
 use TMDB::Genre;
 use TMDB::Movie;
+use TMDB::TV;
 use TMDB::Config;
 use TMDB::Person;
 use TMDB::Search;
@@ -59,6 +60,7 @@ sub company { return TMDB::Company->new( session => shift->session, @_ ); }
 sub config { return TMDB::Config->new( session => shift->session, @_ ); }
 sub genre { return TMDB::Genre->new( session => shift->session, @_ ); }
 sub movie { return TMDB::Movie->new( session => shift->session, @_ ); }
+sub tv { return TMDB::TV->new( session => shift->session, @_ ); }
 sub person { return TMDB::Person->new( session => shift->session, @_ ); }
 sub search { return TMDB::Search->new( session => shift->session, @_ ); }
 
