@@ -28,6 +28,14 @@ TMDB - Perl wrapper for The MovieDB API
             split( /-/, $result->{release_date}, 1 ) );
       }
 
+      # Search for a TV show
+      my @results = $tmdb->search->tv('The Big Bang Theory');
+      foreach my $result (@results) {
+        printf( "%s:\t%s (%s)\n",
+            $result->{id}, $result->{name},
+            split( /-/, $result->{first_air_date}, 1 ) );
+      }
+
       # Search for an actor
       my @results = $tmdb->search->person('Sean Connery');
       foreach my $result (@results) {
