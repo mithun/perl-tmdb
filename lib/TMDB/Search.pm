@@ -21,7 +21,7 @@ use TMDB::Session;
 #######################
 # VERSION
 #######################
-our $VERSION = '1.0.1';
+our $VERSION = '1.1.0';
 
 #######################
 # PUBLIC METHODS
@@ -128,7 +128,6 @@ sub tv {
         }
     );
 } ## end sub tv
-
 
 ## ====================
 ## Search Person

@@ -22,7 +22,7 @@ use TMDB::Session;
 #######################
 # VERSION
 #######################
-our $VERSION = '1.0.1';
+our $VERSION = '1.1.0';
 
 #######################
 # PUBLIC METHODS
@@ -138,13 +138,13 @@ sub images {
 ## ====================
 sub videos {
     my $self = shift;
-    my $response = $self->session->talk(
-        { method => 'tv/' . $self->id() . '/videos' } );
+    my $response
+      = $self->session->talk( { method => 'tv/' . $self->id() . '/videos' } );
     my $videos = $response->{results} || [];
 
   return @$videos if wantarray;
   return $videos;
-    
+
 } ## end sub videos
 
 ## ====================
@@ -195,13 +195,13 @@ sub similar {
 ## CONTENT RATING
 ## ====================
 sub content_ratings {
-    my $self   = shift;
+    my $self     = shift;
     my $response = $self->session->talk(
         { method => 'tv/' . $self->id() . '/content_ratings' } );
     my $content_ratings = $response->{results} || [];
-    return @$content_ratings if wantarray;
-    return $content_ratings;
-} ## end sub content_rating
+  return @$content_ratings if wantarray;
+  return $content_ratings;
+} ## end sub content_ratings
 
 ## ====================
 ## SEASON
@@ -209,21 +209,27 @@ sub content_ratings {
 sub season {
     my $self   = shift;
     my $season = shift;
-    return $self->session->talk(
+  return $self->session->talk(
         { method => 'tv/' . $self->id() . '/season/' . $season } );
-} ## end sub episode
+} ## end sub season
 
 ## ====================
 ## EPISODE
 ## ====================
 sub episode {
-    my $self   = shift;
-    my $season = shift;
+    my $self    = shift;
+    my $season  = shift;
     my $episode = shift;
-    return $self->session->talk(
-        { method => 'tv/' . $self->id() . '/season/' .
-              $season . '/episode/' . $episode
-        } );
+  return $self->session->talk(
+        {
+                method => 'tv/'
+              . $self->id()
+              . '/season/'
+              . $season
+              . '/episode/'
+              . $episode
+        }
+    );
 } ## end sub episode
 
 ## ====================

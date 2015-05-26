@@ -8,7 +8,7 @@ build_requires:
 configure_requires:
   Module::Build: '0.38'
 dynamic_config: 1
-generated_by: 'Module::Build version 0.421, CPAN::Meta::Converter version 2.143240'
+generated_by: 'Module::Build version 0.4211, CPAN::Meta::Converter version 2.150001'
 keywords:
   - movies
   - movie
@@ -25,31 +25,34 @@ name: TMDB
 provides:
   TMDB:
     file: lib/TMDB.pm
-    version: v1.0.1
+    version: v1.1.0
   TMDB::Collection:
     file: lib/TMDB/Collection.pm
-    version: v1.0.1
+    version: v1.1.0
   TMDB::Company:
     file: lib/TMDB/Company.pm
-    version: v1.0.1
+    version: v1.1.0
   TMDB::Config:
     file: lib/TMDB/Config.pm
-    version: v1.0.1
+    version: v1.1.0
   TMDB::Genre:
     file: lib/TMDB/Genre.pm
-    version: v1.0.1
+    version: v1.1.0
   TMDB::Movie:
     file: lib/TMDB/Movie.pm
-    version: v1.0.1
+    version: v1.1.0
   TMDB::Person:
     file: lib/TMDB/Person.pm
-    version: v1.0.1
+    version: v1.1.0
   TMDB::Search:
     file: lib/TMDB/Search.pm
-    version: v1.0.1
+    version: v1.1.0
   TMDB::Session:
     file: lib/TMDB/Session.pm
-    version: v1.0.1
+    version: v1.1.0
+  TMDB::TV:
+    file: lib/TMDB/TV.pm
+    version: v1.1.0
 requires:
   Encode: '0'
   HTTP::Tiny: '0.016'
@@ -63,4 +66,4 @@ resources:
   homepage: https://github.com/mithun/perl-tmdb
   license: http://dev.perl.org/licenses/
   repository: git://github.com/mithun/perl-tmdb.git
-version: v1.0.1
+version: v1.1.0

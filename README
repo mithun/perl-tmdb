@@ -77,15 +77,15 @@ SYNOPSIS
 DESCRIPTION
 
 
-The MovieDB is a free and open movie database. This module provides a
-Perl wrapper to The MovieDB API. In order to use this module, you must
-first get an API key by signing up.
+[The MovieDB][] is a free and open movie database. This module provides
+a Perl wrapper to [The MovieDB API][]. In order to use this module, you
+must first get an API key by [signing up][].
 
 NOTE: TMDB-v0.04 and higher uses TheMoviDB API version /3. This brings
 some significant differences both to the API and the interface this
 module provides, along with updated dependencies for this distribution.
 If you like to continue to use v2.1 API, you can continue to use
-TMDB-0.03x.
+[TMDB-0.03x][].
 
 
 
@@ -111,18 +111,18 @@ The constructor accepts the following options:
     This must be a valid ISO 639-1 (Alpha-2) language code. Note that
     with /3, the API no longer falls back to an English default.
 
-    List of ISO 639-1 codes.
+    [List of ISO 639-1 codes][].
 
 -   client
 
-    You can provide your own HTTP::Tiny object, otherwise a default one
-    is used.
+    You can provide your own [HTTP::Tiny][] object, otherwise a default
+    one is used.
 
 -   json
 
-    You can provide your own JSON implementation that can decode JSON.
-    This will fall back to using JSON::Any. However, JSON::XS is
-    recommended.
+    You can provide your own [JSON][] implementation that can decode
+    JSON. This will fall back to using [JSON::MaybeXS][]. However,
+    [JSON::XS][] is recommended.
 
 -   apiurl
 
@@ -332,13 +332,13 @@ GENRE
 DEPENDENCIES
 
 
--   Encode
--   HTTP::Tiny
--   JSON::Any
--   Locale::Codes
--   Object::Tiny
--   Params::Validate
--   URI::Encode
+-   [Encode][]
+-   [HTTP::Tiny][]
+-   [JSON::MaybeXS][]
+-   [Locale::Codes][]
+-   [Object::Tiny][]
+-   [Params::Validate][]
+-   [URI::Encode][]
 
 
 
@@ -357,9 +357,9 @@ https://github.com/mithun/perl-tmdb/issues
 SEE ALSO
 
 
--   The MovieDB API
--   API Support
--   WWW::TMDB::API
+-   [The MovieDB API][]
+-   [API Support][]
+-   [WWW::TMDB::API][]
 
 
 
@@ -376,4 +376,22 @@ LICENSE AND COPYRIGHT
 Copyright (c) 2014, Mithun Ayachit. All rights reserved.
 
 This module is free software; you can redistribute it and/or modify it
-under the same terms as Perl itself. See perlartistic.
+under the same terms as Perl itself. See [perlartistic][].
+
+  [The MovieDB]: http://www.themoviedb.org/
+  [The MovieDB API]: http://docs.themoviedb.apiary.io/
+  [signing up]: http://www.themoviedb.org/account/signup
+  [TMDB-0.03x]: https://metacpan.org/release/MITHUN/TMDB-0.03/
+  [List of ISO 639-1 codes]: http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+  [HTTP::Tiny]: https://metacpan.org/pod/HTTP::Tiny
+  [JSON]: https://metacpan.org/pod/JSON
+  [JSON::MaybeXS]: https://metacpan.org/pod/JSON::MaybeXS
+  [JSON::XS]: https://metacpan.org/pod/JSON::XS
+  [Encode]: https://metacpan.org/pod/Encode
+  [Locale::Codes]: https://metacpan.org/pod/Locale::Codes
+  [Object::Tiny]: https://metacpan.org/pod/Object::Tiny
+  [Params::Validate]: https://metacpan.org/pod/Params::Validate
+  [URI::Encode]: https://metacpan.org/pod/URI::Encode
+  [API Support]: https://www.themoviedb.org/talk/category/5047958519c29526b50017d6
+  [WWW::TMDB::API]: https://metacpan.org/pod/WWW::TMDB::API
+  [perlartistic]: https://metacpan.org/pod/perlartistic

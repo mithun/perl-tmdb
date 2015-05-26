@@ -10,7 +10,7 @@ use Carp qw(croak carp);
 #######################
 # VERSION
 #######################
-our $VERSION = '1.0.1';
+our $VERSION = '1.1.0';
 
 #######################
 # LOAD CPAN MODULES
@@ -192,8 +192,8 @@ is used.
 =item json
 
 You can provide your own L<JSON> implementation that can C<decode>
-JSON. This will fall back to using L<JSON::MaybeXS>. However, L<JSON::XS>
-is recommended.
+JSON. This will fall back to using L<JSON::MaybeXS>. However,
+L<JSON::XS> is recommended.
 
 =item apiurl
 
