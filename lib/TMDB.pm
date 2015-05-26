@@ -10,7 +10,7 @@ use Carp qw(croak carp);
 #######################
 # VERSION
 #######################
-our $VERSION = '1.1.1';
+our $VERSION = '1.1.2';
 
 #######################
 # LOAD CPAN MODULES
@@ -103,6 +103,14 @@ TMDB - Perl wrapper for The MovieDB API
         printf( "%s:\t%s\n", $result->{id}, $result->{name} );
       }
 
+      # Search for a TV show
+      my @results = $tmdb->search->tv('The Big Bang Theory');
+      foreach my $result (@results) {
+        printf( "%s:\t%s (%s)\n",
+            $result->{id}, $result->{name},
+            split( /-/, $result->{first_air_date}, 1 ) );
+      }
+
       # Movie Data
       # ===========
 
@@ -142,6 +150,15 @@ TMDB - Perl wrapper for The MovieDB API
         $person_name, '=' x length($person_name), $person_bio );
       print("\nActed in:\n");
       printf( "\t-%s\n", $_ ) for @person_movies;
+
+      # TV Show Data
+      # ===========
+
+      # TV Show Object
+      my $show = $tmdb->tv( id => '1418' );
+
+      my $season = $show->season(5);
+      my $episode = $show->episode(2, 3);
 
 
 =head1 DESCRIPTION
@@ -233,12 +250,13 @@ L<http://docs.themoviedb.apiary.io/#configuration> for more details.
 
       # Search
       my $search  = $tmdb->search();
-      my @results = $search->movie('Snatch (2000)');    # Search for movies
-      my @results = $search->person('Brad Pitt');       # Search people by Name
-      my @results = $search->company('Sony Pictures');  # Search for companies
-      my @results = $search->keyword('thriller');       # Search for keywords
-      my @results = $search->collection('Star Wars');   # Search for collections
-      my @results = $search->list('top 250');           # Search lists
+      my @results = $search->movie('Snatch (2000)');          # Search for movies
+      my @results = $search->tv('The Big Bang Theory (2007)') # Search for TV shows
+      my @results = $search->person('Brad Pitt');             # Search people by Name
+      my @results = $search->company('Sony Pictures');        # Search for companies
+      my @results = $search->keyword('thriller');             # Search for keywords
+      my @results = $search->collection('Star Wars');         # Search for collections
+      my @results = $search->list('top 250');                 # Search lists
 
       # Find using external sources
       my @results = $search->find(
@@ -360,28 +378,53 @@ L<http://docs.themoviedb.apiary.io/#configuration> for more details.
 
 =head1 COMPANY
 
-        # Get the company object
-        my $company = $tmdb->company(id => '1');
+      # Get the company object
+      my $company = $tmdb->company(id => '1');
 
-        # Company info (as returned by the API)
-        use Data::Dumper qw(Dumper);
-        print Dumper $company->info;
-        print Dumper $company->movies;
+      # Company info (as returned by the API)
+      use Data::Dumper qw(Dumper);
+      print Dumper $company->info;
+      print Dumper $company->movies;
 
-        # Filtered company data
-        print $company->name; # Name of the Company
-        print $company->logo; # Logo
+      # Filtered company data
+      print $company->name; # Name of the Company
+      print $company->logo; # Logo
 
-        # Get TMDB's version to check if anything changed
-        print $company->version;
+      # Get TMDB's version to check if anything changed
+      print $company->version;
 
 =head1 GENRE
 
-        # Get a list
-        my @genres = $tmdb->genre->list();
+      # Get a list
+      my @genres = $tmdb->genre->list();
 
-        # Get a list of movies
-        my @movies = $tmdb->genre(id => '35')->movies;
+      # Get a list of movies
+      my @movies = $tmdb->genre(id => '35')->movies;
+
+=head1 TV SHOW
+
+      # Get the TV show object
+      my $show = $tmdb->tv( id => '1418' );
+
+      # TV Show Data (as returned by the API)
+      use Data::Dumper qw(Dumper);
+      print Dumper $show->info;
+      print Dumper $show->alternative_titles;
+      print Dumper $show->cast;
+      print Dumper $show->crew;
+      print Dumper $show->images;
+      print Dumper $show->keywords;
+      print Dumper $show->videos;
+      print Dumper $show->translations;
+      print Dumper $show->content_ratings;
+      print Dumper $show->changes;
+
+      # Get Season and Episode info
+      print Dumper $show->season(5);
+      print Dumper $show->episode(1, 1);
+
+      # Get TMDB's version to check if anything changed
+      print $show->version;
 
 
 =head1 DEPENDENCIES
