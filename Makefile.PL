@@ -7,7 +7,7 @@ WriteMakefile
   'PREREQ_PM' => {
                    'Encode' => 0,
                    'HTTP::Tiny' => '0.016',
-                   'JSON::Any' => '1.23',
+                   'JSON::MaybeXS' => 0,
                    'Locale::Codes' => '3.20',
                    'Object::Tiny' => '1.03',
                    'Params::Validate' => '1.03',

@@ -38,7 +38,7 @@
          "requires" : {
             "Encode" : "0",
             "HTTP::Tiny" : "0.016",
-            "JSON::Any" : "1.23",
+            "JSON::MaybeXS" : "0",
             "Locale::Codes" : "3.20",
             "Object::Tiny" : "1.03",
             "Params::Validate" : "1.03",
@@ -49,43 +49,43 @@
    "provides" : {
       "TMDB" : {
          "file" : "lib/TMDB.pm",
-         "version" : "v1.1.0"
+         "version" : "v1.1.1"
       },
       "TMDB::Collection" : {
          "file" : "lib/TMDB/Collection.pm",
-         "version" : "v1.1.0"
+         "version" : "v1.1.1"
       },
       "TMDB::Company" : {
          "file" : "lib/TMDB/Company.pm",
-         "version" : "v1.1.0"
+         "version" : "v1.1.1"
       },
       "TMDB::Config" : {
          "file" : "lib/TMDB/Config.pm",
-         "version" : "v1.1.0"
+         "version" : "v1.1.1"
       },
       "TMDB::Genre" : {
          "file" : "lib/TMDB/Genre.pm",
-         "version" : "v1.1.0"
+         "version" : "v1.1.1"
       },
       "TMDB::Movie" : {
          "file" : "lib/TMDB/Movie.pm",
-         "version" : "v1.1.0"
+         "version" : "v1.1.1"
       },
       "TMDB::Person" : {
          "file" : "lib/TMDB/Person.pm",
-         "version" : "v1.1.0"
+         "version" : "v1.1.1"
       },
       "TMDB::Search" : {
          "file" : "lib/TMDB/Search.pm",
-         "version" : "v1.1.0"
+         "version" : "v1.1.1"
       },
       "TMDB::Session" : {
          "file" : "lib/TMDB/Session.pm",
-         "version" : "v1.1.0"
+         "version" : "v1.1.1"
       },
       "TMDB::TV" : {
          "file" : "lib/TMDB/TV.pm",
-         "version" : "v1.1.0"
+         "version" : "v1.1.1"
       }
    },
    "release_status" : "stable",
@@ -101,5 +101,5 @@
          "url" : "git://github.com/mithun/perl-tmdb.git"
       }
    },
-   "version" : "v1.1.0"
+   "version" : "v1.1.1"
 }

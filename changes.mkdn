@@ -4,6 +4,10 @@ author:
 title: Version History for TMDB
 ...
 
+# 1.1.1
+
+-   Fix dependencies in Build.PL
+
 # 1.1.0
 
 -   Add TV support. Implemented by Sarah Fortune
