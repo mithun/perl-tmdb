@@ -97,6 +97,40 @@ sub movie {
 } ## end sub movie
 
 ## ====================
+## Search TV Shows
+## ====================
+sub tv {
+    my ( $self, $string ) = @_;
+
+    # Get Year
+    my $year;
+    if ( $string =~ m{.+\((\d{4})\)$} ) {
+        $year = $1;
+        $string =~ s{\($year\)$}{};
+    } ## end if ( $string =~ m{.+\((\d{4})\)$})
+
+    # Trim
+    $string =~ s{(?:^\s+)|(?:\s+$)}{};
+
+    # Search
+    my $params = {
+        query         => $string,
+        include_adult => $self->include_adult,
+    };
+    $params->{language} = $self->session->lang if $self->session->lang;
+    $params->{year} = $year if $year;
+
+    warn "DEBUG: Searching for $string\n" if $self->session->debug;
+  return $self->_search(
+        {
+            method => 'search/tv',
+            params => $params,
+        }
+    );
+} ## end sub tv
+
+
+## ====================
 ## Search Person
 ## ====================
 sub person {
