@@ -4,6 +4,11 @@ author:
 title: Version History for TMDB
 ...
 
+# 1.1.0
+
+- Add TV support. Implemented by Sarah Fortune
+- Remove JSON::Any in favor of JSON::MaybeXS
+
 # 1.0.1
 
 -   Bump version to allow change in version number strategy

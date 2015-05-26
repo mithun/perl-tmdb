@@ -192,7 +192,7 @@ is used.
 =item json
 
 You can provide your own L<JSON> implementation that can C<decode>
-JSON. This will fall back to using L<JSON::Any>. However, L<JSON::XS>
+JSON. This will fall back to using L<JSON::MaybeXS>. However, L<JSON::XS>
 is recommended.
 
 =item apiurl
@@ -392,7 +392,7 @@ L<http://docs.themoviedb.apiary.io/#configuration> for more details.
 
 =item L<HTTP::Tiny>
 
-=item L<JSON::Any>
+=item L<JSON::MaybeXS>
 
 =item L<Locale::Codes>
 

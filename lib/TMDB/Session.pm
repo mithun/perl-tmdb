@@ -10,7 +10,7 @@ use Carp qw(croak carp);
 #######################
 # LOAD CPAN MODULES
 #######################
-use JSON::Any;
+use JSON::MaybeXS;
 use Encode qw();
 use HTTP::Tiny qw();
 use URI::Encode qw();
@@ -86,7 +86,7 @@ sub new {
                 type     => OBJECT,
                 can      => 'Load',
                 optional => 1,
-                default  => JSON::Any->new(
+                default  => JSON::MaybeXS->new(
                     utf8 => 1,
                 ),
             },
