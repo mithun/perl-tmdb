@@ -84,7 +84,7 @@ sub new {
             },
             json => {
                 type     => OBJECT,
-                can      => 'Load',
+                can      => [qw(decode)],
                 optional => 1,
                 default  => JSON::MaybeXS->new(
                     utf8 => 1,
