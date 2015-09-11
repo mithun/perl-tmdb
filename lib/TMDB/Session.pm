@@ -86,9 +86,7 @@ sub new {
                 type     => OBJECT,
                 can      => [qw(decode)],
                 optional => 1,
-                default  => JSON::MaybeXS->new(
-                    utf8 => 1,
-                ),
+                default  => JSON::MaybeXS->new(),
             },
             debug => {
                 type     => BOOLEAN,
