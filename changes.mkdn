@@ -4,6 +4,11 @@ author:
 title: Version History for TMDB
 ...
 
+# 1.2.0
+
+- Fix #4 Dies with 'Wide character in subroutine entry' in Session.pm
+- Fix #5 Specifying a custom JSON object does not work
+
 # 1.1.2
 
 -   Add documentation about TV shows (lost from PR)
