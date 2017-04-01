@@ -31,6 +31,8 @@ my $builder = Module::Build->new(
         'Object::Tiny'     => '1.03',
         'Params::Validate' => '1.03',
         'URI::Encode'      => '0.05',
+        'IO::Socket::SSL'  => '1.56',
+        'Net::SSLeay'      => '1.49',
     },
     add_to_cleanup     => ['TMDB-*'],
     create_license     => 1,

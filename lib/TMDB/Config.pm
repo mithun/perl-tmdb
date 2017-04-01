@@ -32,7 +32,7 @@ use TMDB::Session;
 #######################
 # VERSION
 #######################
-our $VERSION = '1.2.0';
+our $VERSION = '1.2.1';
 
 #######################
 # PUBLIC METHODS

@@ -3,6 +3,13 @@ Mithun Ayachit
 
 
 
+1.2.1
+
+
+-   Fix #6 -- Add IO::Socket::SSL and Net::SSLeay as dependencies
+
+
+
 1.2.0
 
 
@@ -59,8 +66,8 @@ Mithun Ayachit
 
 
 -   [POD Updates] Fix link to API documentation
--   [RT#94609] Fix _year_ regex for discover. Also added support for
-    prinmary_release_year. Thanks KENTNL.
+-   [RT#94609] Fix _year_ regex for discover. Also added support
+    for prinmary_release_year. Thanks KENTNL.
 -   Use the SSL endpoint. This can be overriden in the constructor
 -   Attempt to check the API status responses
 

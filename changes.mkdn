@@ -4,6 +4,10 @@ author:
 title: Version History for TMDB
 ...
 
+# 1.2.1
+
+-   Fix \#6 -- Add `IO::Socket::SSL` and `Net::SSLeay` as dependencies
+
 # 1.2.0
 
 -   Fix \#4 Dies with 'Wide character in subroutine entry' in Session.pm
@@ -37,21 +41,21 @@ title: Version History for TMDB
 
 # 0.10
 
--   [POD Updates] Fix link to API documentation
--   [RT\#94609] Fix *year* regex for `discover`. Also added support for
-    prinmary\_release\_year. Thanks KENTNL.
+-   \[POD Updates\] Fix link to API documentation
+-   \[RT\#94609\] Fix *year* regex for `discover`. Also added support
+    for prinmary\_release\_year. Thanks KENTNL.
 -   Use the SSL endpoint. This can be overriden in the constructor
 -   Attempt to check the API status responses
 
 # 0.09
 
--   [RT\#92190] add helpers for hompeage and movie studios
--   [RT\#91676] fix issue where an exception was thrown for unavailable
-    backdrops and other info fields
+-   \[RT\#92190\] add helpers for hompeage and movie studios
+-   \[RT\#91676\] fix issue where an exception was thrown for
+    unavailable backdrops and other info fields
 
 # 0.08
 
--   [RT\#86184] Fix movie search when a *year* is used
+-   \[RT\#86184\] Fix movie search when a *year* is used
 -   add support for movie discovery
 -   added support to search for lists, keywords and collections
 -   added support for person/latest and person/popular
@@ -62,10 +66,10 @@ title: Version History for TMDB
 
 # 0.07
 
--   [RT \#85530] Fixed issue where API results were being double (utf8)
-    encoded. Thanks david
+-   \[RT \#85530\] Fixed issue where API results were being
+    double (utf8) encoded. Thanks david
 -   Do not try to print a hashref when debugging
--   [minor] code formatting tweaks
+-   \[minor\] code formatting tweaks
 
 # 0.061
 

@@ -137,9 +137,9 @@ The constructor accepts the following options:
 
 -   json
 
-    You can provide your own [JSON][] implementation that can decode
-    JSON. This will fall back to using [JSON::MaybeXS][]. However,
-    [JSON::XS][] is recommended.
+    You can provide your own [JSON][] implementation that can
+    decode JSON. This will fall back to using [JSON::MaybeXS][].
+    However, [JSON::XS][] is recommended.
 
 -   apiurl
 
@@ -403,7 +403,7 @@ https://github.com/mithun/perl-tmdb/issues
 SEE ALSO
 
 
--   [The MovieDB API][]
+-   [The MovieDB API][The MovieDB API]
 -   [API Support][]
 -   [WWW::TMDB::API][]
 
