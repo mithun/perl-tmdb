@@ -669,7 +669,7 @@ $mock->clear;
 $person->directed;
 ($name, $args) = $mock->next_call();
 $url = @$args[1];
-ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $directed->directed may be localized' );
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $person->directed may be localized' );
 
 $mock->clear;
 $person->produced;
