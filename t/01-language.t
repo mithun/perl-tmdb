@@ -58,57 +58,53 @@ $show->similar(1);
 $url = @$args[1];
 ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $show->similar may be localized' );
 
-TODO: {
-    local $TODO = "Known bug";
+$mock->clear;
+$show->season(1);
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $show->season(1) may be localized' );
 
-    $mock->clear;
-    $show->season(1);
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $show->season(1) may be localized' );
+$mock->clear;
+$show->episode(1,2);
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $show->episode(1,2) may be localized' );
 
-    $mock->clear;
-    $show->episode(1,2);
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $show->episode(1,2) may be localized' );
+$mock->clear;
+$show->cast;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $show->cast may be localized' );
 
-    $mock->clear;
-    $show->cast;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $show->cast may be localized' );
+$mock->clear;
+$show->crew;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $show->crew may be localized' );
 
-    $mock->clear;
-    $show->crew;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $show->crew may be localized' );
+$mock->clear;
+$show->images;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $show->images may be localized' );
 
-    $mock->clear;
-    $show->images;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $show->images may be localized' );
+$mock->clear;
+$show->videos;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $show->videos may be localized' );
 
-    $mock->clear;
-    $show->videos;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $show->videos may be localized' );
+$mock->clear;
+$show->version;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $show->version may be localized' );
 
-    $mock->clear;
-    $show->version;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $show->version may be localized' );
-
-    $mock->clear;
-    $show->_credits;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $show->_credits may be localized' );
-};
+$mock->clear;
+$show->_credits;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $show->_credits may be localized' );
 
 SKIP: {
     skip "Requests that don't use language", 4;
@@ -301,99 +297,95 @@ $movie->backdrop;
 $url = @$args[1];
 ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $movie->backdrop may be localized' );
 
-TODO: {
-    local $TODO = "Known bug";
+$mock->clear;
+$movie->cast;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $movie->cast may be localized' );
 
-    $mock->clear;
-    $movie->cast;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $movie->cast may be localized' );
+$mock->clear;
+$movie->crew;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $movie->crew may be localized' );
 
-    $mock->clear;
-    $movie->crew;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $movie->crew may be localized' );
+$mock->clear;
+$movie->images;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $movie->images may be localized' );
 
-    $mock->clear;
-    $movie->images;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $movie->images may be localized' );
+$mock->clear;
+$movie->trailers;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $movie->trailers may be localized' );
 
-    $mock->clear;
-    $movie->trailers;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $movie->trailers may be localized' );
+$mock->clear;
+$movie->version;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $movie->version may be localized' );
 
-    $mock->clear;
-    $movie->version;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $movie->version may be localized' );
+$mock->clear;
+$movie->actors;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $movie->actors may be localized' );
 
-    $mock->clear;
-    $movie->actors;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $movie->actors may be localized' );
+$mock->clear;
+$movie->director;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $movie->director may be localized' );
 
-    $mock->clear;
-    $movie->director;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $movie->director may be localized' );
+$mock->clear;
+$movie->producer;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $movie->producer may be localized' );
 
-    $mock->clear;
-    $movie->producer;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $movie->producer may be localized' );
+$mock->clear;
+$movie->executive_producer;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $movie->executive_producer may be localized' );
 
-    $mock->clear;
-    $movie->executive_producer;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $movie->executive_producer may be localized' );
+$mock->clear;
+$movie->writer;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $movie->writer may be localized' );
 
-    $mock->clear;
-    $movie->writer;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $movie->writer may be localized' );
+$mock->clear;
+$movie->posters;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $movie->posters may be localized' );
 
-    $mock->clear;
-    $movie->posters;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $movie->posters may be localized' );
+$mock->clear;
+$movie->backdrops;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $movie->backdrops may be localized' );
 
-    $mock->clear;
-    $movie->backdrops;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $movie->backdrops may be localized' );
+$mock->clear;
+$movie->trailers_youtube;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $movie->trailers_youtube may be localized' );
 
-    $mock->clear;
-    $movie->trailers_youtube;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $movie->trailers_youtube may be localized' );
+$mock->clear;
+$movie->_cast;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $movie->_cast may be localized' );
 
-    $mock->clear;
-    $movie->_cast;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $movie->_cast may be localized' );
-
-    $mock->clear;
-    $movie->_crew_names;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $movie->_crew_names may be localized' );
-};
+$mock->clear;
+$movie->_crew_names;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $movie->_crew_names may be localized' );
 
 SKIP: {
     skip "Requests that don't use language", 5;
@@ -496,15 +488,11 @@ $collection->_parse_parts;
 $url = @$args[1];
 ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $collection->_parse_parts may be localized' );
 
-TODO: {
-    local $TODO = "Known bug";
-
-    $mock->clear;
-    $collection->version;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $collection->version may be localized' );
-};
+$mock->clear;
+$collection->version;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $collection->version may be localized' );
 
 SKIP: {
     skip "Not implemented", 2;
@@ -629,87 +617,83 @@ SKIP: {
 # Tests language parameters for Person requests
 my $person = $tmdb->person(id => 1234);
 
-TODO: {
-    local $TODO = "Known bug";
+$mock->clear;
+$person->info;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $person->info may be localized' );
 
-    $mock->clear;
-    $person->info;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $person->info may be localized' );
+$mock->clear;
+$person->version;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $person->version may be localized' );
 
-    $mock->clear;
-    $person->version;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $person->version may be localized' );
+$mock->clear;
+$person->name;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $person->name may be localized' );
 
-    $mock->clear;
-    $person->name;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $person->name may be localized' );
+$mock->clear;
+$person->aka;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $person->aka may be localized' );
 
-    $mock->clear;
-    $person->aka;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $person->aka may be localized' );
+$mock->clear;
+$person->bio;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $person->bio may be localized' );
 
-    $mock->clear;
-    $person->bio;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $person->bio may be localized' );
+$mock->clear;
+$person->image;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $person->image may be localized' );
 
-    $mock->clear;
-    $person->image;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $person->image may be localized' );
+$mock->clear;
+$person->credits;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $person->credits may be localized' );
 
-    $mock->clear;
-    $person->credits;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $person->credits may be localized' );
+$mock->clear;
+$person->starred_in;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $person->starred_in may be localized' );
 
-    $mock->clear;
-    $person->starred_in;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $person->starred_in may be localized' );
+$mock->clear;
+$person->directed;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $directed->directed may be localized' );
 
-    $mock->clear;
-    $person->directed;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $directed->directed may be localized' );
+$mock->clear;
+$person->produced;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $person->produced may be localized' );
 
-    $mock->clear;
-    $person->produced;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $person->produced may be localized' );
+$mock->clear;
+$person->executive_produced;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $person->executive_produced may be localized' );
 
-    $mock->clear;
-    $person->executive_produced;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $person->executive_produced may be localized' );
+$mock->clear;
+$person->wrote;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $person->wrote may be localized' );
 
-    $mock->clear;
-    $person->wrote;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $person->wrote may be localized' );
-
-    $mock->clear;
-    $person->_crew_names;
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $person->_crew_names may be localized' );
-};
+$mock->clear;
+$person->_crew_names;
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $person->_crew_names may be localized' );
 
 SKIP: {
     skip "Requests that don't use language", 1;
@@ -812,27 +796,23 @@ $search->find( id =>"id", source => "source");
 $url = @$args[1];
 ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $search->find may be localized' );
 
-TODO: {
-    local $TODO = "Known bug";
+$mock->clear;
+$search->person("Test");
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $search->person may be localized' );
 
-    $mock->clear;
-    $search->person("Test");
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $search->person may be localized' );
+$mock->clear;
+$search->collection("Test");
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $search->collection may be localized' );
 
-    $mock->clear;
-    $search->collection("Test");
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $search->collection may be localized' );
-
-    $mock->clear;
-    $search->list("Test");
-    ($name, $args) = $mock->next_call();
-    $url = @$args[1];
-    ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $search->list may be localized' );
-};
+$mock->clear;
+$search->list("Test");
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $search->list may be localized' );
 
 SKIP: {
     skip "Requests that don't use language", 4;
