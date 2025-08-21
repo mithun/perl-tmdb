@@ -30,6 +30,21 @@ my $tmdb = TMDB->new( apikey => 'fake-api-key', lang => 'es', client => $mock);
 my $show = $tmdb->tv(id => 1234);
 my ($name, $args, $url);
 
+# Tests language parameters for Session:talk requests
+my $session = $tmdb->{session};
+
+$mock->clear;
+$session->talk( { method => "test/path", params => { para1 => "v1", para2 => "v2" } } );
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=es(&|$)/, 'Request $session->talk may be localized' );
+
+$mock->clear;
+$session->talk( { method => "test/path", params => { para1 => "v1", para2 => "v2", language => "fr" } } );
+($name, $args) = $mock->next_call();
+$url = @$args[1];
+ok( $url =~ /(&|\?)language=fr(&|$)/, 'Request $session->talk language parameter overrides default language' );
+
 # Tests language parameters for TV Show requests
 $mock->clear;
 $show->info;
@@ -859,5 +874,5 @@ SKIP: {
 
 
 # Done
-done_testing(123);
+done_testing(125);
 exit 0;
