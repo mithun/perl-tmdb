@@ -22,6 +22,7 @@ my $builder = Module::Build->new(
     build_requires     => {
         'Test::More' => 0,
         'Test::MockObject' => 0,
+        'Test::Exception' => 0,
         'version'    => 0,
     },
     requires => {
