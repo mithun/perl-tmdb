@@ -78,7 +78,7 @@ sub alternative_titles {
     # Valid Country codes
     if ($country) {
         my %valid_country_codes
-          = map { $_ => 1 } all_country_codes('alpha-2');
+          = map { uc($_) => 1 } all_country_codes('alpha-2');
         $country = uc $country;
       return unless $valid_country_codes{$country};
     } ## end if ($country)
