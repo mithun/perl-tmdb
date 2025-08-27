@@ -16,6 +16,7 @@ use HTTP::Tiny qw();
 use URI::Encode qw();
 use Params::Validate qw(validate_with :types);
 use Locale::Codes::Language qw(all_language_codes);
+use Locale::Codes::Country qw(all_country_codes);
 use Object::Tiny qw(apikey apiurl lang debug client encoder json);
 
 #######################
@@ -29,6 +30,7 @@ our $VERSION = '1.2.1';
 
 # Valid language codes
 my %valid_lang_codes = map { $_ => 1 } all_language_codes('alpha-2');
+my %valid_country_codes = map { uc($_) => 1 } all_country_codes('alpha-2');
 
 # Default Headers
 my $default_headers = {
@@ -64,7 +66,11 @@ sub new {
                 optional  => 1,
                 callbacks => {
                     'valid language code' =>
-                      sub { $valid_lang_codes{ lc $_[0] } },
+                      sub { 
+                        my ( $lang, $country ) = split(/-/, ,$_[0]);
+                        $valid_lang_codes{ lc $lang } && !$country
+                        || $valid_lang_codes{ $lang } && $valid_country_codes{ $country };
+                      },
                 },
             },
             client => {
@@ -96,7 +102,7 @@ sub new {
         },
     );
 
-    $opts{lang} = lc $opts{lang} if $opts{lang};
+    $opts{lang} = lc $opts{lang} if $opts{lang} && length($opts{lang}) == 2;
     my $self = $class->SUPER::new(%opts);
   return $self;
 } ## end sub new
