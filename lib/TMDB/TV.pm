@@ -92,7 +92,7 @@ sub alternative_titles {
 
     my $response = $self->session->talk($args);
     my $results = $response->{results} || [];
-    # TMDB API endpoind does not filter results using country code
+    # TMDB API endpoint does not filter results using country code
     my $titles = [];
     foreach (@$results) { push @$titles, $_ unless $country && ($_->{'iso_3166_1'} ne $country); }
 
