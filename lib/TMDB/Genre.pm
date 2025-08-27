@@ -60,7 +60,7 @@ sub list {
             method => 'genre/list',
             params => {
                 language => $self->session->lang
-                ? $self->session->lang
+                ? substr($self->session->lang, 0, 2)
                 : undef,
             },
         }
