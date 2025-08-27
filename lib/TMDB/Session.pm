@@ -80,7 +80,7 @@ sub new {
                 callbacks => {
                     'valid language code' =>
                       sub { 
-                        my ( $lang, $country ) = split(/-/, ,$_[0]);
+                        my ( $lang, $country ) = split(/-/, $_[0]);
                         $valid_lang_codes{ lc $lang } && !$country
                         || $valid_lang_codes{ $lang } && $valid_country_codes{ $country };
                       },
