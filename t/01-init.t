@@ -22,7 +22,7 @@ dies_ok { TMDB->new( apikey => 'fake-api-key', lang => 'en-us' ) } 'language cod
 ok (!TMDB->new( apikey => 'fake-api-key')->session->_http_options->{headers}->{Authorization}, 'No Authorization header in HTTP options');
 
 # Test with access-token
-ok ok (TMDB->new( token => 'fake-token'), 'Initialize with a token');
+ok (TMDB->new( token => 'fake-token'), 'Initialize with a token');
 is (TMDB->new( token => 'fake-token')->session->_http_options->{headers}->{Authorization}, "Bearer fake-token", "Presence of Authorization header in HTTP options");
 dies_ok { TMDB->new( apikey => 'fake-api-key', token => 'fake-token' ) } 'Should not have an apikey and a token simultaneously';
 
