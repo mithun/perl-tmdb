@@ -78,7 +78,7 @@ sub alternative_titles {
     # Valid Country codes
     if ($country) {
         my %valid_country_codes
-          = map { $_ => 1 } all_country_codes('alpha-2');
+          = map { uc($_) => 1 } all_country_codes('alpha-2');
         $country = uc $country;
       return unless $valid_country_codes{$country};
     } ## end if ($country)
@@ -87,10 +87,14 @@ sub alternative_titles {
         method => 'tv/' . $self->id() . '/alternative_titles',
         params => {},
     };
-    $args->{params}->{country} = $country if $country;
+    # Currently no country param in TMDB API: https://developer.themoviedb.org/reference/tv-series-alternative-titles
+    # $args->{params}->{country} = $country if $country;
 
     my $response = $self->session->talk($args);
-    my $titles = $response->{results} || [];
+    my $results = $response->{results} || [];
+    # TMDB API endpoint does not filter results using country code
+    my $titles = [];
+    foreach (@$results) { push @$titles, $_ unless $country && ($_->{'iso_3166_1'} ne $country); }
 
   return @$titles if wantarray;
   return $titles;
