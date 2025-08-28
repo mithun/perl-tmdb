@@ -117,7 +117,7 @@ sub new {
     $opts{lang} = lc $opts{lang} if $opts{lang} && length($opts{lang}) == 2;
     my $self = $class->SUPER::new(%opts);
 
-    my $headers = $default_headers;
+    my $headers = { %$default_headers };
     $headers->{Authorization} = 'Bearer '.($self->token) if $self->token;
     $self->{_http_options} = { headers => $headers };
   return $self;
