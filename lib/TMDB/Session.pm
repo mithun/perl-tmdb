@@ -17,7 +17,7 @@ use URI::Encode qw();
 use Params::Validate qw(validate_with :types);
 use Locale::Codes::Language qw(all_language_codes);
 use Locale::Codes::Country qw(all_country_codes);
-use Object::Tiny qw(apikey apiurl lang debug client encoder json);
+use Object::Tiny qw(_http_options token apikey apiurl lang debug client encoder json);
 
 #######################
 # VERSION
@@ -55,6 +55,19 @@ sub new {
         spec   => {
             apikey => {
                 type => SCALAR,
+                optional => 1,
+                default => undef,
+                callbacks => {
+                  'incompatible with token' => sub { !($_[0] && $_[1]->{token}) }
+                },
+            },
+            token => {
+                type => SCALAR,
+                optional => 1,
+                default => undef,
+                callbacks => {
+                  'incompatible with apikey' => sub { !($_[0] && $_[1]->{apikey}) }
+                },
             },
             apiurl => {
                 type     => SCALAR,
@@ -67,7 +80,7 @@ sub new {
                 callbacks => {
                     'valid language code' =>
                       sub { 
-                        my ( $lang, $country ) = split(/-/, ,$_[0]);
+                        my ( $lang, $country ) = split(/-/, $_[0]);
                         $valid_lang_codes{ lc $lang } && !$country
                         || $valid_lang_codes{ $lang } && $valid_country_codes{ $country };
                       },
@@ -78,8 +91,7 @@ sub new {
                 isa      => 'HTTP::Tiny',
                 optional => 1,
                 default  => HTTP::Tiny->new(
-                    agent           => $default_ua,
-                    default_headers => $default_headers,
+                    agent => $default_ua,
                 ),
             },
             encoder => {
@@ -104,6 +116,10 @@ sub new {
 
     $opts{lang} = lc $opts{lang} if $opts{lang} && length($opts{lang}) == 2;
     my $self = $class->SUPER::new(%opts);
+
+    my $headers = { %$default_headers };
+    $headers->{Authorization} = 'Bearer '.($self->token) if $self->token;
+    $self->{_http_options} = { headers => $headers };
   return $self;
 } ## end sub new
 
@@ -114,16 +130,22 @@ sub talk {
     my ( $self, $args ) = @_;
 
     # Build Call
-    my $url
-      = $self->apiurl . '/' . $args->{method} . '?api_key=' . $self->apikey;
+    my $url = $self->apiurl . '/' . $args->{method};
+    $url .= '?api_key=' . $self->apikey if $self->apikey; 
     # add language by default
     $args->{params}->{language} = $self->lang unless (exists $args->{params}->{language});
     if ( $args->{params} ) {
+        my $firstparam = ! $self->apikey;
         foreach
           my $param ( sort { lc $a cmp lc $b } keys %{ $args->{params} } )
         {
           next unless defined $args->{params}->{$param};
+          if ($firstparam) {
+            $url .= "?${param}=" . $args->{params}->{$param};
+            $firstparam = 0;
+          } else {
             $url .= "&${param}=" . $args->{params}->{$param};
+          }
         } ## end foreach my $param ( sort { ...})
     } ## end if ( $args->{params} )
 
@@ -132,7 +154,7 @@ sub talk {
 
     # Talk
     warn "DEBUG: GET -> $url\n" if $self->debug;
-    my $response = $self->client->get($url);
+    my $response = $self->client->get($url, $self->_http_options);
 
     # Debug
     if ( $self->debug ) {
