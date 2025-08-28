@@ -66,7 +66,7 @@ sub new {
                 optional => 1,
                 default => undef,
                 callbacks => {
-                  'incompatible with apikey' => sub { $_[0] && ! $_[1]->{apikey} }
+                  'incompatible with apikey' => sub { !($_[0] && $_[1]->{apikey}) }
                 },
             },
             apiurl => {
