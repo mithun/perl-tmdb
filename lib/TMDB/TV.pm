@@ -128,7 +128,7 @@ sub crew {
 sub images {
     my $self   = shift;
     my $params = {};
-    $params->{lang} = $self->session->lang if $self->session->lang;
+    $params->{language} = substr($self->session->lang, 0, 2) if $self->session->lang;
   return $self->session->talk(
         {
             method => 'tv/' . $self->id() . '/images',
