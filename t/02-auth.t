@@ -26,7 +26,6 @@ $mock->set_always(
 );
 
 my ($tmdb, $name, $args, $url, $opts);
-my $http_options = 
 
 # Test apikey is send as query string parameter
 $mock->clear;
