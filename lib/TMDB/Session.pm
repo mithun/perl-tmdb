@@ -58,7 +58,7 @@ sub new {
                 optional => 1,
                 default => undef,
                 callbacks => {
-                  'incompatible with token' => sub { $_[0] && ! $_[1]->{token} }
+                  'incompatible with token' => sub { !($_[0] && $_[1]->{token}) }
                 },
             },
             token => {
